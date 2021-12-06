@@ -25,7 +25,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![Build & Push Server images](https://github.com/mcanouil/docker-versioned/actions/workflows/server.yml/badge.svg)](https://github.com/mcanouil/docker-versioned/actions/workflows/server.yml)
 <!-- badges: end -->
 
-This is a work-in-progress / testing repository for building Docker images.
+This is a repository for building Docker images.
 
 ```{r, echo = FALSE, results = "asis"}
 dt <- do.call("rbind", lapply(
