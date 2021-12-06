@@ -1,0 +1,154 @@
+{
+  "ordered": true,
+  "TAG": "4.0.1",
+  "LABEL": "org.opencontainers.image.licenses=\"GPL-3.0\" \\\n      org.opencontainers.image.source=\"https://github.com/mcanouil/docker-versioned\" \\\n      org.opencontainers.image.authors=\"Mickaël Canouil <https://mickael.canouil.fr/>\"",
+  "group": [
+    {
+      "default": [
+        {
+          "targets": [
+            "r-ver"
+          ]
+        }
+      ],
+      "umr": [
+        {
+          "targets": [
+            "umr1283"
+          ]
+        }
+      ],
+      "server": [
+        {
+          "targets": [
+            "ssh",
+            "rstudio",
+            "shiny"
+          ]
+        }
+      ]
+    }
+  ],
+  "stack": [
+    {
+      "IMAGE": "r-ver",
+      "labels": {
+        "org.opencontainers.image.title": "mcanouil/r-ver",
+        "org.opencontainers.image.description": "Reproducible builds with predefined version of R"
+      },
+      "FROM": "debian:bullseye",
+      "ENV": {
+        "R_VERSION": "4.0.1",
+        "R_HOME": "/usr/local/lib/R",
+        "CRAN": "https://cran.r-project.org",
+        "LANG": "en_GB.UTF-8",
+        "TZ": "Etc/UTC",
+        "PANDOC_VERSION": "2.14.2"
+      },
+      "COPY": "assets /docker_scripts",
+      "RUN": [
+        "chmod --recursive +x /docker_scripts",
+        "/docker_scripts/install_lang.sh",
+        "/docker_scripts/install_git.sh",
+        "/docker_scripts/install_msfonts.sh",
+        "/docker_scripts/install_pandoc.sh",
+        "/docker_scripts/install_r.sh",
+        "/docker_scripts/install_python.sh"
+      ],
+      "CMD": "[\"R\"]",
+      "tags": [
+        "docker.io/mcanouil/r-ver:4.0.1"
+      ],
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64"
+      ],
+      "cache-from": [
+        "docker.io/mcanouil/r-ver:4.0.1"
+      ],
+      "cache-to": [
+        "type=inline"
+      ]
+    },
+    {
+      "IMAGE": "umr1283",
+      "labels": {
+        "org.opencontainers.image.title": "mcanouil/umr1283",
+        "org.opencontainers.image.description": "Reproducible builds with predefined version of R and some (genetics) tools"
+      },
+      "FROM": "mcanouil/r-ver:4.0.1",
+      "ENV": {
+        "UMR1283_VERSION": "1.5.0",
+        "BCFTOOLS_VERSION": "1.14",
+        "ODBC_VERSION": "8.0.27",
+        "S6_VERSION": "v2.2.0.3"
+      },
+      "COPY": "assets /docker_scripts",
+      "RUN": [
+        "chmod --recursive +x /docker_scripts",
+        "/docker_scripts/install_libs.sh",
+        "/docker_scripts/install_odbc.sh",
+        "/docker_scripts/install_s6init.sh",
+        "/docker_scripts/install_crossmap.sh",
+        "/docker_scripts/install_bcftools.sh",
+        "/docker_scripts/install_vcftools.sh",
+        "/docker_scripts/install_qtltools.sh",
+        "/docker_scripts/install_r_packages.sh",
+        "/docker_scripts/install_r_umr1283.sh"
+      ],
+      "CMD": "[\"R\"]",
+      "tags": [
+        "docker.io/mcanouil/umr1283:4.0.1"
+      ]
+    },
+    {
+      "IMAGE": "rstudio",
+      "labels": {
+        "org.opencontainers.image.title": "mcanouil/rstudio",
+        "org.opencontainers.image.description": "RStudio server for umr1283 image"
+      },
+      "FROM": "mcanouil/umr1283:4.0.1",
+      "ENV": {
+        "RSTUDIO_VERSION": "2021.09.1+372",
+        "PATH": "/usr/lib/rstudio-server/bin:$PATH"
+      },
+      "RUN": "/docker_scripts/install_rstudio.sh",
+      "CMD": "[\"/init\"]",
+      "EXPOSE": 8787,
+      "tags": [
+        "docker.io/mcanouil/rstudio:4.0.1"
+      ]
+    },
+    {
+      "IMAGE": "ssh",
+      "labels": {
+        "org.opencontainers.image.title": "mcanouil/ssh",
+        "org.opencontainers.image.description": "SSH server for umr1283 image"
+      },
+      "FROM": "mcanouil/umr1283:4.0.1",
+      "RUN": "/docker_scripts/install_ssh.sh",
+      "CMD": "[\"/init\"]",
+      "EXPOSE": 2222,
+      "tags": [
+        "docker.io/mcanouil/ssh:4.0.1"
+      ]
+    },
+    {
+      "IMAGE": "shiny",
+      "labels": {
+        "org.opencontainers.image.title": "mcanouil/shiny",
+        "org.opencontainers.image.description": "Shiny server for umr1283 image"
+      },
+      "FROM": "mcanouil/umr1283:4.0.1",
+      "ENV": {
+        "SHINY_SERVER_VERSION": "latest"
+      },
+      "RUN": "/docker_scripts/install_shiny_server.sh",
+      "CMD": "[\"/init\"]",
+      "EXPOSE": 3838,
+      "tags": [
+        "docker.io/mcanouil/shiny:4.0.1"
+      ]
+    }
+  ]
+}

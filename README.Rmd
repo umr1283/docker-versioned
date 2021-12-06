@@ -1,0 +1,49 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Version-stable Docker images for R >= 4.0.0
+
+<!-- badges: start -->
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![License](https://img.shields.io/github/license/mcanouil/docker-versioned)](LICENSE)
+[![GitHub tag](https://img.shields.io/github/tag/mcanouil/docker-versioned.svg?label=latest%20tag)](https://github.com/mcanouil/docker-versioned)
+[![Write Config Files](https://github.com/mcanouil/docker-versioned/actions/workflows/setup.yml/badge.svg)](https://github.com/mcanouil/docker-versioned/actions/workflows/setup.yml)  
+[![Build & Push Devel images](https://github.com/mcanouil/docker-versioned/actions/workflows/devel.yml/badge.svg)](https://github.com/mcanouil/docker-versioned/actions/workflows/devel.yml)
+[![Build & Push Core images](https://github.com/mcanouil/docker-versioned/actions/workflows/core.yml/badge.svg)](https://github.com/mcanouil/docker-versioned/actions/workflows/core.yml)
+[![Build & Push UMR images](https://github.com/mcanouil/docker-versioned/actions/workflows/umr.yml/badge.svg)](https://github.com/mcanouil/docker-versioned/actions/workflows/umr.yml)
+[![Build & Push Server images](https://github.com/mcanouil/docker-versioned/actions/workflows/server.yml/badge.svg)](https://github.com/mcanouil/docker-versioned/actions/workflows/server.yml)
+<!-- badges: end -->
+
+This is a work-in-progress / testing repository for building Docker images.
+
+```{r, echo = FALSE, results = "asis"}
+dt <- do.call("rbind", lapply(
+  X = jsonlite::read_json(here::here("01-stacks/devel.json"))$stack,
+  FUN = function(x) {
+    img <- x$labels$org.opencontainers.image.title
+    rver <- sprintf("[![](https://img.shields.io/docker/v/%s.svg?sort=semver&label=latest)](https://hub.docker.com/r/%s)", img, img)
+    desc <- x$labels$org.opencontainers.image.description
+    c(
+      sprintf("[%s](https://hub.docker.com/r/%s)", basename(img), img),
+      desc,
+      rver,
+      sprintf("[![](https://img.shields.io/docker/pulls/%s.svg)](https://hub.docker.com/r/%s)", img, img)
+    )
+  }
+))
+colnames(dt) <- c("Image", "Description", "R", "Pull")
+knitr::kable(dt, format = "markdown")
+```
+
+_Note: Based on [rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2) build workflow._

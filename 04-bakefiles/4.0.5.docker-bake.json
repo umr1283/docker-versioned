@@ -1,0 +1,137 @@
+{
+  "group": [
+    {
+      "default": [
+        {
+          "targets": [
+            "r-ver"
+          ]
+        }
+      ],
+      "umr": [
+        {
+          "targets": [
+            "umr1283"
+          ]
+        }
+      ],
+      "server": [
+        {
+          "targets": [
+            "ssh",
+            "rstudio",
+            "shiny"
+          ]
+        }
+      ]
+    }
+  ],
+  "target": {
+    "r-ver": {
+      "context": "./",
+      "dockerfile": "02-dockerfiles/r-ver_4.0.5.Dockerfile",
+      "labels": {
+        "org.opencontainers.image.title": "mcanouil/r-ver",
+        "org.opencontainers.image.description": "Reproducible builds with predefined version of R",
+        "org.opencontainers.image.base.name": "docker.io/library/debian:bullseye"
+      },
+      "tags": [
+        "docker.io/mcanouil/r-ver:4.0.5"
+      ],
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64"
+      ],
+      "cache-from": [
+        "docker.io/mcanouil/r-ver:4.0.5"
+      ],
+      "cache-to": [
+        "type=inline"
+      ]
+    },
+    "umr1283": {
+      "context": "./",
+      "dockerfile": "02-dockerfiles/umr1283_4.0.5.Dockerfile",
+      "labels": {
+        "org.opencontainers.image.title": "mcanouil/umr1283",
+        "org.opencontainers.image.description": "Reproducible builds with predefined version of R and some (genetics) tools",
+        "org.opencontainers.image.base.name": "docker.io/mcanouil/r-ver:4.0.5"
+      },
+      "tags": [
+        "docker.io/mcanouil/umr1283:4.0.5"
+      ],
+      "platforms": [
+        "linux/amd64"
+      ],
+      "cache-from": [
+        ""
+      ],
+      "cache-to": [
+        ""
+      ]
+    },
+    "rstudio": {
+      "context": "./",
+      "dockerfile": "02-dockerfiles/rstudio_4.0.5.Dockerfile",
+      "labels": {
+        "org.opencontainers.image.title": "mcanouil/rstudio",
+        "org.opencontainers.image.description": "RStudio server for umr1283 image",
+        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.0.5"
+      },
+      "tags": [
+        "docker.io/mcanouil/rstudio:4.0.5"
+      ],
+      "platforms": [
+        "linux/amd64"
+      ],
+      "cache-from": [
+        ""
+      ],
+      "cache-to": [
+        ""
+      ]
+    },
+    "ssh": {
+      "context": "./",
+      "dockerfile": "02-dockerfiles/ssh_4.0.5.Dockerfile",
+      "labels": {
+        "org.opencontainers.image.title": "mcanouil/ssh",
+        "org.opencontainers.image.description": "SSH server for umr1283 image",
+        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.0.5"
+      },
+      "tags": [
+        "docker.io/mcanouil/ssh:4.0.5"
+      ],
+      "platforms": [
+        "linux/amd64"
+      ],
+      "cache-from": [
+        ""
+      ],
+      "cache-to": [
+        ""
+      ]
+    },
+    "shiny": {
+      "context": "./",
+      "dockerfile": "02-dockerfiles/shiny_4.0.5.Dockerfile",
+      "labels": {
+        "org.opencontainers.image.title": "mcanouil/shiny",
+        "org.opencontainers.image.description": "Shiny server for umr1283 image",
+        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.0.5"
+      },
+      "tags": [
+        "docker.io/mcanouil/shiny:4.0.5"
+      ],
+      "platforms": [
+        "linux/amd64"
+      ],
+      "cache-from": [
+        ""
+      ],
+      "cache-to": [
+        ""
+      ]
+    }
+  }
+}

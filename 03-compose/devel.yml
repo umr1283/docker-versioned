@@ -1,0 +1,35 @@
+version: '3'
+services:
+  r-ver-devel:
+    image: mcanouil/r-ver:devel
+    build:
+      context: ..
+      dockerfile: 02-dockerfiles/r-ver_devel.Dockerfile
+  umr1283-devel:
+    image: mcanouil/umr1283:devel
+    depends_on:
+    - r-ver-devel
+    build:
+      context: ..
+      dockerfile: 02-dockerfiles/umr1283_devel.Dockerfile
+  rstudio-devel:
+    image: mcanouil/rstudio:devel
+    depends_on:
+    - umr1283-devel
+    build:
+      context: ..
+      dockerfile: 02-dockerfiles/rstudio_devel.Dockerfile
+  ssh-devel:
+    image: mcanouil/ssh:devel
+    depends_on:
+    - rstudio-devel
+    build:
+      context: ..
+      dockerfile: 02-dockerfiles/ssh_devel.Dockerfile
+  shiny-devel:
+    image: mcanouil/shiny:devel
+    depends_on:
+    - ssh-devel
+    build:
+      context: ..
+      dockerfile: 02-dockerfiles/shiny_devel.Dockerfile
