@@ -64,7 +64,12 @@ alias mkdir="mkdir -pv"
 
 # set key auth in file
 if [ -n "$(pgrep sshd)" ]; then
-  echo "$USER:$(openssl rand -base64 14)" | chpasswd
+  if [ "$USERGRP" = "admin" ]; then
+    echo "$USER:$USER" | chpasswd
+  else
+    echo "$USER:$(openssl rand -base64 14)" | chpasswd
+  fi
+  
   PUBLICKEY=$4
 
   [ -f /home/$USER/.ssh/authorized_keys ] || touch /home/$USER/.ssh/authorized_keys
