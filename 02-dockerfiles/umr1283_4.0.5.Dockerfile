@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.licenses="GPL-3.0" \
       org.opencontainers.image.source="https://github.com/mcanouil/docker-versioned" \
       org.opencontainers.image.authors="Mickaël Canouil <https://mickael.canouil.fr/>"
 
-ENV UMR1283_VERSION=1.5.0
+ENV UMR1283_VERSION=1.5.1
 ENV BCFTOOLS_VERSION=1.14
 ENV ODBC_VERSION=8.0.27
 ENV S6_VERSION=v2.2.0.3
@@ -23,4 +23,3 @@ RUN /docker_scripts/install_r_packages.sh
 RUN /docker_scripts/install_r_umr1283.sh
 
 CMD ["R"]
-
