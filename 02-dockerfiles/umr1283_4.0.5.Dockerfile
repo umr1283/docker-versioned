@@ -23,3 +23,4 @@ RUN /docker_scripts/install_r_packages.sh
 RUN /docker_scripts/install_r_umr1283.sh
 
 CMD ["R"]
+
