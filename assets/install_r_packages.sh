@@ -7,6 +7,7 @@ apt-get update && apt-get install -y --no-install-recommends \
   libxml2-dev \
   libfontconfig1-dev \
   libssl-dev \
+  libsasl2-dev \
   libharfbuzz-dev \
   libfribidi-dev \
   libfreetype6-dev \
