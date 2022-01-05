@@ -16,7 +16,9 @@ apt-get update && apt-get install -y --no-install-recommends \
   libjpeg-dev \
   libv8-dev \
   libxt6 \
-  libgdal-dev
+  libgdal-dev \
+  libgmp-dev \
+  librsvg2-dev
 
 Rscript -e 'utils::install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")'
 
