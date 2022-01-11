@@ -109,7 +109,7 @@
       },
       "FROM": "mcanouil/umr1283:4.0.0",
       "ENV": {
-        "RSTUDIO_VERSION": "2021.09.1+372",
+        "RSTUDIO_VERSION": "2021.09.2+382",
         "PATH": "/usr/lib/rstudio-server/bin:$PATH"
       },
       "RUN": "/docker_scripts/install_rstudio.sh",
