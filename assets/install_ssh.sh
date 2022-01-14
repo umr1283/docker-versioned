@@ -3,7 +3,7 @@ set -e
 
 . /docker_scripts/install_s6init.sh
 
-apt-get update && apt-get install -y openssh-server sudo
+apt-get update && apt-get install -y openssh-server sudo man
 
 ## Set up openssh-server init scripts
 mkdir -p /etc/services.d/openssh-server

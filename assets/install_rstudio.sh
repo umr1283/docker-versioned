@@ -19,7 +19,8 @@ apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     wget \
     ca-certificates \
-    ssh-client
+    ssh-client \
+    man
 
 rm -rf /var/lib/apt/lists/*
 

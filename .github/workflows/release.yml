@@ -14,16 +14,16 @@ jobs:
       - name: Set version from date
         id: get_version
         run: |
-          NEW_VERSION=$(date '+%Y.%m.%d')
+          NEW_VERSION=$(date '+v%Y.%m')
           echo ::set-output name=newversion::${NEW_VERSION}
           echo ${NEW_VERSION}
       - name: Bump version and push tag
         id: tag_version
-        uses: mathieudutour/github-tag-action@v5.6
+        uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: false
-          custom_tag: ${{ steps.get_version.outputs.newversion }}
+          default_bump: patch
+          tag_prefix: ${{ steps.get_version.outputs.newversion }}
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
