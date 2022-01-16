@@ -20,7 +20,7 @@ apt-get update && apt-get install -y --no-install-recommends \
   libgmp-dev \
   librsvg2-dev
 
-Rscript -e 'utils::install.packages("pak")'
+Rscript -e 'utils::install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")'
 
 Rscript -e 'pak::pkg_install(c(
   "udunits2", "units", "devtools", "usethis", "here",
