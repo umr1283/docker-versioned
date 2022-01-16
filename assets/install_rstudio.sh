@@ -24,7 +24,7 @@ apt-get update && apt-get install -y --no-install-recommends \
 
 rm -rf /var/lib/apt/lists/*
 
-. /docker_scripts/install_s6init.sh
+/docker_scripts/install_s6init.sh
 
 ## Download and install RStudio server & dependencies
 ## Uses, in order of preference, first argument of the script, the
@@ -105,10 +105,10 @@ echo '#!/bin/bash
 rstudio-server stop' \
 > /etc/services.d/rstudio/finish
 
-# Log to stderr
+# Log to syslog
 LOGGING="[*]
 log-level=warn
-logger-type=stderr
+logger-type=syslog
 "
 
 printf "%s" "$LOGGING" > /etc/rstudio/logging.conf
@@ -116,6 +116,18 @@ printf "%s" "$LOGGING" > /etc/rstudio/logging.conf
 printf "\numask 0002\n" >> /etc/profile
 
 cp /docker_scripts/rstudio-prefs.json /etc/rstudio/rstudio-prefs.json
+
+## Set our dynamic variables in Renviron.site to be reflected by RStudio Server or Shiny Server
+exclude_vars="HOME PASSWORD RSTUDIO_VERSION"
+for file in /var/run/s6/container_environment/*
+do
+  sed -i "/^${file##*/}=/d" ${R_HOME}/etc/Renviron.site
+  regex="(^| )${file##*/}($| )"
+  [[ ! $exclude_vars =~ $regex ]] && echo "${file##*/}=$(cat $file)" >> ${R_HOME}/etc/Renviron.site || echo "skipping $file"
+done
+
+## only file-owner (root) should read container_environment files:
+chmod 600 /var/run/s6/container_environment/*
 
 # Clean up
 apt-get autoremove -y

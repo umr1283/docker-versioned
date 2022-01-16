@@ -5,13 +5,12 @@ apt-get update && apt-get -y install lsb-release
 
 DEBIAN_VERSION=${DEBIAN_VERSION:-`lsb_release -sc`}
 LANG=${LANG:-en_GB.UTF-8}
-LC_ALL=${LANG}
 CRAN=${CRAN:-https://cran.r-project.org}
 TZ=${TZ:-Etc/UTC}
 
 export DEBIAN_FRONTEND=noninteractive
 
-# Set up and install R
+## Set up and install R
 R_HOME=${R_HOME:-/usr/local/lib/R}
 
 apt-get update \
@@ -36,7 +35,6 @@ apt-get update \
     libreadline8 \
     libtiff* \
     liblzma* \
-    locales \
     make \
     unzip \
     zip \
@@ -107,7 +105,6 @@ CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdat
 		   --with-blas \
 		   --with-lapack \
 		   --with-tcltk \
-		   --disable-nls \
 		   --with-recommended-packages
 make
 make install
