@@ -5,7 +5,7 @@ set -e
 apt-get update && apt-get install -y --no-install-recommends libio-socket-ssl-perl
 
 Rscript \
-  -e 'utils::install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")' \
+  -e 'utils::install.packages("pak")' \
   -e 'pak::pkg_install(c(
     ifelse(
       test = grepl("\\.9000", Sys.getenv("UMR1283_VERSION")),
