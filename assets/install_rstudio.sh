@@ -102,14 +102,14 @@ printf "\numask 0002\n" >> /etc/profile
 
 cp /docker_scripts/rstudio-prefs.json /etc/rstudio/rstudio-prefs.json
 
-# ## Set our dynamic variables in Renviron.site to be reflected by RStudio Server or Shiny Server
-# exclude_vars="HOME PASSWORD RSTUDIO_VERSION"
-# for file in /var/run/s6/container_environment/*
-# do
-#   sed -i "/^${file##*/}=/d" ${R_HOME}/etc/Renviron.site
-#   regex="(^| )${file##*/}($| )"
-#   [[ ! $exclude_vars =~ $regex ]] && echo "${file##*/}=$(cat $file)" >> ${R_HOME}/etc/Renviron.site || echo "skipping $file"
-# done
+## Set our dynamic variables in Renviron.site to be reflected by RStudio Server or Shiny Server
+exclude_vars="HOME PASSWORD RSTUDIO_VERSION"
+for file in /var/run/s6/container_environment/*
+do
+  sed -i "/^${file##*/}=/d" ${R_HOME}/etc/Renviron.site
+  regex="(^| )${file##*/}($| )"
+  [[ ! $exclude_vars =~ $regex ]] && echo "${file##*/}=$(cat $file)" >> ${R_HOME}/etc/Renviron.site || echo "skipping $file"
+done
 
 # ## only file-owner (root) should read container_environment files:
 # chmod --quiet 600 /var/run/s6/container_environment/*
