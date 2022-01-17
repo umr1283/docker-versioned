@@ -54,17 +54,17 @@ exec shiny-server 2>&1
 EOF
 chmod +x /etc/services.d/shiny-server/run
 
-## Set our dynamic variables in Renviron.site to be reflected by RStudio Server or Shiny Server
-exclude_vars="HOME PASSWORD RSTUDIO_VERSION"
-for file in /var/run/s6/container_environment/*
-do
-  sed -i "/^${file##*/}=/d" ${R_HOME}/etc/Renviron.site
-  regex="(^| )${file##*/}($| )"
-  [[ ! $exclude_vars =~ $regex ]] && echo "${file##*/}=$(cat $file)" >> ${R_HOME}/etc/Renviron.site || echo "skipping $file"
-done
+# ## Set our dynamic variables in Renviron.site to be reflected by RStudio Server or Shiny Server
+# exclude_vars="HOME PASSWORD RSTUDIO_VERSION"
+# for file in /var/run/s6/container_environment/*
+# do
+#   sed -i "/^${file##*/}=/d" ${R_HOME}/etc/Renviron.site
+#   regex="(^| )${file##*/}($| )"
+#   [[ ! $exclude_vars =~ $regex ]] && echo "${file##*/}=$(cat $file)" >> ${R_HOME}/etc/Renviron.site || echo "skipping $file"
+# done
 
-## only file-owner (root) should read container_environment files:
-chmod --quiet 600 /var/run/s6/container_environment/*
+# ## only file-owner (root) should read container_environment files:
+# chmod --quiet 600 /var/run/s6/container_environment/*
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
