@@ -57,7 +57,8 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/mcanouil/r-ver:4.0.5"
+        "docker.io/mcanouil/r-ver:4.0.5",
+        "docker.io/umr1283/r-ver:4.0.5"
       ],
       "platforms": [
         "linux/amd64",
@@ -98,7 +99,8 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/mcanouil/umr1283:4.0.5"
+        "docker.io/mcanouil/umr1283:4.0.5",
+        "docker.io/umr1283/umr1283:4.0.5"
       ]
     },
     {
@@ -116,7 +118,8 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 8787,
       "tags": [
-        "docker.io/mcanouil/rstudio:4.0.5"
+        "docker.io/mcanouil/rstudio:4.0.5",
+        "docker.io/umr1283/rstudio:4.0.5"
       ]
     },
     {
@@ -130,7 +133,8 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 2222,
       "tags": [
-        "docker.io/mcanouil/ssh:4.0.5"
+        "docker.io/mcanouil/ssh:4.0.5",
+        "docker.io/umr1283/ssh:4.0.5"
       ]
     },
     {
@@ -147,7 +151,8 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 3838,
       "tags": [
-        "docker.io/mcanouil/shiny:4.0.5"
+        "docker.io/mcanouil/shiny:4.0.5",
+        "docker.io/umr1283/shiny:4.0.5"
       ]
     }
   ]
