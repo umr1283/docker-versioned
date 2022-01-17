@@ -6,7 +6,7 @@ NCPUS=${NCPUS:--1}
 
 ARCH=$(dpkg --print-architecture)
 
-. /docker_scripts/install_s6init.sh
+/docker_scripts/install_s6init.sh
 
 if [ "$SHINY_SERVER_VERSION" = "latest" ]; then
   SHINY_SERVER_VERSION=$(wget -qO- https://download3.rstudio.org/ubuntu-14.04/x86_64/VERSION)
@@ -64,7 +64,7 @@ do
 done
 
 ## only file-owner (root) should read container_environment files:
-chmod 600 /var/run/s6/container_environment/*
+chmod --quiet 600 /var/run/s6/container_environment/*
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
