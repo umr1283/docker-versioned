@@ -1,8 +1,10 @@
 #!/bin/bash
 set -e
 
-SHINY_SERVER_VERSION=${1:-${SHINY_SERVER_VERSION:-latest}}
+SHINY_SERVER_VERSION=${SHINY_SERVER_VERSION:-latest}
 NCPUS=${NCPUS:--1}
+
+ARCH=$(dpkg --print-architecture)
 
 . /docker_scripts/install_s6init.sh
 
@@ -21,7 +23,7 @@ apt-get update && apt-get install -y --no-install-recommends \
     wget
 
 # Install Shiny server
-wget --no-verbose "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-${SHINY_SERVER_VERSION}-amd64.deb" -O ss-latest.deb
+wget --no-verbose "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-${SHINY_SERVER_VERSION}-${ARCH}.deb" -O ss-latest.deb
 gdebi -n ss-latest.deb
 rm ss-latest.deb
 
