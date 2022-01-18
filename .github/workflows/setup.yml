@@ -6,6 +6,7 @@ on:
     paths:
       - "01-stacks/devel.json"
       - "build/**"
+      - "assets/**"
   schedule:
     - cron: "0 10 * * *"
   workflow_dispatch:

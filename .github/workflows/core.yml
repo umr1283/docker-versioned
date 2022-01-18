@@ -1,13 +1,6 @@
 name: Build & Push Core
 
 on:
-  push:
-    branches: main
-    tags: "v*"
-    paths:
-      - "!01-stacks/devel.json"
-      - "assets/**"
-      - "02-dockerfiles/r-ver*.Dockerfile"
   workflow_run:
     workflows: "Create New Release"
     branches: main

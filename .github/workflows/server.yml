@@ -1,11 +1,6 @@
 name: Build & Push Servers
 
 on:
-  push:
-    paths: 
-      - "02-dockerfiles/rstudio*.Dockerfile"
-      - "02-dockerfiles/ssh*.Dockerfile"
-      - "02-dockerfiles/shiny*.Dockerfile"
   workflow_run:
     workflows: "Build & Push UMR"
     branches: main

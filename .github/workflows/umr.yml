@@ -1,8 +1,6 @@
 name: Build & Push UMR
 
 on:
-  push:
-    paths: "02-dockerfiles/umr1283*.Dockerfile"
   workflow_run:
     workflows: "Build & Push Core"
     branches: main
