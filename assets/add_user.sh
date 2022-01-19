@@ -24,8 +24,8 @@ fi
 
 useradd $CH --no-user-group --gid staff --uid $ID --groups $GRPS $USER
 
-[ -f /home/$USER/.bash_profile ] || echo '
-# .bash_profile
+[ -f /home/$USER/.bashrc ] || echo '
+# .bashrc
 
 # cat /dev/null > ~/.bash_history && history -c
 
@@ -60,6 +60,14 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
 alias mkdir="mkdir -pv"
+' > /home/$USER/.bashrc && chown -R $USER:staff /home/$USER
+
+[ -f /home/$USER/.bash_profile ] || echo '
+# .bash_profile
+
+if [ -f ~/.bashrc ]; then
+  source ~/.bashrc
+fi
 ' > /home/$USER/.bash_profile && chown -R $USER:staff /home/$USER
 
 # set key auth in file
