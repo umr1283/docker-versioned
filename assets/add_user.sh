@@ -72,13 +72,6 @@ fi
 
 # set key auth in file
 if [ -n "$(pgrep sshd)" ]; then
-  if [ "$USERGRP" = "admin" ]; then
-    echo "$USER:$USER" | chpasswd
-  else
-    # echo "$USER:$(openssl rand -base64 14)" | chpasswd
-    echo "$USER:$USER" | chpasswd
-  fi
-  
   PUBLICKEY=$4
 
   [ -f /home/$USER/.ssh/authorized_keys ] || touch /home/$USER/.ssh/authorized_keys
@@ -90,10 +83,12 @@ if [ -n "$(pgrep sshd)" ]; then
   chown -R $USER:staff /home/$USER/.ssh && \
     chmod 700  /home/$USER/.ssh && \
     chmod 600  /home/$USER/.ssh/authorized_keys
+fi
+
+if [[ ( (-n "$(pgrep sshd)") || (-n "$(pgrep rserver)") ) && ( (! -s ~/.ssh/authorized_keys) || ("$USERGRP" = "admin") ) ]]; then
+  echo "$USER:$USER" | chpasswd
 else 
-  if [ -n "$(pgrep rserver)" ]; then
-    echo "$USER:$USER" | chpasswd
-  fi
+  echo "$USER:$(openssl rand -base64 14)" | chpasswd
 fi
 
 echo "Changing S6 container_environment permissions!"
