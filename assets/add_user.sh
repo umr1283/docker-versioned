@@ -67,7 +67,8 @@ if [ -n "$(pgrep sshd)" ]; then
   if [ "$USERGRP" = "admin" ]; then
     echo "$USER:$USER" | chpasswd
   else
-    echo "$USER:$(openssl rand -base64 14)" | chpasswd
+    # echo "$USER:$(openssl rand -base64 14)" | chpasswd
+    echo "$USER:$USER" | chpasswd
   fi
   
   PUBLICKEY=$4
