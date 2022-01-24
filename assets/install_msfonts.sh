@@ -18,9 +18,7 @@ apt-get update \
     ca-certificates \
     fonts-liberation
 
-apt-get install -y --no-install-recommends ttf-mscorefonts-installer
-
-fc-cache -fv
+apt-get install -y --no-install-recommends ttf-mscorefonts-installer && fc-cache -frsv
 
 # Clean up
 apt-get autoremove -y
