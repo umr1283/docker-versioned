@@ -74,6 +74,10 @@ fi
 if [ -n "$(pgrep sshd)" ]; then
   PUBLICKEY=$4
 
+  if [ ! -d /home/$USER/.ssh ]; then
+    mkdir /home/$USER/.ssh
+  fi
+
   [ -f /home/$USER/.ssh/authorized_keys ] || touch /home/$USER/.ssh/authorized_keys
 
   [[ -n "$PUBLICKEY" ]] && \
