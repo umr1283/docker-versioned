@@ -50,10 +50,10 @@
         "chmod --recursive +x /docker_scripts",
         "/docker_scripts/install_lang.sh",
         "/docker_scripts/install_git.sh",
-        "/docker_scripts/install_msfonts.sh",
         "/docker_scripts/install_pandoc.sh",
         "/docker_scripts/install_r.sh",
-        "/docker_scripts/install_python.sh"
+        "/docker_scripts/install_python.sh",
+        "/docker_scripts/install_msfonts.sh"
       ],
       "CMD": "[\"R\"]"
     },
