@@ -18,8 +18,8 @@ echo '#!/bin/bash
 > /etc/services.d/openssh-server/finish
 
 # password access denied
-sed -i "s/^[# \t]*PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/ssh_config
-sed -i "s/^[# \t]*PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
+# sed -i "s/^[# \t]*PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/ssh_config
+# sed -i "s/^[# \t]*PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
 chown root:root /etc/shadow
 
 # Install "languageserver" and "httpgd" for VScode
