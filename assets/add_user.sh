@@ -17,7 +17,7 @@ fi
 
 if [ "$USERGRP" = "admin" ]; then
   GRPS="staff,root,sudo"
-  echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers  
+  echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 else
   GRPS="staff"
 fi
@@ -85,8 +85,8 @@ if [ -n "$(pgrep sshd)" ]; then
     echo "$PUBLICKEY" >> /home/$USER/.ssh/authorized_keys
 
   chown -R $USER:staff /home/$USER/.ssh && \
-    chmod 700  /home/$USER/.ssh && \
-    chmod 600  /home/$USER/.ssh/authorized_keys
+    chmod 700 /home/$USER/.ssh && \
+    chmod 600 /home/$USER/.ssh/authorized_keys
 fi
 
 if [[ 
