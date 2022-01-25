@@ -89,7 +89,18 @@ if [ -n "$(pgrep sshd)" ]; then
     chmod 600  /home/$USER/.ssh/authorized_keys
 fi
 
-if [[ ( (-n "$(pgrep sshd)") || (-n "$(pgrep rserver)") ) && ( (! -s ~/.ssh/authorized_keys) || ("$USERGRP" = "admin") ) ]]; then
+if [[ 
+  ( 
+    (-n "$(pgrep sshd)") || (-n "$(pgrep rserver)")
+  ) && 
+  ( 
+    (! -s ~/.ssh/authorized_keys) || ("$USERGRP" = "admin")
+  ) && 
+  (
+    (-n "$(grep -E '[# \t]*PasswordAuthentication yes' /etc/ssh/ssh_config)") ||
+    (-n "$(grep -E '[# \t]*PasswordAuthentication yes' /etc/ssh/sshd_config)")
+  )
+]]; then
   echo "$USER:$USER" | chpasswd
 else 
   echo "$USER:$(openssl rand -base64 14)" | chpasswd
