@@ -24,51 +24,20 @@ fi
 
 useradd $CH --no-user-group --gid staff --uid $ID --groups $GRPS $USER
 
-[ -f /home/$USER/.bashrc ] || echo '
-# .bashrc
-
-# cat /dev/null > ~/.bash_history && history -c
-
-# umask u=rwx,g=rwx,o=
+[ -f /home/$USER/.bash_aliases ] || echo '
+# .bash_aliases
 umask 0002
-export LANG="en_GB.UTF-8"
-export LANGUAGE="en_GB.UTF-8"
-export LC_ALL="en_GB.UTF-8"
-# export LC_CTYPE="en_GB.UTF-8"
-# export LC_NUMERIC="en_GB.UTF-8"
-# export LC_TIME="en_GB.UTF-8"
-# export LC_COLLATE="en_GB.UTF-8"
-# export LC_MONETARY="en_GB.UTF-8"
-# export LC_MESSAGES="en_GB.UTF-8"
-# export LC_PAPER="en_GB.UTF-8"
-# export LC_NAME="en_GB.UTF-8"
-# export LC_ADDRESS="en_GB.UTF-8"
-# export LC_TELEPHONE="en_GB.UTF-8"
-# export LC_MEASUREMENT="en_GB.UTF-8"
-# export LC_IDENTIFICATION="en_GB.UTF-8"
 export PS1="________________________________________________________________________________\n| \w @ \H (\u) \n| > "
 export PS2="| > "
-export BLOCKSIZE=1k
-export SHELL
-export LS_OPTIONS="--color=auto"
-eval "`dircolors`"
-alias ls="ls $LS_OPTIONS"
-alias ll="ls $LS_OPTIONS -Flhp"
-alias l="ls $LS_OPTIONS -FlAhp"
+alias ls="ls --color=auto"
+alias ll="ls --color=auto -Flhp"
+alias l="ls --color=auto -FlAhp"
 cd() { builtin cd "$@"; ll; } 
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
 alias mkdir="mkdir -pv"
-' > /home/$USER/.bashrc && chown -R $USER:staff /home/$USER
-
-[ -f /home/$USER/.bash_profile ] || echo '
-# .bash_profile
-
-if [ -f ~/.bashrc ]; then
-  source ~/.bashrc
-fi
-' > /home/$USER/.bash_profile && chown -R $USER:staff /home/$USER
+' > /home/$USER/.bash_aliases && chown -R $USER:staff /home/$USER
 
 # set key auth in file
 if [ -n "$(pgrep sshd)" ]; then
