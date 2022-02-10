@@ -22,7 +22,7 @@ else
   GRPS="staff"
 fi
 
-useradd $CH --no-user-group --gid staff --uid $ID --groups $GRPS $USER
+useradd $CH --no-user-group --gid staff --uid $ID --groups $GRPS $USER --shell /bin/bash
 
 [ -f /home/$USER/.bash_aliases ] || echo '
 # .bash_aliases
