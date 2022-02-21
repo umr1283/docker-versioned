@@ -16,6 +16,7 @@ COPY assets /docker_scripts
 RUN chmod --recursive +x /docker_scripts
 RUN /docker_scripts/install_lang.sh
 RUN /docker_scripts/install_git.sh
+RUN /docker_scripts/install_gitlfs.sh
 RUN /docker_scripts/install_pandoc.sh
 RUN /docker_scripts/install_r.sh
 RUN /docker_scripts/install_python.sh

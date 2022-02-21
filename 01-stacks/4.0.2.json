@@ -50,6 +50,7 @@
         "chmod --recursive +x /docker_scripts",
         "/docker_scripts/install_lang.sh",
         "/docker_scripts/install_git.sh",
+        "/docker_scripts/install_gitlfs.sh",
         "/docker_scripts/install_pandoc.sh",
         "/docker_scripts/install_r.sh",
         "/docker_scripts/install_python.sh",
@@ -80,7 +81,7 @@
       "FROM": "mcanouil/r-ver:4.0.2",
       "ENV": {
         "UMR1283_VERSION": "1.6.0",
-        "BCFTOOLS_VERSION": "1.14",
+        "BCFTOOLS_VERSION": "1.15",
         "ODBC_VERSION": "8.0.27",
         "S6_VERSION": "v2.2.0.3"
       },
