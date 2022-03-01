@@ -30,7 +30,10 @@ dt <- do.call("rbind", lapply(
   X = jsonlite::read_json(here::here("01-stacks/devel.json"))$stack,
   FUN = function(x) {
     img <- x$labels$org.opencontainers.image.title
-    rver <- sprintf("[![Latest Tag](https://img.shields.io/docker/v/%s.svg?sort=semver&label=latest)](https://hub.docker.com/r/%s)", img, img)
+    rver <- sprintf(
+      "[![Latest Tag](https://img.shields.io/docker/v/%s.svg?sort=semver&label=latest)](https://hub.docker.com/r/%s)",
+      img, img
+    )
     desc <- x$labels$org.opencontainers.image.description
     c(
       sprintf("[%s](https://hub.docker.com/r/%s)", basename(img), img),
