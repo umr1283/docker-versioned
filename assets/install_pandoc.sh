@@ -11,9 +11,9 @@ if [ "$PANDOC_VERSION" = "latest" ]; then
 else
   PANDOC_DL_URL=https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-${ARCH}.deb
 fi
-wget ${PANDOC_DL_URL} -O pandoc-${ARCH}.deb
-dpkg -i pandoc-${ARCH}.deb
-rm pandoc-${ARCH}.deb
+wget ${PANDOC_DL_URL} -O pandoc.deb
+dpkg -i pandoc.deb
+rm pandoc.deb
 
 ## Symlink pandoc & standard pandoc templates for use system-wide
 PANDOC_TEMPLATES_VERSION=`pandoc -v | grep -oP "(?<=pandoc\s)[0-9\.]+$"`
