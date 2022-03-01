@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Version-stable Docker Images <img src="https://avatars0.githubusercontent.com/u/9100160" align="right" width="120" />
+# Version-stable Docker Images <img src="https://github.com/docker.png" align="right" width="120" />
 
 <!-- badges: start -->
 
