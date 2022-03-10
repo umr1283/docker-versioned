@@ -1,6 +1,6 @@
 #!/bin/bash
 
-run_container() {
+function run_container() {
   if [ -z "$1" ]; then
     echo "Error 1: Missing project directory name!"
     return 1
@@ -44,8 +44,14 @@ run_container() {
     mkdir -p -m 775 $TMPRENV ;
   fi
 
+  if [ -n "$SUDO_USER" ]; then
+    local USER_NAME=$SUDO_USER
+  else
+    local USER_NAME=$(whoami)
+  fi
+
   docker run \
-    --name "${PROJECT}--${SCRIPTCLEAN}" \
+    --name "${USER_NAME}--${PROJECT}--${SCRIPTCLEAN}" \
     --detach \
     --rm \
     --volume $TMPDIR:/tmp \

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-deploy_container() {
+function deploy_container() {
   if [ -z "$1" ]; then
     echo "Error 1: Missing Docker image name, e.g., \"rstudio\"!"
     return 1
@@ -41,10 +41,20 @@ deploy_container() {
     mkdir -p -m 775 $TMPDIR
     chgrp staff $TMPDIR
 
-    local DOCKER_NAME="--name ${NAME} --hostname ${NAME}"
+    if [ "${IMG%-*}" = "shiny" ]; then
+      local DOCKER_NAME="--name ${NAME} --hostname ${NAME}"
+    else
+      if [ -n "$SUDO_USER" ]; then
+        local USER_NAME=$SUDO_USER
+      else
+        local USER_NAME=$(whoami)
+      fi
+      local DOCKER_NAME="--name ${NAME}--${USER_NAME} --hostname ${NAME}"
+    fi
     local DOCKER_DEFAULT="--detach --env \"RENV_PATHS_CACHE=/renv_cache\""
     local DOCKER_VOLUMES="--volume ${TMPRENV}:/renv_cache \
       --volume /media:/media \
+      --volume /media:/Isiprod1 \
       --volume /media/archive:/disks/ARCHIVE \
       --volume /media/run:/disks/RUN \
       --volume /media/data:/disks/DATA \
@@ -74,7 +84,7 @@ deploy_container() {
       umr1283/${IMG%-*}:${VERSION}
 
     if [ "${IMG%-*}" = "shiny" ]; then
-      docker exec umr1283/${IMG%-*}:${VERSION} /bin/bash -c "usermod -a -G staff shiny && usermod -g staff shiny"
+      docker exec ${NAME} /bin/bash -c "usermod -a -G staff shiny && usermod -g staff shiny"
     fi
   else
     PROJECT=$3
