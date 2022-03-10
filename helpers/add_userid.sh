@@ -1,6 +1,6 @@
 #!/bin/bash
 
-add_userid() {
+function add_userid() {
   USERNAME=$1
   ID=$2
   STATUS=$3
@@ -14,6 +14,7 @@ add_userid() {
     --uid $ID \
     --home /media/user/$USERNAME \
     --groups staff,root,sudo \
+    --shell /bin/bash \
     $USERNAME &&
     echo "$USERNAME:$USERNAME" | chpasswd
   else
@@ -24,6 +25,7 @@ add_userid() {
     --uid $ID \
     --home /media/user/$USERNAME \
     --groups staff,root,sudo \
+    --shell /bin/bash \
     $USERNAME &&
     echo "$USERNAME:$USERNAME" | chpasswd
   fi

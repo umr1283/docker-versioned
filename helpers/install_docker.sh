@@ -1,6 +1,6 @@
 #!/bin/bash
 
-install_docker() {
+function install_docker() {
   apt-get update \
     && apt-get install -y \
       apt-transport-https \
