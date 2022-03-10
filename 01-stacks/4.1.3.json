@@ -98,7 +98,8 @@
         "/docker_scripts/install_vcftools.sh",
         "/docker_scripts/install_qtltools.sh",
         "/docker_scripts/install_r_packages.sh",
-        "/docker_scripts/install_r_umr1283.sh"
+        "/docker_scripts/install_r_umr1283.sh",
+        "/docker_scripts/set_bash_default.sh"
       ],
       "CMD": "[\"R\"]",
       "tags": [
