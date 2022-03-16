@@ -3,7 +3,6 @@ set -e
 
 LANG=${LANG:-en_GB.UTF-8}
 LANGUAGE=${LANG}
-LC_ALL=${LANG}
 
 apt-get update \
   && apt-get install -y --no-install-recommends locales \
@@ -11,6 +10,7 @@ apt-get update \
   && locale-gen ${LANG} \
   && /usr/sbin/update-locale LANG="${LANG}" \
   && /usr/sbin/update-locale LANGUAGE="${LANG}" \
+  && /usr/sbin/update-locale LC_ALL="${LANG}" \
   && /usr/sbin/update-locale LC_CTYPE="${LANG}" \
   && /usr/sbin/update-locale LC_NUMERIC="${LANG}" \
   && /usr/sbin/update-locale LC_TIME="${LANG}" \
@@ -22,5 +22,4 @@ apt-get update \
   && /usr/sbin/update-locale LC_ADDRESS="${LANG}" \
   && /usr/sbin/update-locale LC_TELEPHONE="${LANG}" \
   && /usr/sbin/update-locale LC_MEASUREMENT="${LANG}" \
-  && /usr/sbin/update-locale LC_IDENTIFICATION="${LANG}" \
-  && /usr/sbin/update-locale LC_ALL="${LANG}"
+  && /usr/sbin/update-locale LC_IDENTIFICATION="${LANG}"
