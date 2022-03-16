@@ -2,6 +2,8 @@
 set -e
 
 LANG=${LANG:-en_GB.UTF-8}
+LANGUAGE=${LANG}
+LC_ALL=${LANG}
 
 apt-get update \
   && apt-get install -y --no-install-recommends locales \
