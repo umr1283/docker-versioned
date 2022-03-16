@@ -2,6 +2,7 @@
 set -e
 
 apt-get update && apt-get install -y --no-install-recommends \
+  cmake \
   libudunits2-dev \
   libcurl4-openssl-dev \
   libxml2-dev \
