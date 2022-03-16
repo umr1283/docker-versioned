@@ -1,6 +1,8 @@
 #!/bin/bash
 
 function deploy_container() {
+  DIRMOUNT=/media # or /Isiprod1
+
   if [ -z "$1" ]; then
     echo "Error 1: Missing Docker image name, e.g., \"rstudio\"!"
     return 1
@@ -19,7 +21,7 @@ function deploy_container() {
 
   echo "Starting Docker container ${IMG}-server \"${NAME}\" ..."
 
-  local TMP=/media/datatmp/dockertmp
+  local TMP=${DIRMOUNT}/datatmp/dockertmp
 
   local TMPRENV=$TMP/renv_pkgs_cache
   if [ ! -e $TMPRENV ]; then
@@ -53,13 +55,13 @@ function deploy_container() {
     fi
     local DOCKER_DEFAULT="--detach --env \"RENV_PATHS_CACHE=/renv_cache\""
     local DOCKER_VOLUMES="--volume ${TMPRENV}:/renv_cache \
-      --volume /media:/media \
-      --volume /media:/Isiprod1 \
-      --volume /media/archive:/disks/ARCHIVE \
-      --volume /media/run:/disks/RUN \
-      --volume /media/data:/disks/DATA \
-      --volume /media/project:/disks/PROJECT \
-      --volume /media/datatmp:/disks/DATATMP"
+      --volume ${DIRMOUNT}:/media \
+      --volume ${DIRMOUNT}:/Isiprod1 \
+      --volume ${DIRMOUNT}/archive:/disks/ARCHIVE \
+      --volume ${DIRMOUNT}/run:/disks/RUN \
+      --volume ${DIRMOUNT}/data:/disks/DATA \
+      --volume ${DIRMOUNT}/project:/disks/PROJECT \
+      --volume ${DIRMOUNT}/datatmp:/disks/DATATMP"
 
     case ${IMG%-*} in
       "ssh") local PORT="22${VERSION//.}:2222";;
@@ -69,11 +71,11 @@ function deploy_container() {
 
     if [ "${IMG%-*}" = "shiny" ]; then
       local DOCKER_VOLUMES="${DOCKER_VOLUMES} \
-        --volume /media/project/Rshiny/${IMG##*-}:/srv/shiny-server \
-        --volume /media/project/Rshiny-logs/${IMG##*-}:/var/log/shiny-server"
+        --volume ${DIRMOUNT}/project/Rshiny/${IMG##*-}:/srv/shiny-server \
+        --volume ${DIRMOUNT}/project/Rshiny-logs/${IMG##*-}:/var/log/shiny-server"
     else
       local DOCKER_VOLUMES="${DOCKER_VOLUMES} \
-        --volume /media/user:/home --volume ${TMPDIR}:/tmp"
+        --volume ${DIRMOUNT}/user:/home --volume ${TMPDIR}:/tmp"
     fi
 
     docker run \
@@ -105,11 +107,11 @@ function deploy_container() {
     local DOCKER_NAME="--name ${NAME}--${PROJECT} --hostname ${NAME}--${PROJECT}"
     
     local DOCKER_DEFAULT="--detach --env \"RENV_PATHS_CACHE=/renv_cache\""
-    local DOCKER_VOLUMES="--volume /media/user:/home \
+    local DOCKER_VOLUMES="--volume ${DIRMOUNT}/user:/home \
       --volume ${TMPDIR}:/tmp\
       --volume ${TMPRENV}:/renv_cache \
-      --volume /media/project/${PROJECT}:/disks/PROJECT/${PROJECT} \
-      --volume /media/datatmp/${PROJECT}:/disks/DATATMP/${PROJECT}"
+      --volume ${DIRMOUNT}/project/${PROJECT}:/disks/PROJECT/${PROJECT} \
+      --volume ${DIRMOUNT}/datatmp/${PROJECT}:/disks/DATATMP/${PROJECT}"
 
     case ${IMG} in
       "ssh") local PORT="23${VERSION//.}:2222";;

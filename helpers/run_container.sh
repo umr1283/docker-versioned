@@ -1,6 +1,8 @@
 #!/bin/bash
 
 function run_container() {
+  DIRMOUNT=/media # or /Isiprod1
+
   if [ -z "$1" ]; then
     echo "Error 1: Missing project directory name!"
     return 1
@@ -30,7 +32,7 @@ function run_container() {
   local LOG=${SCRIPTCLEAN%.*}
   local ROOTPROJECT=/disks/PROJECT/${PROJECT}
 
-  local TMP=/media/datatmp/dockertmp
+  local TMP=${DIRMOUNT}/datatmp/dockertmp
 
   local TMPDIR=$TMP/$HOSTNAME--${PROJECT}--${SCRIPTCLEAN}
   if [ -e $TMPDIR ]; then
@@ -57,12 +59,12 @@ function run_container() {
     --volume $TMPDIR:/tmp \
     --volume $TMPRENV:/renv_cache \
     --env "RENV_PATHS_CACHE=/renv_cache" \
-    --volume /media:/media \
-    --volume /media/archive:/disks/ARCHIVE \
-    --volume /media/run:/disks/RUN \
-    --volume /media/data:/disks/DATA \
-    --volume /media/project:/disks/PROJECT \
-    --volume /media/datatmp:/disks/DATATMP \
+    --volume ${DIRMOUNT}:/media \
+    --volume ${DIRMOUNT}/archive:/disks/ARCHIVE \
+    --volume ${DIRMOUNT}/run:/disks/RUN \
+    --volume ${DIRMOUNT}/data:/disks/DATA \
+    --volume ${DIRMOUNT}/project:/disks/PROJECT \
+    --volume ${DIRMOUNT}/datatmp:/disks/DATATMP \
     ${IMAGE} /bin/bash -c "cd ${ROOTPROJECT}; Rscript scripts/${SCRIPT} >& logs/${LOG}.log"
 
   echo "Docker container \"${PROJECT}--${SCRIPTCLEAN}\" online!"
