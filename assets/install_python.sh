@@ -30,7 +30,7 @@ fi
 mkdir -p ${WORKON_HOME}
 python3 -m venv ${PYTHON_VENV_PATH}
 
-Rscript -e 'utils::install.package("reticulate")'
+Rscript -e 'utils::install.packages("reticulate")'
 
 ## Ensure RStudio inherits this env var
 echo "" >> ${R_HOME}/etc/Renviron.site

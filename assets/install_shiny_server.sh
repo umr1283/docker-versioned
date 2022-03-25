@@ -28,7 +28,7 @@ gdebi -n ss-latest.deb
 rm ss-latest.deb
 
 # Get R packages
-Rscript -e 'utils::install.package(c("shiny", "rmarkdown", "renv"))'
+Rscript -e 'utils::install.packages(c("shiny", "rmarkdown", "renv"))'
 
 # Set up directories and permissions
 if [ -x "$(command -v rstudio-server)" ]; then
