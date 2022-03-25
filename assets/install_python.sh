@@ -30,7 +30,10 @@ fi
 mkdir -p ${WORKON_HOME}
 python3 -m venv ${PYTHON_VENV_PATH}
 
-install2.r --skipinstalled --error reticulate
+  Rscript \
+  -e 'if (!require(pak)) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))' \
+  -e 'pak::pkg_install("reticulate")' \
+  -e 'pak::pak_cleanup(force = TRUE)'
 
 ## Ensure RStudio inherits this env var
 echo "" >> ${R_HOME}/etc/Renviron.site

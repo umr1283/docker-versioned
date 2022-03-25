@@ -25,7 +25,9 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v2
 
       - name: Install rmarkdown, data.table, and here
-        run: Rscript -e 'install.packages(c("rmarkdown", "jsonlite", "here"), Ncpus = 2)'
+        run: |
+          Rscript -e 'if (!require(pak)) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+          Rscript -e 'pak::pkg_install(c("rmarkdown", "jsonlite", "here"))'
 
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd", output_options = list(html_preview = FALSE))'

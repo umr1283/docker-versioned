@@ -22,8 +22,9 @@ if [ "$ARCH" = "amd64" ]; then
 
   quarto check install
 
-  # Install the quarto R package
-  install2.r --error --skipmissing --skipinstalled -n $NCPUS quarto
+  Rscript \
+    -e 'if (!require(pak)) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))' \
+    -e 'pak::pkg_install("quarto")'
 fi
 
 # Clean up
