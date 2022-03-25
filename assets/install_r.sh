@@ -10,6 +10,8 @@ LANG=${LANG:-en_GB.UTF-8}
 CRAN=${CRAN:-https://cran.r-project.org}
 TZ=${TZ:-Etc/UTC}
 
+ARCH=$(uname -m)
+
 export DEBIAN_FRONTEND=noninteractive
 
 ## Set up and install R
