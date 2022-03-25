@@ -28,7 +28,8 @@ Rscript -e 'pak::pkg_install(c(
   "renv", "ragg", "svglite", "rhub", "rsconnect",
   "reprex", "palmerpenguins", "data.table",
   "R.utils", "bit64", "tidyverse", "tinytex",
-  "gt", "styler", "miniUI", "prompt", "gert"
+  "gt", "styler", "lintr", "miniUI", "prompt",
+  "gert", "future", "future.apply"
 ))'
 
 Rscript -e 'pak::pak_cleanup(force = TRUE)'
