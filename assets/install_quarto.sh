@@ -2,7 +2,7 @@
 set -e
 
 QUARTO_VERSION=${1:-${QUARTO_VERSION:-"latest"}}
-NCPUS=${NCPUS:--1}
+
 # Only amd64 build can be installed now
 ARCH=$(dpkg --print-architecture)
 
