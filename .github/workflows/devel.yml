@@ -1,12 +1,6 @@
 name: Build & Push Devel
 
 on:
-  push:
-    branches: main
-    paths:
-      - "01-stacks/devel.json"
-      - "build/**"
-      - "assets/**"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
