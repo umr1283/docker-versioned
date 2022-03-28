@@ -34,7 +34,13 @@ function run_container() {
 
   local TMP=${DIRMOUNT}/datatmp/dockertmp
 
-  local TMPDIR=$TMP/$HOSTNAME--${PROJECT}--${SCRIPTCLEAN}
+  if [ -n "$SUDO_USER" ]; then
+    local USER_NAME=$SUDO_USER
+  else
+    local USER_NAME=$(whoami)
+  fi
+
+  local TMPDIR=$TMP/${USER_NAME}--$HOSTNAME--${PROJECT}--${SCRIPTCLEAN}
   if [ -e $TMPDIR ]; then
     rm -rf $TMPDIR
   fi
@@ -44,12 +50,6 @@ function run_container() {
   local TMPRENV=$TMP/renv_pkgs_cache
   if [ ! -e $TMPRENV ]; then
     mkdir -p -m 775 $TMPRENV ;
-  fi
-
-  if [ -n "$SUDO_USER" ]; then
-    local USER_NAME=$SUDO_USER
-  else
-    local USER_NAME=$(whoami)
   fi
 
   docker run \
