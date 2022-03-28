@@ -135,11 +135,11 @@ echo 'TZ="${TZ}"' >> ${R_HOME}/etc/Renviron.site
 echo "R_MAX_NUM_DLLS=300" >> ${R_HOME}/etc/Renviron.site
 echo "RENV_PATHS_CACHE=/renv_cache" >> ${R_HOME}/etc/Renviron.site
 
-echo  'options(
-  repos = c(CRAN = "${CRAN}"),
-  download.file.method = "libcurl",
-  HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version$platform, R.version$arch, R.version$os))
-)' >> ${R_HOME}/etc/Rprofile.site
+echo  "options(
+  repos = c(CRAN = \"${CRAN}\"),
+  download.file.method = \"libcurl\",
+  HTTPUserAgent = sprintf(\"R/%s R (%s)\", getRversion(), paste(getRversion(), R.version$platform, R.version$arch, R.version$os))
+)" >> ${R_HOME}/etc/Rprofile.site
 
 echo 'Sys.umask("0002")' >> ${R_HOME}/etc/Rprofile.site
 
