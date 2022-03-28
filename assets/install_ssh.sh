@@ -24,7 +24,7 @@ chown root:root /etc/shadow
 
 # Install "languageserver" and "httpgd" for VScode
 Rscript \
-  -e 'if (!require(pak)) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))' \
+  -e 'if (!require(pak, quietly = TRUE)) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))' \
   -e 'pak::pkg_install(c("languageserver", "httpgd"))' \
   -e 'pak::pak_cleanup(force = TRUE)'
 
