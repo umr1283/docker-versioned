@@ -7,7 +7,7 @@ LABEL org.opencontainers.image.licenses="GPL-3.0" \
 ENV UMR1283_VERSION=1.8.0
 ENV BCFTOOLS_VERSION=1.15
 ENV ODBC_VERSION=8.0.27
-ENV S6_VERSION=v2.2.0.3
+ENV S6_VERSION=v3.1.0.1
 
 COPY assets /docker_scripts
 
@@ -21,6 +21,7 @@ RUN /docker_scripts/install_vcftools.sh
 RUN /docker_scripts/install_qtltools.sh
 RUN /docker_scripts/install_r_packages.sh
 RUN /docker_scripts/install_r_umr1283.sh
+RUN /docker_scripts/install_quarto.sh
 RUN /docker_scripts/set_bash_default.sh
 
 CMD ["R"]
