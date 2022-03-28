@@ -49,7 +49,7 @@ function run_container() {
 
   local TMPRENV=$TMP/renv_pkgs_cache
   if [ ! -e $TMPRENV ]; then
-    mkdir -p -m 775 $TMPRENV ;
+    mkdir -p -m 775 $TMPRENV
   fi
 
   docker run \

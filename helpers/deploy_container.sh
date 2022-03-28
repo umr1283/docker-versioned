@@ -25,7 +25,7 @@ function deploy_container() {
 
   local TMPRENV=$TMP/renv_pkgs_cache
   if [ ! -e $TMPRENV ]; then
-    mkdir -p -m 775 $TMPRENV ;
+    mkdir -p -m 775 $TMPRENV
   fi
 
   if [ -z "$3" ]; then
@@ -66,9 +66,9 @@ function deploy_container() {
       --volume ${DIRMOUNT}/datatmp:/disks/DATATMP"
 
     case ${IMG%-*} in
-      "ssh") local PORT="22${VERSION//.}:2222";;
-      "rstudio") local PORT="8${VERSION//.}:8787";;
-      "shiny") if [ "${IMG##*-}" = "stable" ]; then PORT="3838:3838"; else PORT="38${VERSION//.}:3838"; fi;;
+    "ssh") local PORT="22${VERSION//./}:2222" ;;
+    "rstudio") local PORT="8${VERSION//./}:8787" ;;
+    "shiny") if [ "${IMG##*-}" = "stable" ]; then PORT="3838:3838"; else PORT="38${VERSION//./}:3838"; fi ;;
     esac
 
     if [ "${IMG%-*}" = "shiny" ]; then
@@ -98,7 +98,7 @@ function deploy_container() {
       echo "Error 3: A container with the same name is already running!"
       return 3
     fi
-    
+
     local TMPDIR=$TMP/$HOSTNAME--$NAME--$PROJECT
     if [ -e $TMPDIR ]; then
       rm -rf $TMPDIR
@@ -107,7 +107,7 @@ function deploy_container() {
     chgrp staff $TMPDIR
 
     local DOCKER_NAME="--name ${NAME}--${PROJECT} --hostname ${NAME}--${PROJECT}"
-    
+
     local DOCKER_DEFAULT="--detach --env \"RENV_PATHS_CACHE=/renv_cache\""
     local DOCKER_VOLUMES="--volume ${DIRMOUNT}/user:/home \
       --volume ${TMPDIR}:/tmp\
@@ -116,8 +116,8 @@ function deploy_container() {
       --volume ${DIRMOUNT}/datatmp/${PROJECT}:/disks/DATATMP/${PROJECT}"
 
     case ${IMG} in
-      "ssh") local PORT="23${VERSION//.}:2222";;
-      "rstudio") local PORT="9${VERSION//.}:8787";;
+    "ssh") local PORT="23${VERSION//./}:2222" ;;
+    "rstudio") local PORT="9${VERSION//./}:8787" ;;
     esac
 
     docker run \

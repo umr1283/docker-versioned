@@ -7,29 +7,28 @@ function add_userid() {
   ID=$2
   STATUS=$3
 
-  if [ -d ${DIRMOUNT}/user/$USERNAME ]
-  then
+  if [ -d ${DIRMOUNT}/user/$USERNAME ]; then
     useradd \
-    --no-create-home \
-    --no-user-group \
-    --gid staff \
-    --uid $ID \
-    --home ${DIRMOUNT}/user/$USERNAME \
-    --groups staff,root,sudo \
-    --shell /bin/bash \
-    $USERNAME &&
-    echo "$USERNAME:$USERNAME" | chpasswd
+      --no-create-home \
+      --no-user-group \
+      --gid staff \
+      --uid $ID \
+      --home ${DIRMOUNT}/user/$USERNAME \
+      --groups staff,root,sudo \
+      --shell /bin/bash \
+      $USERNAME &&
+      echo "$USERNAME:$USERNAME" | chpasswd
   else
     useradd \
-    --create-home \
-    --no-user-group \
-    --gid staff \
-    --uid $ID \
-    --home ${DIRMOUNT}/user/$USERNAME \
-    --groups staff,root,sudo \
-    --shell /bin/bash \
-    $USERNAME &&
-    echo "$USERNAME:$USERNAME" | chpasswd
+      --create-home \
+      --no-user-group \
+      --gid staff \
+      --uid $ID \
+      --home ${DIRMOUNT}/user/$USERNAME \
+      --groups staff,root,sudo \
+      --shell /bin/bash \
+      $USERNAME &&
+      echo "$USERNAME:$USERNAME" | chpasswd
   fi
 
   return 0
