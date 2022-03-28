@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-apt-get update \
-  && apt-get install -y --no-install-recommends \
+apt-get update &&
+  apt-get install -y --no-install-recommends \
     git \
     gpg \
     gpg-agent \
-    nano \
-  && rm -rf /var/lib/apt/lists/*
+    nano &&
+  rm -rf /var/lib/apt/lists/*
 
 git config --system init.defaultBranch main
 git config --system push.default matching

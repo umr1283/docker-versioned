@@ -3,8 +3,8 @@ set -e
 
 # https://dev.mysql.com/downloads/connector/odbc/
 
-apt-get update \
-  && apt-get install -y --no-install-recommends \
+apt-get update &&
+  apt-get install -y --no-install-recommends \
     lsb-release \
     dpkg \
     dpkg-dev \
@@ -17,7 +17,7 @@ apt-get update \
     unixodbc-dev
 
 ODBC_VERSION=${ODBC_VERSION:-8.0.26}
-DEBIAN_ODBC_VERSION=${DEBIAN_ODBC_VERSION:-`echo "$(lsb_release -si)$(lsb_release -sr)" | tr '[:upper:]' '[:lower:]'`}
+DEBIAN_ODBC_VERSION=${DEBIAN_ODBC_VERSION:-$(echo "$(lsb_release -si)$(lsb_release -sr)" | tr '[:upper:]' '[:lower:]')}
 ARCH=$(dpkg --print-architecture)
 
 if [ "$ARCH" = "amd64" ]; then

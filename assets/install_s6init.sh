@@ -33,7 +33,7 @@ else
   tar hzxf /tmp/$DOWNLOAD_FILE -C / --exclude=usr/bin/execlineb
   tar hzxf /tmp/$DOWNLOAD_FILE -C /usr ./bin/execlineb && $_clean
 
-  echo "$S6_VERSION" > /docker_scripts/.s6_version
+  echo "$S6_VERSION" >/docker_scripts/.s6_version
 fi
 
 # Clean up

@@ -16,7 +16,7 @@ dpkg -i pandoc.deb
 rm pandoc.deb
 
 ## Symlink pandoc & standard pandoc templates for use system-wide
-PANDOC_TEMPLATES_VERSION=`pandoc -v | grep -oP "(?<=pandoc\s)[0-9\.]+$"`
+PANDOC_TEMPLATES_VERSION=$(pandoc -v | grep -oP "(?<=pandoc\s)[0-9\.]+$")
 wget https://github.com/jgm/pandoc-templates/archive/${PANDOC_TEMPLATES_VERSION}.tar.gz -O pandoc-templates.tar.gz
 rm -fr /opt/pandoc/templates
 mkdir -p /opt/pandoc/templates

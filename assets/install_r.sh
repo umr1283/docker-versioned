@@ -5,7 +5,7 @@ R_VERSION=${1:-${R_VERSION:-"latest"}}
 
 apt-get update && apt-get -y install lsb-release
 
-DEBIAN_VERSION=${DEBIAN_VERSION:-`lsb_release -sc`}
+DEBIAN_VERSION=${DEBIAN_VERSION:-$(lsb_release -sc)}
 LANG=${LANG:-en_GB.UTF-8}
 CRAN=${CRAN:-https://cran.r-project.org}
 TZ=${TZ:-Etc/UTC}
@@ -17,8 +17,8 @@ export DEBIAN_FRONTEND=noninteractive
 ## Set up and install R
 R_HOME=${R_HOME:-/usr/local/lib/R}
 
-apt-get update \
-  && apt-get install -y --no-install-recommends \
+apt-get update &&
+  apt-get install -y --no-install-recommends \
     bash-completion \
     ca-certificates \
     devscripts \
@@ -112,12 +112,12 @@ R_PAPERSIZE=letter \
   CFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
   CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
   ./configure --enable-R-shlib \
-    --enable-memory-profiling \
-    --with-readline \
-    --with-blas \
-    --with-lapack \
-    --with-tcltk \
-    --with-recommended-packages
+  --enable-memory-profiling \
+  --with-readline \
+  --with-blas \
+  --with-lapack \
+  --with-tcltk \
+  --with-recommended-packages
 
 make
 make install
@@ -128,20 +128,20 @@ mkdir -p ${R_HOME}/site-library
 chown root:staff ${R_HOME}/site-library
 chmod g+ws ${R_HOME}/site-library
 
-echo "R_LIBS=\${R_LIBS-'${R_HOME}/site-library:${R_HOME}/library'}" >> ${R_HOME}/etc/Renviron.site
-echo 'LANGUAGE="${LANG}"' >> ${R_HOME}/etc/Renviron.site
-echo "R_LIBS_USER=~/R/library" >> ${R_HOME}/etc/Renviron.site
-echo 'TZ="${TZ}"' >> ${R_HOME}/etc/Renviron.site
-echo "R_MAX_NUM_DLLS=300" >> ${R_HOME}/etc/Renviron.site
-echo "RENV_PATHS_CACHE=/renv_cache" >> ${R_HOME}/etc/Renviron.site
+echo "R_LIBS=\${R_LIBS-'${R_HOME}/site-library:${R_HOME}/library'}" >>${R_HOME}/etc/Renviron.site
+echo 'LANGUAGE="${LANG}"' >>${R_HOME}/etc/Renviron.site
+echo "R_LIBS_USER=~/R/library" >>${R_HOME}/etc/Renviron.site
+echo 'TZ="${TZ}"' >>${R_HOME}/etc/Renviron.site
+echo "R_MAX_NUM_DLLS=300" >>${R_HOME}/etc/Renviron.site
+echo "RENV_PATHS_CACHE=/renv_cache" >>${R_HOME}/etc/Renviron.site
 
-echo  "options(
+echo "options(
   repos = c(CRAN = \"${CRAN}\"),
   download.file.method = \"libcurl\",
   HTTPUserAgent = sprintf(\"R/%s R (%s)\", getRversion(), paste(getRversion(), R.version$platform, R.version$arch, R.version$os))
-)" >> ${R_HOME}/etc/Rprofile.site
+)" >>${R_HOME}/etc/Rprofile.site
 
-echo 'Sys.umask("0002")' >> ${R_HOME}/etc/Rprofile.site
+echo 'Sys.umask("0002")' >>${R_HOME}/etc/Rprofile.site
 
 if ! dpkg -l | grep -q libopenblas-dev; then
   apt-get update && apt-get install -y --no-install-recommends libopenblas-dev

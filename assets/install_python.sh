@@ -5,8 +5,8 @@ WORKON_HOME=${WORKON_HOME:-/opt/venv}
 PYTHON_VENV_PATH=${PYTHON_VENV_PATH:-${WORKON_HOME}/reticulate}
 RETICULATE_MINICONDA_ENABLED=${RETICULATE_MINICONDA_ENABLED:-FALSE}
 
-apt-get update \
-  && apt-get install -y --no-install-recommends \
+apt-get update &&
+  apt-get install -y --no-install-recommends \
     git \
     libpng-dev \
     libpython3-dev \
@@ -14,8 +14,8 @@ apt-get update \
     python3-pip \
     python3-virtualenv \
     python3-venv \
-    swig \
-  && rm -rf /var/lib/apt/lists/*
+    swig &&
+  rm -rf /var/lib/apt/lists/*
 
 python3 -m pip --no-cache-dir install --upgrade \
   pip \
@@ -33,9 +33,9 @@ python3 -m venv ${PYTHON_VENV_PATH}
 Rscript -e 'utils::install.packages("reticulate")'
 
 ## Ensure RStudio inherits this env var
-echo "" >> ${R_HOME}/etc/Renviron.site
-echo "WORKON_HOME=${WORKON_HOME}" >> ${R_HOME}/etc/Renviron.site
-echo "RETICULATE_MINICONDA_ENABLED=${RETICULATE_MINICONDA_ENABLED}" >> ${R_HOME}/etc/Renviron.site
+echo "" >>${R_HOME}/etc/Renviron.site
+echo "WORKON_HOME=${WORKON_HOME}" >>${R_HOME}/etc/Renviron.site
+echo "RETICULATE_MINICONDA_ENABLED=${RETICULATE_MINICONDA_ENABLED}" >>${R_HOME}/etc/Renviron.site
 
 ## symlink these so that these are available when switching to a new venv
 ## -f check for file, -L for link, -e for either

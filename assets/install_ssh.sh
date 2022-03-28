@@ -9,13 +9,15 @@ apt-get update && apt-get install -y openssh-server sudo man
 mkdir -p /etc/services.d/openssh-server
 mkdir -p /run/sshd
 # shellcheck disable=SC2016
-echo '#!/usr/bin/with-contenv bash
-exec /usr/sbin/sshd -D -e -p 2222' \
-> /etc/services.d/openssh-server/run
+echo >/etc/services.d/openssh-server/run <<EOF 
+#!/usr/bin/with-contenv bash
+exec /usr/sbin/sshd -D -e -p 2222
+EOF  
 
-echo '#!/bin/bash
-/etc/init.d/ssh stop' \
-> /etc/services.d/openssh-server/finish
+echo >/etc/services.d/openssh-server/finish <<EOF 
+#!/bin/bash
+/etc/init.d/ssh stop
+EOF  
 
 # password access denied
 # sed -i "s/^[# \t]*PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/ssh_config

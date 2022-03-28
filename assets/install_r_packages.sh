@@ -21,7 +21,7 @@ apt-get update && apt-get install -y --no-install-recommends \
   libgmp-dev \
   librsvg2-dev
 
-Rscript  \
+Rscript \
   -e 'if (!require(pak, quietly = TRUE)) utils::install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))' \
   -e 'pak::pkg_install(c(
     "udunits2", "units", "devtools", "usethis", "here",
@@ -31,7 +31,7 @@ Rscript  \
     "gt", "styler", "lintr", "miniUI", "prompt",
     "gert", "future", "future.apply"
   ))' \
- -e 'pak::pak_cleanup(force = TRUE)'
+  -e 'pak::pak_cleanup(force = TRUE)'
 
 # Clean up
 apt-get autoremove -y
