@@ -21,6 +21,7 @@ RUN /docker_scripts/install_vcftools.sh
 RUN /docker_scripts/install_qtltools.sh
 RUN /docker_scripts/install_r_packages.sh
 RUN /docker_scripts/install_r_umr1283.sh
+RUN /docker_scripts/install_quarto.sh
 RUN /docker_scripts/set_bash_default.sh
 
 CMD ["R"]
