@@ -17,7 +17,13 @@ function deploy_container() {
     local VERSION=$2
   fi
 
-  local NAME="${IMG}-v${VERSION}"
+  if [ "${VERSION}" = "devel" ]; then
+    local NAME="${IMG}-${VERSION}"
+    local BASEDOCKERHUB="mcanouil"
+  else
+    local NAME="${IMG}-v${VERSION}"
+    local BASEDOCKERHUB="umr1283"
+  fi
 
   echo "Starting Docker container ${IMG}-server \"${NAME}\" ..."
 
@@ -65,11 +71,19 @@ function deploy_container() {
       --volume ${DIRMOUNT}/project:/disks/PROJECT \
       --volume ${DIRMOUNT}/datatmp:/disks/DATATMP"
 
-    case ${IMG%-*} in
-    "ssh") local PORT="22${VERSION//./}:2222" ;;
-    "rstudio") local PORT="8${VERSION//./}:8787" ;;
-    "shiny") if [ "${IMG##*-}" = "stable" ]; then PORT="3838:3838"; else PORT="38${VERSION//./}:3838"; fi ;;
-    esac
+    if [ "${VERSION}" = "devel" ]; then
+      case ${IMG%-*} in
+      "ssh") local PORT="22999:2222" ;;
+      "rstudio") local PORT="8999:8787" ;;
+      "shiny") local PORT="38999:3838" ;;
+      esac
+    else
+      case ${IMG%-*} in
+      "ssh") local PORT="22${VERSION//./}:2222" ;;
+      "rstudio") local PORT="8${VERSION//./}:8787" ;;
+      "shiny") if [ "${IMG##*-}" = "stable" ]; then local PORT="3838:3838"; else local PORT="38${VERSION//./}:3838"; fi ;;
+      esac
+    fi
 
     if [ "${IMG%-*}" = "shiny" ]; then
       local DOCKER_VOLUMES="${DOCKER_VOLUMES} \
@@ -85,7 +99,7 @@ function deploy_container() {
       ${DOCKER_DEFAULT} \
       ${DOCKER_VOLUMES} \
       --publish ${PORT} \
-      umr1283/${IMG%-*}:${VERSION}
+      ${BASEDOCKERHUB}/${IMG%-*}:${VERSION}
 
     if [ "${IMG%-*}" = "shiny" ]; then
       docker exec ${NAME} /bin/bash -c "usermod -a -G staff shiny && usermod -g staff shiny"
@@ -96,6 +110,11 @@ function deploy_container() {
 
     if [[ (-n "$(docker ps | grep -E '^${NAME}--${PROJECT}$')") ]]; then
       echo "Error 3: A container with the same name is already running!"
+      return 3
+    fi
+
+    if [ "${VERSION}" = "devel"]; then
+      echo "Error 4: \"devel\" is not a valid version for \"${IMG}\" with limited access!"
       return 3
     fi
 
@@ -127,7 +146,7 @@ function deploy_container() {
       ${DOCKER_DEFAULT} \
       ${DOCKER_VOLUMES} \
       --publish ${PORT} \
-      umr1283/${IMG}:${VERSION}
+      ${BASEDOCKERHUB}/${IMG}:${VERSION}
   fi
 
   echo "Docker container ${IMG}-server \"${NAME}\" online!"
