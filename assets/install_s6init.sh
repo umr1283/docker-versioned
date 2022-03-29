@@ -2,7 +2,6 @@
 set -e
 
 ### Sets up S6 supervisor.
-
 S6_VERSION=${1:-${S6_VERSION:-v3.1.0.1}}
 S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
