@@ -28,7 +28,7 @@ apt-get update && apt-get install -y --no-install-recommends \
 
 rm -rf /var/lib/apt/lists/*
 
-/docker_scripts/install_s6init.sh
+/docker_scripts/install_s6v2.sh
 
 DOWNLOAD_FILE=rstudio-server.deb
 
