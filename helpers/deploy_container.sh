@@ -115,7 +115,7 @@ function deploy_container() {
 
     if [ "${VERSION}" = "devel"]; then
       echo "Error 4: \"devel\" is not a valid version for \"${IMG}\" with limited access!"
-      return 3
+      return 4
     fi
 
     local TMPDIR=$TMP/$HOSTNAME--$NAME--$PROJECT
