@@ -21,14 +21,16 @@ else
   DOWNLOAD_FILE=s6-overlay-noarch.tar.xz
   wget -P /tmp/ https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/$DOWNLOAD_FILE
   tar -C / -Jxpf /tmp/$DOWNLOAD_FILE
+  rm -rf /tmp/$DOWNLOAD_FILE
 
   DOWNLOAD_FILE=s6-overlay-${ARCH}.tar.xz
   wget -P /tmp/ https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/$DOWNLOAD_FILE
   tar -C / -Jxpf /tmp/$DOWNLOAD_FILE
+  rm -rf /tmp/$DOWNLOAD_FILE
 
   echo "$S6_VERSION" >/docker_scripts/.s6_version
 fi
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
-rm -f /tmp/$DOWNLOAD_FILE
+rm -rf /tmp/*
