@@ -69,24 +69,21 @@ echo "auth-none=1" >>/etc/rstudio/disable_auth_rserver.conf
 
 ## Set up RStudio init scripts
 mkdir -p /etc/services.d/rstudio
-cat >/etc/services.d/rstudio/run <<EOF
-#!/usr/bin/with-contenv bash
+cat '#!/usr/bin/with-contenv bash
 ## load /etc/environment vars first:
 for line in $(cat /etc/environment) ; do export $line > /dev/null; done
 exec /usr/lib/rstudio-server/bin/rserver --server-daemonize 0
-EOF
+' >/etc/services.d/rstudio/run
 
-cat >/etc/services.d/rstudio/finish <<EOF
-#!/bin/bash
+cat '#!/bin/bash
 /usr/lib/rstudio-server/bin/rstudio-server stop
-EOF
+' >/etc/services.d/rstudio/finish
 
 # Log to syslog
-cat >/etc/rstudio/logging.conf <<EOF
-[*]
+cat '[*]
 log-level=warn
 logger-type=syslog
-EOF
+' >/etc/rstudio/logging.conf
 
 printf "\numask 0002\n" >>/etc/profile
 

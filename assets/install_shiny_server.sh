@@ -45,7 +45,7 @@ chown shiny:shiny /var/log/shiny-server
 
 # create init scripts
 mkdir -p /etc/services.d/shiny-server
-cat >/etc/services.d/shiny-server/run <<EOF
+cat '
 #!/usr/bin/with-contenv bash
 ## load /etc/environment vars first:
 for line in $(cat /etc/environment) ; do export $line > /dev/null; done
@@ -53,7 +53,7 @@ if [ "$APPLICATION_LOGS_TO_STDOUT" != "false" ]; then
     exec xtail /var/log/shiny-server/ &
 fi
 exec shiny-server 2>&1
-EOF
+' >/etc/services.d/shiny-server/run
 
 chmod +x /etc/services.d/shiny-server/run
 

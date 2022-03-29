@@ -24,8 +24,7 @@ fi
 
 useradd $CH --no-user-group --gid staff --uid $ID --groups $GRPS $USER --shell /bin/bash
 
-[ -f /home/$USER/.bash_aliases ] || echo >/home/$USER/.bash_aliases <<EOF 
-# .bash_aliases
+[ -f /home/$USER/.bash_aliases ] || echo '# .bash_aliases
 umask 0002
 export PS1="________________________________________________________________________________\n| \w @ \H (\u) \n| > "
 export PS2="| > "
@@ -37,7 +36,7 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
 alias mkdir="mkdir -pv"
-EOF
+' >/home/$USER/.bash_aliases
 chown -R $USER:staff /home/$USER
 
 # set key auth in file
