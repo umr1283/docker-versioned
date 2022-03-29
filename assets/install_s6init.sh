@@ -8,8 +8,6 @@ S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 ARCH=$(uname -m)
 
-DOWNLOAD_FILE=s6-overlay-${ARCH}.tar.xz
-
 if [ ! -x "$(command -v wget)" ]; then
   apt-get update && apt-get -y install wget
 fi
@@ -18,9 +16,14 @@ fi
 if [ -f "/docker_scripts/.s6_version" ] && [ "$S6_VERSION" = "$(cat /docker_scripts/.s6_version)" ]; then
   echo "S6 already installed"
 else
-  wget -P /tmp/ https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/$DOWNLOAD_FILE
-
   apt-get update && apt-get -y install xz-utils
+
+  DOWNLOAD_FILE=s6-overlay-noarch.tar.xz
+  wget -P /tmp/ https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/$DOWNLOAD_FILE
+  tar -C / -Jxpf /tmp/$DOWNLOAD_FILE
+
+  DOWNLOAD_FILE=s6-overlay-${ARCH}.tar.xz
+  wget -P /tmp/ https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/$DOWNLOAD_FILE
   tar -C / -Jxpf /tmp/$DOWNLOAD_FILE
 
   echo "$S6_VERSION" >/docker_scripts/.s6_version
