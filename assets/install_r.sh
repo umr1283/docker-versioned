@@ -74,7 +74,7 @@ BUILDDEPS="curl \
   wget \
   zlib1g-dev"
 
-apt-get install -y --no-install-recommends "$BUILDDEPS"
+apt-get install -y --no-install-recommends $BUILDDEPS
 
 ## Download R from 0-Cloud CRAN mirror or CRAN
 function download_r_src() {
@@ -154,7 +154,7 @@ fi
 cd /
 rm -rf /tmp/*
 rm -rf R-*
-apt-get remove --purge -y "$BUILDDEPS"
+apt-get remove --purge -y $BUILDDEPS
 apt-get autoremove -y
 apt-get autoclean -y
 rm -rf /var/lib/apt/lists/*
