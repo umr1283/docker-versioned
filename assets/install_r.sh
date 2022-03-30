@@ -9,7 +9,7 @@ LANG=${LANG:-en_GB.UTF-8}
 CRAN=${CRAN:-https://cran.r-project.org}
 TZ=${TZ:-Etc/UTC}
 
-# ARCH=$(uname -m)
+ARCH=$(uname -m)
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -42,8 +42,9 @@ apt-get install -y --no-install-recommends \
 
 apt-get install -y --no-install-recommends \
   libblas-dev \
-  libopenblas-dev \
   liblapack-dev \
+
+# apt-get install -y --no-install-recommends libopenblas-dev
 
 BUILDDEPS="curl \
   default-jdk \
@@ -80,7 +81,6 @@ BUILDDEPS="curl \
 
 apt-get install -y --no-install-recommends $BUILDDEPS
 
-## Download R from 0-Cloud CRAN mirror or CRAN
 function download_r_src() {
   wget "https://cloud.r-project.org/src/$1" -O "R.tar.gz" ||
     wget "https://cran.r-project.org/src/$1" -O "R.tar.gz"
@@ -124,17 +124,16 @@ make
 make install
 make clean
 
-# if ! dpkg -l | grep -q libopenblas-dev; then
-#   apt-get update && apt-get install -y --no-install-recommends libopenblas-dev
-#   update-alternatives --set "libblas.so.3-${ARCH}-linux-gnu" "/usr/lib/${ARCH}-linux-gnu/openblas-pthread/libblas.so.3"
-# fi
+if ! dpkg -l | grep -q libopenblas-dev; then
+  apt-get update && apt-get install -y --no-install-recommends libopenblas-dev
+  update-alternatives --set "libblas.so.3-${ARCH}-linux-gnu" "/usr/lib/${ARCH}-linux-gnu/openblas-pthread/libblas.so.3"
+fi
 
-## Add a library directory (for user-installed packages)
 mkdir -p "${R_HOME}/site-library"
 chown root:staff "${R_HOME}/site-library"
 chmod g+ws "${R_HOME}/site-library"
 
-echo "R_LIBS=\${R_LIBS-'${R_HOME}/site-library:${R_HOME}/library'}
+echo "R_LIBS=\${R_LIBS-\"${R_HOME}/site-library:${R_HOME}/library\"}
 LANGUAGE=\"${LANG}\"
 R_LIBS_USER=~/R/library
 R_MAX_NUM_DLLS=300
@@ -143,12 +142,12 @@ RENV_PATHS_CACHE=/renv_cache
 " >>"${R_HOME}/etc/Renviron.site"
 
 echo "options(
-  repos = c(CRAN = '${CRAN}'),
-  download.file.method = 'libcurl',
+  repos = c(CRAN = \"${CRAN}\"),
+  download.file.method = \"libcurl\",
   HTTPUserAgent = sprintf(
-    'R/%s R (%s)',
+    \"R/%s R (%s)\",
     getRversion(),
-    paste(getRversion(), R.version[['platform']], R.version[['arch']], R.version[['os']])
+    paste(getRversion(), R.version[[\"platform\"]], R.version[[\"arch\"]], R.version[[\"os\"]])
   )
 )
 Sys.umask(\"0002\")
