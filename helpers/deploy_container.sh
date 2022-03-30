@@ -44,6 +44,11 @@ function deploy_container() {
       fi
       local DOCKER_NAME="--name ${NAME}--${USER_NAME} --hostname ${NAME}"
       local TMPDIR=${TMP}/${HOSTNAME}--${NAME}--${USER_NAME}
+      if [ -e ${TMPDIR} ]; then
+        rm -rf ${TMPDIR}
+      fi
+      mkdir -p -m 775 ${TMPDIR}
+      chgrp staff ${TMPDIR}
     fi
 
     echo "Starting Docker container ${IMG}-server \"${NAME}--${USER_NAME}\" ..."
@@ -53,12 +58,6 @@ function deploy_container() {
       echo "Error 3: A container with the same name is already running!"
       return 3
     fi
-
-    if [ -e ${TMPDIR} ]; then
-      rm -rf ${TMPDIR}
-    fi
-    mkdir -p -m 775 ${TMPDIR}
-    chgrp staff ${TMPDIR}
 
     local DOCKER_DEFAULT="--detach --env \"RENV_PATHS_CACHE=/renv_cache\""
     local DOCKER_VOLUMES="--volume ${TMPRENV}:/renv_cache \
