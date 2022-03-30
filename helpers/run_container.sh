@@ -24,11 +24,6 @@ function run_container() {
   local SCRIPT=$2
   local SCRIPTCLEAN=${SCRIPT//\//-}
 
-  if [[ (-n "$(docker ps | grep -E '${PROJECT}--${SCRIPTCLEAN}$')") ]]; then
-    echo "Error 4: A container with the same name is already running!"
-    return 4
-  fi
-
   local LOG=${SCRIPTCLEAN%.*}
   local ROOTPROJECT=/disks/PROJECT/${PROJECT}
 
@@ -38,6 +33,11 @@ function run_container() {
     local USER_NAME=$SUDO_USER
   else
     local USER_NAME=$(whoami)
+  fi
+
+  if [[ (-n "$(docker ps | grep -E '${USER_NAME}--${PROJECT}--${SCRIPTCLEAN}$')") ]]; then
+    echo "Error 4: A container with the same name is already running!"
+    return 4
   fi
 
   local TMPDIR=$TMP/${USER_NAME}--$HOSTNAME--${PROJECT}--${SCRIPTCLEAN}
@@ -67,7 +67,7 @@ function run_container() {
     --volume ${DIRMOUNT}/datatmp:/disks/DATATMP \
     ${IMAGE} /bin/bash -c "cd ${ROOTPROJECT}; Rscript scripts/${SCRIPT} >& logs/${LOG}.log"
 
-  echo "Docker container \"${PROJECT}--${SCRIPTCLEAN}\" online!"
+  echo "Docker container \"${USER_NAME}--${PROJECT}--${SCRIPTCLEAN}\" online!"
 
   return 0
 }

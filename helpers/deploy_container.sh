@@ -4,14 +4,14 @@ function deploy_container() {
   DIRMOUNT=/media # or /Isiprod1
 
   if [ -z "$1" ]; then
-    echo "Error 1: Missing Docker image name, e.g., \"rstudio\"!"
+    echo "Error 1: Missing Docker image name, i.e., \"r-ver\", \"umr1283\", \"rstudio\", \"ssh\", or \"shiny\"!"
     return 1
   else
     local IMG=$1
   fi
 
   if [ -z "$2" ]; then
-    echo "Error 2: Missing Docker image version, e.g., \"4.1.2\"!"
+    echo "Error 2: Missing Docker image version, e.g., \"4.1.2\" or \"devel\"!"
     return 2
   else
     local VERSION=$2
@@ -25,8 +25,6 @@ function deploy_container() {
     local BASEDOCKERHUB="umr1283"
   fi
 
-  echo "Starting Docker container ${IMG}-server \"${NAME}\" ..."
-
   local TMP=${DIRMOUNT}/datatmp/dockertmp
 
   local TMPRENV=$TMP/renv_pkgs_cache
@@ -35,13 +33,6 @@ function deploy_container() {
   fi
 
   if [ -z "$3" ]; then
-    echo "Docker container ${IMG}-server \"${NAME}\" will have access to all projects!"
-
-    if [[ (-n "$(docker ps | grep -E '^${NAME}$')") ]]; then
-      echo "Error 3: A container with the same name is already running!"
-      return 3
-    fi
-
     if [ "${IMG%-*}" = "shiny" ]; then
       local DOCKER_NAME="--name ${NAME} --hostname ${NAME}"
       local TMPDIR=$TMP/$HOSTNAME--$NAME
@@ -53,6 +44,14 @@ function deploy_container() {
       fi
       local DOCKER_NAME="--name ${NAME}--${USER_NAME} --hostname ${NAME}"
       local TMPDIR=$TMP/$HOSTNAME--$NAME--${USER_NAME}
+    fi
+
+    echo "Starting Docker container ${IMG}-server \"${NAME}--${USER_NAME}\" ..."
+    echo "Docker container ${IMG}-server \"${NAME}--${USER_NAME}\" will have access to all projects!"
+
+    if [[ (-n "$(docker ps | grep -E '^${NAME}--${USER_NAME}$')") ]]; then
+      echo "Error 3: A container with the same name is already running!"
+      return 3
     fi
 
     if [ -e $TMPDIR ]; then
@@ -104,16 +103,18 @@ function deploy_container() {
     if [ "${IMG%-*}" = "shiny" ]; then
       docker exec ${NAME} /bin/bash -c "usermod -a -G staff shiny && usermod -g staff shiny"
     fi
+
+    echo "Docker container ${IMG}-server \"${NAME}--${USER_NAME}\" online!"
   else
     PROJECT=$3
-    echo "Docker container ${IMG}-server \"${NAME}\" will only have access to \"${PROJECT}\"!"
+    echo "Docker container ${IMG}-server \"${NAME}--${PROJECT}\" will only have access to \"${PROJECT}\"!"
 
     if [[ (-n "$(docker ps | grep -E '^${NAME}--${PROJECT}$')") ]]; then
       echo "Error 3: A container with the same name is already running!"
       return 3
     fi
 
-    if [ "${VERSION}" = "devel"]; then
+    if [ "${VERSION}" = "devel" ]; then
       echo "Error 4: \"devel\" is not a valid version for \"${IMG}\" with limited access!"
       return 4
     fi
@@ -147,9 +148,9 @@ function deploy_container() {
       ${DOCKER_VOLUMES} \
       --publish ${PORT} \
       ${BASEDOCKERHUB}/${IMG}:${VERSION}
-  fi
 
-  echo "Docker container ${IMG}-server \"${NAME}\" online!"
+    echo "Docker container ${IMG}-server \"${NAME}--${PROJECT}\" online!"
+  fi
 
   return 0
 }
