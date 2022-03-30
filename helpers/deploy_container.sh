@@ -27,23 +27,23 @@ function deploy_container() {
 
   local TMP=${DIRMOUNT}/datatmp/dockertmp
 
-  local TMPRENV=$TMP/renv_pkgs_cache
-  if [ ! -e $TMPRENV ]; then
-    mkdir -p -m 775 $TMPRENV
+  local TMPRENV=${TMP}/renv_pkgs_cache
+  if [ ! -e ${TMPRENV} ]; then
+    mkdir -p -m 775 ${TMPRENV}
   fi
 
   if [ -z "$3" ]; then
     if [ "${IMG%-*}" = "shiny" ]; then
       local DOCKER_NAME="--name ${NAME} --hostname ${NAME}"
-      local TMPDIR=$TMP/$HOSTNAME--$NAME
+      local TMPDIR=${TMP}/${HOSTNAME}--${NAME}
     else
-      if [ -n "$SUDO_USER" ]; then
-        local USER_NAME=$SUDO_USER
+      if [ -n "${SUDO_USER}" ]; then
+        local USER_NAME=${SUDO_USER}
       else
         local USER_NAME=$(whoami)
       fi
       local DOCKER_NAME="--name ${NAME}--${USER_NAME} --hostname ${NAME}"
-      local TMPDIR=$TMP/$HOSTNAME--$NAME--${USER_NAME}
+      local TMPDIR=${TMP}/${HOSTNAME}--${NAME}--${USER_NAME}
     fi
 
     echo "Starting Docker container ${IMG}-server \"${NAME}--${USER_NAME}\" ..."
@@ -54,11 +54,11 @@ function deploy_container() {
       return 3
     fi
 
-    if [ -e $TMPDIR ]; then
-      rm -rf $TMPDIR
+    if [ -e ${TMPDIR} ]; then
+      rm -rf ${TMPDIR}
     fi
-    mkdir -p -m 775 $TMPDIR
-    chgrp staff $TMPDIR
+    mkdir -p -m 775 ${TMPDIR}
+    chgrp staff ${TMPDIR}
 
     local DOCKER_DEFAULT="--detach --env \"RENV_PATHS_CACHE=/renv_cache\""
     local DOCKER_VOLUMES="--volume ${TMPRENV}:/renv_cache \
@@ -119,12 +119,12 @@ function deploy_container() {
       return 4
     fi
 
-    local TMPDIR=$TMP/$HOSTNAME--$NAME--$PROJECT
-    if [ -e $TMPDIR ]; then
-      rm -rf $TMPDIR
+    local TMPDIR=${TMP}/${HOSTNAME}--${NAME}--${PROJECT}
+    if [ -e ${TMPDIR} ]; then
+      rm -rf ${TMPDIR}
     fi
-    mkdir -p -m 775 $TMPDIR
-    chgrp staff $TMPDIR
+    mkdir -p -m 775 ${TMPDIR}
+    chgrp staff ${TMPDIR}
 
     local DOCKER_NAME="--name ${NAME}--${PROJECT} --hostname ${NAME}--${PROJECT}"
 
