@@ -24,11 +24,9 @@ apt-get install -y --no-install-recommends \
   g++ \
   gfortran \
   gsfonts \
-  libblas-dev \
   libbz2-* \
   libcurl4 \
   libicu* \
-  liblapack-dev \
   libpcre2* \
   libjpeg-turbo* \
   libpangocairo-* \
@@ -39,7 +37,13 @@ apt-get install -y --no-install-recommends \
   make \
   unzip \
   zip \
-  zlib1g
+  zlib1g \
+  tk
+
+apt-get install -y --no-install-recommends \
+  libblas-dev \
+  libopenblas-dev \
+  liblapack-dev \
 
 BUILDDEPS="curl \
   default-jdk \
@@ -120,6 +124,11 @@ make
 make install
 make clean
 
+# if ! dpkg -l | grep -q libopenblas-dev; then
+#   apt-get update && apt-get install -y --no-install-recommends libopenblas-dev
+#   update-alternatives --set "libblas.so.3-${ARCH}-linux-gnu" "/usr/lib/${ARCH}-linux-gnu/openblas-pthread/libblas.so.3"
+# fi
+
 ## Add a library directory (for user-installed packages)
 mkdir -p "${R_HOME}/site-library"
 chown root:staff "${R_HOME}/site-library"
@@ -144,11 +153,6 @@ echo "options(
 )
 Sys.umask(\"0002\")
 " >>"${R_HOME}/etc/Rprofile.site"
-
-if ! dpkg -l | grep -q libopenblas-dev; then
-  apt-get update && apt-get install -y --no-install-recommends libopenblas-dev
-  update-alternatives --set "libblas.so.3-${ARCH}-linux-gnu" "/usr/lib/${ARCH}-linux-gnu/openblas-pthread/libblas.so.3"
-fi
 
 # Clean up
 cd /
