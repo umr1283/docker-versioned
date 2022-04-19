@@ -65,6 +65,7 @@ function run_container() {
     --volume ${DIRMOUNT}/data:/disks/DATA \
     --volume ${DIRMOUNT}/project:/disks/PROJECT \
     --volume ${DIRMOUNT}/datatmp:/disks/DATATMP \
+    --volume /etc/localtime:/etc/localtime \
     ${IMAGE} /bin/bash -c "cd ${ROOTPROJECT}; Rscript scripts/${SCRIPT} >& logs/${LOG}.log; rm -rf /tmp/*;"
 
   echo "Docker container \"${USER_NAME}--${PROJECT}--${SCRIPTCLEAN}\" online!"

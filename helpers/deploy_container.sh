@@ -96,6 +96,7 @@ function deploy_container() {
       ${DOCKER_NAME} \
       ${DOCKER_DEFAULT} \
       ${DOCKER_VOLUMES} \
+      --volume /etc/localtime:/etc/localtime \
       --publish ${PORT} \
       ${BASEDOCKERHUB}/${IMG%-*}:${VERSION}
 
@@ -145,6 +146,7 @@ function deploy_container() {
       --memory 256g \
       ${DOCKER_DEFAULT} \
       ${DOCKER_VOLUMES} \
+      --volume /etc/localtime:/etc/localtime \
       --publish ${PORT} \
       ${BASEDOCKERHUB}/${IMG}:${VERSION}
 
