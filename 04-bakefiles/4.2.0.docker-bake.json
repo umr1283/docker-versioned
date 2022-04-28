@@ -29,22 +29,24 @@
   "target": {
     "r-ver": {
       "context": "./",
-      "dockerfile": "02-dockerfiles/r-ver_4.1.3.Dockerfile",
+      "dockerfile": "02-dockerfiles/r-ver_4.2.0.Dockerfile",
       "labels": {
         "org.opencontainers.image.title": "mcanouil/r-ver",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R",
         "org.opencontainers.image.base.name": "docker.io/library/debian:bullseye"
       },
       "tags": [
-        "docker.io/mcanouil/r-ver:4.1.3",
-        "docker.io/umr1283/r-ver:4.1.3"
+        "docker.io/mcanouil/r-ver:4.2.0",
+        "docker.io/mcanouil/r-ver:latest",
+        "docker.io/umr1283/r-ver:4.2.0",
+        "docker.io/umr1283/r-ver:latest"
       ],
       "platforms": [
         "linux/amd64",
         "linux/arm64"
       ],
       "cache-from": [
-        "docker.io/mcanouil/r-ver:4.1.3"
+        "docker.io/mcanouil/r-ver:4.2.0"
       ],
       "cache-to": [
         "type=inline"
@@ -52,15 +54,17 @@
     },
     "umr1283": {
       "context": "./",
-      "dockerfile": "02-dockerfiles/umr1283_4.1.3.Dockerfile",
+      "dockerfile": "02-dockerfiles/umr1283_4.2.0.Dockerfile",
       "labels": {
         "org.opencontainers.image.title": "mcanouil/umr1283",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R and some (genetics) tools",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/r-ver:4.1.3"
+        "org.opencontainers.image.base.name": "docker.io/mcanouil/r-ver:4.2.0"
       },
       "tags": [
-        "docker.io/mcanouil/umr1283:4.1.3",
-        "docker.io/umr1283/umr1283:4.1.3"
+        "docker.io/mcanouil/umr1283:4.2.0",
+        "docker.io/mcanouil/umr1283:latest",
+        "docker.io/umr1283/umr1283:4.2.0",
+        "docker.io/umr1283/umr1283:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -74,15 +78,17 @@
     },
     "rstudio": {
       "context": "./",
-      "dockerfile": "02-dockerfiles/rstudio_4.1.3.Dockerfile",
+      "dockerfile": "02-dockerfiles/rstudio_4.2.0.Dockerfile",
       "labels": {
         "org.opencontainers.image.title": "mcanouil/rstudio",
         "org.opencontainers.image.description": "RStudio server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.1.3"
+        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.2.0"
       },
       "tags": [
-        "docker.io/mcanouil/rstudio:4.1.3",
-        "docker.io/umr1283/rstudio:4.1.3"
+        "docker.io/mcanouil/rstudio:4.2.0",
+        "docker.io/mcanouil/rstudio:latest",
+        "docker.io/umr1283/rstudio:4.2.0",
+        "docker.io/umr1283/rstudio:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -96,15 +102,17 @@
     },
     "ssh": {
       "context": "./",
-      "dockerfile": "02-dockerfiles/ssh_4.1.3.Dockerfile",
+      "dockerfile": "02-dockerfiles/ssh_4.2.0.Dockerfile",
       "labels": {
         "org.opencontainers.image.title": "mcanouil/ssh",
         "org.opencontainers.image.description": "SSH server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.1.3"
+        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.2.0"
       },
       "tags": [
-        "docker.io/mcanouil/ssh:4.1.3",
-        "docker.io/umr1283/ssh:4.1.3"
+        "docker.io/mcanouil/ssh:4.2.0",
+        "docker.io/mcanouil/ssh:latest",
+        "docker.io/umr1283/ssh:4.2.0",
+        "docker.io/umr1283/ssh:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -118,15 +126,17 @@
     },
     "shiny": {
       "context": "./",
-      "dockerfile": "02-dockerfiles/shiny_4.1.3.Dockerfile",
+      "dockerfile": "02-dockerfiles/shiny_4.2.0.Dockerfile",
       "labels": {
         "org.opencontainers.image.title": "mcanouil/shiny",
         "org.opencontainers.image.description": "Shiny server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.1.3"
+        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.2.0"
       },
       "tags": [
-        "docker.io/mcanouil/shiny:4.1.3",
-        "docker.io/umr1283/shiny:4.1.3"
+        "docker.io/mcanouil/shiny:4.2.0",
+        "docker.io/mcanouil/shiny:latest",
+        "docker.io/umr1283/shiny:4.2.0",
+        "docker.io/umr1283/shiny:latest"
       ],
       "platforms": [
         "linux/amd64"

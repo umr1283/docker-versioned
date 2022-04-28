@@ -1,4 +1,4 @@
-FROM mcanouil/r-ver:4.1.0
+FROM mcanouil/r-ver:4.2.0
 
 LABEL org.opencontainers.image.licenses="GPL-3.0" \
       org.opencontainers.image.source="https://github.com/mcanouil/docker-versioned" \

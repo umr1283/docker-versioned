@@ -4,8 +4,8 @@ LABEL org.opencontainers.image.licenses="GPL-3.0" \
       org.opencontainers.image.source="https://github.com/mcanouil/docker-versioned" \
       org.opencontainers.image.authors="Mickaël Canouil <https://mickael.canouil.fr/>"
 
-ENV UMR1283_VERSION=1.8.0
-ENV BCFTOOLS_VERSION=1.15
+ENV UMR1283_VERSION=1.8.3
+ENV BCFTOOLS_VERSION=1.15.1
 ENV ODBC_VERSION=8.0.27
 ENV S6_VERSION=v2.2.0.3
 
