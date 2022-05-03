@@ -18,13 +18,13 @@ jobs:
       - id: set-json
         run: |
           JSON=05-matrix/github_action_matrix_all_server.json
-          echo ::set-output name=json::${JSON}
-          echo ${JSON}
+          echo ::set-output name=json::"${JSON}"
+          echo "${JSON}"
       - id: set-matrix
         run: |
           CONTENT=$(jq -r 'tostring' ${{ steps.set-json.outputs.json }})
-          echo ::set-output name=matrix::${CONTENT}
-          echo ${CONTENT}
+          echo ::set-output name=matrix::"${CONTENT}"
+          echo "${CONTENT}"
 
   build:
     needs: generate_matrix

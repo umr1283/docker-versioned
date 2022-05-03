@@ -14,8 +14,8 @@ jobs:
         id: get_r_version
         run: |
           NEW_R_VERSION=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
-          echo ::set-output name=newrversion::${NEW_R_VERSION}
-          echo ${NEW_R_VERSION}
+          echo ::set-output name=newrversion::"${NEW_R_VERSION}"
+          echo "${NEW_R_VERSION}"
       - name: Bump R version and push R tag
         id: tag_r_version
         uses: mathieudutour/github-tag-action@v5.6
