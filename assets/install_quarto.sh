@@ -14,7 +14,7 @@ if [ "$ARCH" = "amd64" ]; then
   if [ "$QUARTO_VERSION" = "latest" ]; then
     QUARTO_DL_URL=$(wget -qO- https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*${ARCH}\.deb")
   else
-    QUARTO_DL_URL="https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-${ARCH}.deb"
+    QUARTO_DL_URL="https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${ARCH}.deb"
   fi
   wget "$QUARTO_DL_URL" -O quarto.deb
   dpkg -i quarto.deb
@@ -22,7 +22,7 @@ if [ "$ARCH" = "amd64" ]; then
 
   quarto check install
 
-  Rscript -e 'utils::install.packages("quarto")'
+  Rscript -e 'utils::install.packages(c("knitr", "quarto"))'
 fi
 
 # Clean up
