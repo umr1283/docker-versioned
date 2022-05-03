@@ -18,7 +18,7 @@ jobs:
           echo "${NEW_R_VERSION}"
       - name: Bump R version and push R tag
         id: tag_r_version
-        uses: mathieudutour/github-tag-action@v5.6
+        uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
