@@ -39,5 +39,5 @@ jobs:
           name: ${{ steps.release_id.outputs.releasename }}
           generateReleaseNotes: true
           allowUpdates: false
-          prerelease: true
+          prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
