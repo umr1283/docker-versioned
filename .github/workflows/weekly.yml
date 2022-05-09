@@ -37,16 +37,7 @@ jobs:
         run: |
           rm -rf 02-dockerfiles 03-compose 04-bakefiles
           Rscript ./build/build.R
-      - name: Render README
-        run: Rscript -e 'rmarkdown::render("README.Rmd", output_options = list(html_preview = FALSE))'
-      - uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build Docker images
-        run: docker-compose -f 03-compose/${{ matrix.composefile }} build
-      - name: Push Docker images
-        run: docker-compose -f 03-compose/${{ matrix.composefile }} push
+          Rscript -e 'rmarkdown::render("README.Rmd", output_options = list(html_preview = FALSE))'
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v4
@@ -65,3 +56,11 @@ jobs:
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+      - uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build Docker images
+        run: docker-compose -f 03-compose/${{ matrix.composefile }} build
+      - name: Push Docker images
+        run: docker-compose -f 03-compose/${{ matrix.composefile }} push
