@@ -1,34 +1,28 @@
-name: Create New Release
+name: Create Release
 
 on:
   push:
     branches: main
     paths: "05-matrix/github_action_matrix_all.json"
-  workflow_dispatch:
 
 jobs:
-  create_tag:
+  create_r_tag:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set version from date
-        id: get_version
-        run: |
-          NEW_VERSION=$(date '+%Y.%m.%d')
-          echo ::set-output name=newversion::"${NEW_VERSION}"
-          echo "${NEW_VERSION}"
-      - name: Bump version and push tag
-        id: tag_version
+      - name: Bump R version and push R tag
+        id: tag_r_version
         uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
-          custom_tag: ${{ steps.get_version.outputs.newversion }}
-      - name: Create Release
+          custom_tag: $(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
+          tag_prefix: "R"
+      - name: Create R Release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          tag: ${{ steps.tag_r_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_r_version.outputs.new_tag }}
           generateReleaseNotes: true
           allowUpdates: false
           token: ${{ secrets.GITHUB_TOKEN }}

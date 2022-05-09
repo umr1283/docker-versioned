@@ -1,0 +1,42 @@
+name: Create Pre-Release
+
+on:
+  push:
+    branches: main
+    paths: "01-stacks/devel.json"
+
+jobs:
+  create_prerelease:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set version from date
+        id: get_version
+        run: |
+          NEW_R_VERSION=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
+          DATE_VERSION=$(date '+%Y.%m.%d')
+          echo ::set-output name=newversion::"${NEW_R_VERSION}-${DATE_VERSION}"
+          echo "${NEW_R_VERSION}-${DATE_VERSION}"
+      - name: Set prerelease name
+        id: get_version
+        run: |
+          NEW_R_VERSION=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
+          DATE_VERSION=$(date '+%Y.%m.%d')
+          echo ::set-output name=releasename::"Release UMR/RSTUDIO/SSH ${NEW_R_VERSION} (Built: ${DATE_VERSION})"
+          echo "${NEW_R_VERSION}-${DATE_VERSION}"
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: false
+          custom_tag: ${{ steps.get_version.outputs.newversion }}
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: ${{ steps.tag_version.outputs.releasename }}
+          generateReleaseNotes: true
+          allowUpdates: false
+          prerelease: true
+          token: ${{ secrets.GITHUB_TOKEN }}
