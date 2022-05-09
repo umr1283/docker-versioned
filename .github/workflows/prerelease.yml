@@ -12,14 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set version from date
-        id: get_version
+        id: tag_id
         run: |
           NEW_R_VERSION=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
           DATE_VERSION=$(date '+%Y.%m.%d')
           echo ::set-output name=newversion::"${NEW_R_VERSION}-${DATE_VERSION}"
           echo "${NEW_R_VERSION}-${DATE_VERSION}"
       - name: Set prerelease name
-        id: get_version
+        id: release_id
         run: |
           NEW_R_VERSION=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
           DATE_VERSION=$(date '+%Y.%m.%d')
@@ -31,12 +31,12 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
-          custom_tag: ${{ steps.get_version.outputs.newversion }}
+          custom_tag: ${{ steps.tag_id.outputs.newversion }}
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: ${{ steps.tag_version.outputs.releasename }}
+          name: ${{ steps.release_id.outputs.releasename }}
           generateReleaseNotes: true
           allowUpdates: false
           prerelease: true
