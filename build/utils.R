@@ -39,6 +39,9 @@
   .get_latest_tag("samtools/bcftools")
 }
 
+.latest_quarto_version <- function() {
+  .get_latest_tag("quarto-dev/quarto-cli")
+}
 
 .r_versions_data <- function(min_version) {
   data.table::as.data.table(rversions::r_versions())[
@@ -71,7 +74,8 @@
   r_version,
   rstudio_version,
   umr1283_version,
-  bcftools_version
+  bcftools_version,
+  quarto_version
 ) {
   template <- jsonlite::read_json(stack_file)
 
@@ -89,6 +93,7 @@
   template$stack[[2]]$FROM <- sub("[^/]*", docker_repository, template$stack[[2]]$FROM)
   template$stack[[2]]$ENV$UMR1283_VERSION <- umr1283_version
   template$stack[[2]]$ENV$BCFTOOLS_VERSION <- bcftools_version
+  template$stack[[2]]$ENV$QUARTO_VERSION <- quarto_version
 
   # RStudio
   template$stack[[3]]$labels$org.opencontainers.image.title <- sub(
@@ -123,6 +128,7 @@
   debian_version,
   rstudio_version,
   umr1283_version,
+  quarto_version,
   cran,
   r_latest,
   default_stacks
@@ -154,6 +160,7 @@
   # umr1283
   template$stack[[2]]$FROM <- sprintf("%s/r-ver:%s", base, r_version)
   template$stack[[2]]$ENV$UMR1283_VERSION <- umr1283_version
+  template$stack[[2]]$ENV$QUARTO_VERSION <- quarto_version
   template$stack[[2]]$tags <- c(
     .generate_tags(sprintf("docker.io/%s/umr1283", base), r_version, r_latest),
     .generate_tags("docker.io/umr1283/umr1283", r_version, r_latest)
@@ -202,6 +209,7 @@ write_stacks <- function(docker_repository, stack_file, min_version = "4.1", deb
   rstudio_latest_version <- .latest_rstudio_version()
   umr1283_latest_version <- .latest_umr1283_version()
   bcftools_latest_version <- .latest_bcftools_version()
+  quarto_latest_version <- .latest_quarto_version()
 
   .update_default_stacks(
     docker_repository = docker_repository,
@@ -209,7 +217,8 @@ write_stacks <- function(docker_repository, stack_file, min_version = "4.1", deb
     r_version = r_latest_version,
     rstudio_version = rstudio_latest_version,
     umr1283_version = umr1283_latest_version,
-    bcftools_version = bcftools_latest_version
+    bcftools_version = bcftools_latest_version,
+    quarto_version = quarto_latest_version
   )
 
   message("Writing stack JSON files:")
@@ -221,6 +230,7 @@ write_stacks <- function(docker_repository, stack_file, min_version = "4.1", deb
       debian_version = if (is.null(debian)) .latest_debian_series(release_date) else debian,
       rstudio_version = rstudio_latest_version,
       umr1283_version = umr1283_latest_version,
+      quarto_version = quarto_latest_version,
       cran = "https://cran.r-project.org",
       r_latest = r_latest,
       default_stacks = stack_file
