@@ -45,4 +45,12 @@ colnames(dt) <- c("Image", "Description", "R", "Pull")
 knitr::kable(dt, format = "markdown")
 ```
 
+```mermaid
+graph LR
+    A[r-ver] --> B{umr1283}
+    B --> D[rstudio]
+    B --> E[ssh]
+    B --> F[shiny]
+```
+
 _Note: Based on [rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2) build workflow._
