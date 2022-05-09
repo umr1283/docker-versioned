@@ -3,7 +3,8 @@ name: Create Pre-Release
 on:
   push:
     branches: main
-    paths: "01-stacks/devel.json"
+    paths: "01-stacks/**.json"
+  workflow_dispatch:
 
 jobs:
   create_prerelease:
