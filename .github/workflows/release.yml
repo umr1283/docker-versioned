@@ -4,19 +4,36 @@ on:
   push:
     branches: main
     paths: "05-matrix/github_action_matrix_all.json"
+  workflow_dispatch:
+    inputs: 
+      tag_suffix:
+        description: 'Tag suffix'
+        required: true 
+        type: string
 
 jobs:
   create_r_tag:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - id: set_tag
+        run: |
+          TAG=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
+          if [[ github.event_name == 'workflow_dispatch' ]]; then
+            CTAG="${TAG}-${{ github.event.inputs.tag_suffix }}"
+          else
+            CTAG="${TAG}"
+          fi
+          ${CTAG}
+          echo ::set-output name=ctag::"${CTAG}"
+          echo "${CTAG}"
       - name: Bump R version and push R tag
         id: tag_r_version
         uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
-          custom_tag: $(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
+          custom_tag: ${{ steps.set_tag.outputs.ctag }}
           tag_prefix: "R"
       - name: Create R Release
         uses: ncipollo/release-action@v1
