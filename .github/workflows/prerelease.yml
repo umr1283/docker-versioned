@@ -23,7 +23,7 @@ jobs:
         run: |
           NEW_R_VERSION=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
           DATE_VERSION=$(date '+%Y.%m.%d')
-          echo ::set-output name=releasename::"Release UMR/RSTUDIO/SSH ${NEW_R_VERSION} (Built: ${DATE_VERSION})"
+          echo ::set-output name=releasename::"${NEW_R_VERSION}-${DATE_VERSION} (UMR/RSTUDIO/SSH/SHINY)"
           echo "${NEW_R_VERSION}-${DATE_VERSION}"
       - name: Bump version and push tag
         id: tag_version

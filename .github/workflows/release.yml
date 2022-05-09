@@ -39,7 +39,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_r_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_r_version.outputs.new_tag }}
+          name: ${{ steps.tag_r_version.outputs.new_tag }}
           generateReleaseNotes: true
           allowUpdates: false
           token: ${{ secrets.GITHUB_TOKEN }}
