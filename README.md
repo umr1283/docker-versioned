@@ -27,13 +27,13 @@ graph LR
     B --> F[shiny]
 ```
 
-| Image                                                | Description                                                                | R                                                                                                                                         | Pull                                                                                                               |
-|:-----------------------------------------------------|:---------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------|
-| [r-ver](https://hub.docker.com/r/mcanouil/r-ver)     | Reproducible builds with predefined version of R                           | [![Latest Tag](https://img.shields.io/docker/v/mcanouil/r-ver.svg?sort=semver&label=latest)](https://hub.docker.com/r/mcanouil/r-ver)     | [![Docker Pulls](https://img.shields.io/docker/pulls/mcanouil/r-ver)](https://hub.docker.com/r/mcanouil/r-ver)     |
-| [umr1283](https://hub.docker.com/r/mcanouil/umr1283) | Reproducible builds with predefined version of R and some (genetics) tools | [![Latest Tag](https://img.shields.io/docker/v/mcanouil/umr1283.svg?sort=semver&label=latest)](https://hub.docker.com/r/mcanouil/umr1283) | [![Docker Pulls](https://img.shields.io/docker/pulls/mcanouil/umr1283)](https://hub.docker.com/r/mcanouil/umr1283) |
-| [rstudio](https://hub.docker.com/r/mcanouil/rstudio) | RStudio server for umr1283 image                                           | [![Latest Tag](https://img.shields.io/docker/v/mcanouil/rstudio.svg?sort=semver&label=latest)](https://hub.docker.com/r/mcanouil/rstudio) | [![Docker Pulls](https://img.shields.io/docker/pulls/mcanouil/rstudio)](https://hub.docker.com/r/mcanouil/rstudio) |
-| [ssh](https://hub.docker.com/r/mcanouil/ssh)         | SSH server for umr1283 image                                               | [![Latest Tag](https://img.shields.io/docker/v/mcanouil/ssh.svg?sort=semver&label=latest)](https://hub.docker.com/r/mcanouil/ssh)         | [![Docker Pulls](https://img.shields.io/docker/pulls/mcanouil/ssh)](https://hub.docker.com/r/mcanouil/ssh)         |
-| [shiny](https://hub.docker.com/r/mcanouil/shiny)     | Shiny server for umr1283 image                                             | [![Latest Tag](https://img.shields.io/docker/v/mcanouil/shiny.svg?sort=semver&label=latest)](https://hub.docker.com/r/mcanouil/shiny)     | [![Docker Pulls](https://img.shields.io/docker/pulls/mcanouil/shiny)](https://hub.docker.com/r/mcanouil/shiny)     |
+| Image                                                | Description                                                                |
+|:-----------------------------------------------------|:---------------------------------------------------------------------------|
+| [r-ver](https://github.com/mcanouil/docker-versioned/pkgs/container/r-ver)     | Reproducible builds with predefined version of R                           |
+| [umr1283](https://github.com/mcanouil/docker-versioned/pkgs/container/umr1283) | Reproducible builds with predefined version of R and some (genetics) tools |
+| [rstudio](https://github.com/mcanouil/docker-versioned/pkgs/container/rstudio) | RStudio server for umr1283 image                                           |
+| [ssh](https://github.com/mcanouil/docker-versioned/pkgs/container/ssh)         | SSH server for umr1283 image                                               |
+| [shiny](https://github.com/mcanouil/docker-versioned/pkgs/container/shiny)     | Shiny server for umr1283 image                                             |
 
 *Note: Based on
 [rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2)

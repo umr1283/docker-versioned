@@ -30,14 +30,6 @@ jobs:
             any::httr2
             any::yaml
             any::data.table
-            any::rmarkdown
-            any::jsonlite
-            any::here
-      - name: Make changes to pull request
-        run: |
-          rm -rf 02-dockerfiles 03-compose 04-bakefiles
-          Rscript ./build/build.R
-          Rscript -e 'rmarkdown::render("README.Rmd", output_options = list(html_preview = FALSE))'
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v4
