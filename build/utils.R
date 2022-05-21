@@ -150,11 +150,11 @@
   template$stack[[1]]$FROM <- paste0("debian:", debian_version)
   template$stack[[1]]$ENV$R_VERSION <- r_version
   template$stack[[1]]$tags <- c(
-    .generate_tags(sprintf("docker.io/%s/r-ver", base), r_version, r_latest),
+    .generate_tags(sprintf("ghcr.io/%s/r-ver", base), r_version, r_latest),
     .generate_tags("docker.io/umr1283/r-ver", r_version, r_latest)
   )
   template$stack[[1]]$platforms <- list("linux/amd64", "linux/arm64")
-  template$stack[[1]]$`cache-from` <- list(sprintf("docker.io/%s/r-ver:%s", base, r_version))
+  template$stack[[1]]$`cache-from` <- list(sprintf("ghcr.io/%s/r-ver:%s", base, r_version))
   template$stack[[1]]$`cache-to` <- list("type=inline")
 
   # umr1283
@@ -162,7 +162,7 @@
   template$stack[[2]]$ENV$UMR1283_VERSION <- umr1283_version
   template$stack[[2]]$ENV$QUARTO_VERSION <- quarto_version
   template$stack[[2]]$tags <- c(
-    .generate_tags(sprintf("docker.io/%s/umr1283", base), r_version, r_latest),
+    .generate_tags(sprintf("ghcr.io/%s/umr1283", base), r_version, r_latest),
     .generate_tags("docker.io/umr1283/umr1283", r_version, r_latest)
   )
 
@@ -170,21 +170,21 @@
   template$stack[[3]]$FROM <- sprintf("%s/umr1283:%s", base, r_version)
   template$stack[[3]]$ENV$RSTUDIO_VERSION <- rstudio_version
   template$stack[[3]]$tags <- c(
-    .generate_tags(sprintf("docker.io/%s/rstudio", base), r_version, r_latest),
+    .generate_tags(sprintf("ghcr.io/%s/rstudio", base), r_version, r_latest),
     .generate_tags("docker.io/umr1283/rstudio", r_version, r_latest)
   )
 
   # ssh
   template$stack[[4]]$FROM <- sprintf("%s/umr1283:%s", base, r_version)
   template$stack[[4]]$tags <- c(
-    .generate_tags(sprintf("docker.io/%s/ssh", base), r_version, r_latest),
+    .generate_tags(sprintf("ghcr.io/%s/ssh", base), r_version, r_latest),
     .generate_tags("docker.io/umr1283/ssh", r_version, r_latest)
   )
 
   # shiny
   template$stack[[5]]$FROM <- sprintf("%s/umr1283:%s", base, r_version)
   template$stack[[5]]$tags <- c(
-    .generate_tags(sprintf("docker.io/%s/shiny", base), r_version, r_latest),
+    .generate_tags(sprintf("ghcr.io/%s/shiny", base), r_version, r_latest),
     .generate_tags("docker.io/umr1283/shiny", r_version, r_latest)
   )
 
@@ -389,7 +389,7 @@ write_compose <- function(stack_file, compose_file = "docker-compose.yml", docke
         X = stack,
         FUN = function(x) {
           if (grepl("/",  x[["FROM"]])) {
-            pattern <- "docker.io/%s"
+            pattern <- "ghcr.io/%s"
           } else {
             pattern <- "docker.io/library/%s"
           }
@@ -410,7 +410,7 @@ write_compose <- function(stack_file, compose_file = "docker-compose.yml", docke
         FUN = function(x, tag) {
           x_field <- x[["tags"]]
           if (is.null(x_field)) {
-            list(sprintf("docker.io/%s:%s", x[["labels"]][["org.opencontainers.image.title"]], tag))
+            list(sprintf("ghcr.io/%s:%s", x[["labels"]][["org.opencontainers.image.title"]], tag))
           } else {
             x_field
           }
