@@ -35,4 +35,5 @@ jobs:
             docker pull docker.io/mcanouil/umr1283:$tag
             docker tag docker.io/mcanouil/umr1283:$tag ghcr.io/mcanouil/umr1283:$tag
             docker push ghcr.io/mcanouil/umr1283:$tag
+            docker system prune --all --force
           done
