@@ -33,11 +33,11 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/r-ver",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R",
-        "org.opencontainers.image.base.name": "docker.io/library/debian:bullseye"
+        "org.opencontainers.image.base.name": "ghcr.io/library/debian:bullseye"
       },
       "tags": [
         "ghcr.io/mcanouil/r-ver:4.0.3",
-        "docker.io/umr1283/r-ver:4.0.3"
+        "ghcr.io/umr1283/r-ver:4.0.3"
       ],
       "platforms": [
         "linux/amd64",
@@ -60,7 +60,7 @@
       },
       "tags": [
         "ghcr.io/mcanouil/umr1283:4.0.3",
-        "docker.io/umr1283/umr1283:4.0.3"
+        "ghcr.io/umr1283/umr1283:4.0.3"
       ],
       "platforms": [
         "linux/amd64"
@@ -82,7 +82,7 @@
       },
       "tags": [
         "ghcr.io/mcanouil/rstudio:4.0.3",
-        "docker.io/umr1283/rstudio:4.0.3"
+        "ghcr.io/umr1283/rstudio:4.0.3"
       ],
       "platforms": [
         "linux/amd64"
@@ -104,7 +104,7 @@
       },
       "tags": [
         "ghcr.io/mcanouil/ssh:4.0.3",
-        "docker.io/umr1283/ssh:4.0.3"
+        "ghcr.io/umr1283/ssh:4.0.3"
       ],
       "platforms": [
         "linux/amd64"
@@ -126,7 +126,7 @@
       },
       "tags": [
         "ghcr.io/mcanouil/shiny:4.0.3",
-        "docker.io/umr1283/shiny:4.0.3"
+        "ghcr.io/umr1283/shiny:4.0.3"
       ],
       "platforms": [
         "linux/amd64"

@@ -33,13 +33,13 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/r-ver",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R",
-        "org.opencontainers.image.base.name": "docker.io/library/debian:bullseye"
+        "org.opencontainers.image.base.name": "ghcr.io/library/debian:bullseye"
       },
       "tags": [
         "ghcr.io/mcanouil/r-ver:4.2.0",
         "ghcr.io/mcanouil/r-ver:latest",
-        "docker.io/umr1283/r-ver:4.2.0",
-        "docker.io/umr1283/r-ver:latest"
+        "ghcr.io/umr1283/r-ver:4.2.0",
+        "ghcr.io/umr1283/r-ver:latest"
       ],
       "platforms": [
         "linux/amd64",
@@ -63,8 +63,8 @@
       "tags": [
         "ghcr.io/mcanouil/umr1283:4.2.0",
         "ghcr.io/mcanouil/umr1283:latest",
-        "docker.io/umr1283/umr1283:4.2.0",
-        "docker.io/umr1283/umr1283:latest"
+        "ghcr.io/umr1283/umr1283:4.2.0",
+        "ghcr.io/umr1283/umr1283:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -87,8 +87,8 @@
       "tags": [
         "ghcr.io/mcanouil/rstudio:4.2.0",
         "ghcr.io/mcanouil/rstudio:latest",
-        "docker.io/umr1283/rstudio:4.2.0",
-        "docker.io/umr1283/rstudio:latest"
+        "ghcr.io/umr1283/rstudio:4.2.0",
+        "ghcr.io/umr1283/rstudio:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -111,8 +111,8 @@
       "tags": [
         "ghcr.io/mcanouil/ssh:4.2.0",
         "ghcr.io/mcanouil/ssh:latest",
-        "docker.io/umr1283/ssh:4.2.0",
-        "docker.io/umr1283/ssh:latest"
+        "ghcr.io/umr1283/ssh:4.2.0",
+        "ghcr.io/umr1283/ssh:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -135,8 +135,8 @@
       "tags": [
         "ghcr.io/mcanouil/shiny:4.2.0",
         "ghcr.io/mcanouil/shiny:latest",
-        "docker.io/umr1283/shiny:4.2.0",
-        "docker.io/umr1283/shiny:latest"
+        "ghcr.io/umr1283/shiny:4.2.0",
+        "ghcr.io/umr1283/shiny:latest"
       ],
       "platforms": [
         "linux/amd64"
