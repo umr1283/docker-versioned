@@ -21,7 +21,7 @@ jobs:
           echo ::set-output name=matrix::"${CONTENT}"
           echo "${CONTENT}"
   build:
-    if: github.event.workflow_run.conclusion == 'success'
+    needs: generate_matrix_core
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
