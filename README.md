@@ -27,13 +27,13 @@ graph LR
     B --> F[shiny]
 ```
 
-| Image                                                | Description                                                                |
-|:-----------------------------------------------------|:---------------------------------------------------------------------------|
-| [r-ver](https://github.com/mcanouil/docker-versioned/pkgs/container/r-ver)     | Reproducible builds with predefined version of R                           |
-| [umr1283](https://github.com/mcanouil/docker-versioned/pkgs/container/umr1283) | Reproducible builds with predefined version of R and some (genetics) tools |
-| [rstudio](https://github.com/mcanouil/docker-versioned/pkgs/container/rstudio) | RStudio server for umr1283 image                                           |
-| [ssh](https://github.com/mcanouil/docker-versioned/pkgs/container/ssh)         | SSH server for umr1283 image                                               |
-| [shiny](https://github.com/mcanouil/docker-versioned/pkgs/container/shiny)     | Shiny server for umr1283 image                                             |
+| Image      | Description                                                                |
+|:-----------|:---------------------------------------------------------------------------|
+| `r-ver`    | Reproducible builds with predefined version of R                           |
+| `umr1283`  | Reproducible builds with predefined version of R and some (genetics) tools |
+| `rstudio`  | RStudio server for umr1283 image                                           |
+| `ssh`      | SSH server for umr1283 image                                               |
+| `shiny`    | Shiny server for umr1283 image                                             |
 
 *Note: Based on
 [rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2)
