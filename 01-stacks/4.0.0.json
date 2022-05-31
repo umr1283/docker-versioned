@@ -58,8 +58,7 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/mcanouil/r-ver:4.0.0",
-        "docker.io/umr1283/r-ver:4.0.0"
+        "docker.io/mcanouil/r-ver:4.0.0"
       ],
       "platforms": [
         "linux/amd64",
@@ -82,7 +81,7 @@
       "ENV": {
         "UMR1283_VERSION": "1.8.3",
         "BCFTOOLS_VERSION": "1.15.1",
-        "QUARTO_VERSION": "0.9.486",
+        "QUARTO_VERSION": "0.9.487",
         "ODBC_VERSION": "8.0.27",
         "S6_VERSION": "v2.2.0.3"
       },
@@ -103,8 +102,7 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/mcanouil/umr1283:4.0.0",
-        "docker.io/umr1283/umr1283:4.0.0"
+        "docker.io/mcanouil/umr1283:4.0.0"
       ]
     },
     {
@@ -122,8 +120,7 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 8787,
       "tags": [
-        "docker.io/mcanouil/rstudio:4.0.0",
-        "docker.io/umr1283/rstudio:4.0.0"
+        "docker.io/mcanouil/rstudio:4.0.0"
       ]
     },
     {
@@ -137,8 +134,7 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 2222,
       "tags": [
-        "docker.io/mcanouil/ssh:4.0.0",
-        "docker.io/umr1283/ssh:4.0.0"
+        "docker.io/mcanouil/ssh:4.0.0"
       ]
     },
     {
@@ -155,8 +151,7 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 3838,
       "tags": [
-        "docker.io/mcanouil/shiny:4.0.0",
-        "docker.io/umr1283/shiny:4.0.0"
+        "docker.io/mcanouil/shiny:4.0.0"
       ]
     }
   ]
