@@ -37,9 +37,7 @@
       },
       "tags": [
         "ghcr.io/mcanouil/r-ver:4.2.0",
-        "ghcr.io/mcanouil/r-ver:latest",
-        "ghcr.io/umr1283/r-ver:4.2.0",
-        "ghcr.io/umr1283/r-ver:latest"
+        "ghcr.io/mcanouil/r-ver:latest"
       ],
       "platforms": [
         "linux/amd64",
@@ -62,9 +60,7 @@
       },
       "tags": [
         "ghcr.io/mcanouil/umr1283:4.2.0",
-        "ghcr.io/mcanouil/umr1283:latest",
-        "ghcr.io/umr1283/umr1283:4.2.0",
-        "ghcr.io/umr1283/umr1283:latest"
+        "ghcr.io/mcanouil/umr1283:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -86,9 +82,7 @@
       },
       "tags": [
         "ghcr.io/mcanouil/rstudio:4.2.0",
-        "ghcr.io/mcanouil/rstudio:latest",
-        "ghcr.io/umr1283/rstudio:4.2.0",
-        "ghcr.io/umr1283/rstudio:latest"
+        "ghcr.io/mcanouil/rstudio:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -110,9 +104,7 @@
       },
       "tags": [
         "ghcr.io/mcanouil/ssh:4.2.0",
-        "ghcr.io/mcanouil/ssh:latest",
-        "ghcr.io/umr1283/ssh:4.2.0",
-        "ghcr.io/umr1283/ssh:latest"
+        "ghcr.io/mcanouil/ssh:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -134,9 +126,7 @@
       },
       "tags": [
         "ghcr.io/mcanouil/shiny:4.2.0",
-        "ghcr.io/mcanouil/shiny:latest",
-        "ghcr.io/umr1283/shiny:4.2.0",
-        "ghcr.io/umr1283/shiny:latest"
+        "ghcr.io/mcanouil/shiny:latest"
       ],
       "platforms": [
         "linux/amd64"
