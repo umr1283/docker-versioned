@@ -2,6 +2,9 @@
 
 # Inspired from https://github.com/rocker-org/rocker-versioned2
 
+#!/usr/bin/env Rscript
+args <- commandArgs(trailingOnly = TRUE)
+
 library(data.table)
 library(rversions)
 library(httr2)
@@ -11,10 +14,10 @@ source("build/utils.R")
 options(width = 120)
 
 write_stacks(
-  docker_repository = Sys.getenv("github.actor"),
+  docker_repository = args[[1]],
   stack_file = "01-stacks/devel.json",
   min_version = "4.0",
-  debian = "bullseye"
+  debian = args[[2]]
 )
 
 write_dockerfiles(
