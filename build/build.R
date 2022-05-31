@@ -11,7 +11,7 @@ source("build/utils.R")
 options(width = 120)
 
 write_stacks(
-  docker_repository = "mcanouil",
+  docker_repository = Sys.getenv("github.actor"),
   stack_file = "01-stacks/devel.json",
   min_version = "4.0",
   debian = "bullseye"
