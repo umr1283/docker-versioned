@@ -36,7 +36,7 @@
         "org.opencontainers.image.base.name": "docker.io/library/debian:bullseye"
       },
       "tags": [
-        "docker.io/mcanouil/r-ver:devel"
+        "ghcr.io/mcanouil/r-ver:devel"
       ],
       "platforms": [
         "linux/amd64"
@@ -54,10 +54,10 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/umr1283",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R and some (genetics) tools",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/r-ver:devel"
+        "org.opencontainers.image.base.name": "ghcr.io/mcanouil/r-ver:devel"
       },
       "tags": [
-        "docker.io/mcanouil/umr1283:devel"
+        "ghcr.io/mcanouil/umr1283:devel"
       ],
       "platforms": [
         "linux/amd64"
@@ -75,10 +75,10 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/rstudio",
         "org.opencontainers.image.description": "RStudio server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:devel"
+        "org.opencontainers.image.base.name": "ghcr.io/mcanouil/umr1283:devel"
       },
       "tags": [
-        "docker.io/mcanouil/rstudio:devel"
+        "ghcr.io/mcanouil/rstudio:devel"
       ],
       "platforms": [
         "linux/amd64"
@@ -96,10 +96,10 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/ssh",
         "org.opencontainers.image.description": "SSH server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:devel"
+        "org.opencontainers.image.base.name": "ghcr.io/mcanouil/umr1283:devel"
       },
       "tags": [
-        "docker.io/mcanouil/ssh:devel"
+        "ghcr.io/mcanouil/ssh:devel"
       ],
       "platforms": [
         "linux/amd64"
@@ -117,10 +117,10 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/shiny",
         "org.opencontainers.image.description": "Shiny server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:devel"
+        "org.opencontainers.image.base.name": "ghcr.io/mcanouil/umr1283:devel"
       },
       "tags": [
-        "docker.io/mcanouil/shiny:devel"
+        "ghcr.io/mcanouil/shiny:devel"
       ],
       "platforms": [
         "linux/amd64"
