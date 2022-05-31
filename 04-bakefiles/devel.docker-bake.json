@@ -33,7 +33,7 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/r-ver",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R",
-        "org.opencontainers.image.base.name": "docker.io/library/debian:bullseye"
+        "org.opencontainers.image.base.name": "ghcr.io/library/debian:bullseye"
       },
       "tags": [
         "ghcr.io/mcanouil/r-ver:devel"

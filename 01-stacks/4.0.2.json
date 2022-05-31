@@ -59,7 +59,7 @@
       "CMD": "[\"R\"]",
       "tags": [
         "ghcr.io/mcanouil/r-ver:4.0.2",
-        "docker.io/umr1283/r-ver:4.0.2"
+        "ghcr.io/umr1283/r-ver:4.0.2"
       ],
       "platforms": [
         "linux/amd64",
@@ -104,7 +104,7 @@
       "CMD": "[\"R\"]",
       "tags": [
         "ghcr.io/mcanouil/umr1283:4.0.2",
-        "docker.io/umr1283/umr1283:4.0.2"
+        "ghcr.io/umr1283/umr1283:4.0.2"
       ]
     },
     {
@@ -123,7 +123,7 @@
       "EXPOSE": 8787,
       "tags": [
         "ghcr.io/mcanouil/rstudio:4.0.2",
-        "docker.io/umr1283/rstudio:4.0.2"
+        "ghcr.io/umr1283/rstudio:4.0.2"
       ]
     },
     {
@@ -138,7 +138,7 @@
       "EXPOSE": 2222,
       "tags": [
         "ghcr.io/mcanouil/ssh:4.0.2",
-        "docker.io/umr1283/ssh:4.0.2"
+        "ghcr.io/umr1283/ssh:4.0.2"
       ]
     },
     {
@@ -156,7 +156,7 @@
       "EXPOSE": 3838,
       "tags": [
         "ghcr.io/mcanouil/shiny:4.0.2",
-        "docker.io/umr1283/shiny:4.0.2"
+        "ghcr.io/umr1283/shiny:4.0.2"
       ]
     }
   ]
