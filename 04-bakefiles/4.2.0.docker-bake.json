@@ -36,8 +36,8 @@
         "org.opencontainers.image.base.name": "docker.io/library/debian:bullseye"
       },
       "tags": [
-        "docker.io/mcanouil/r-ver:4.2.0",
-        "docker.io/mcanouil/r-ver:latest",
+        "ghcr.io/mcanouil/r-ver:4.2.0",
+        "ghcr.io/mcanouil/r-ver:latest",
         "docker.io/umr1283/r-ver:4.2.0",
         "docker.io/umr1283/r-ver:latest"
       ],
@@ -46,7 +46,7 @@
         "linux/arm64"
       ],
       "cache-from": [
-        "docker.io/mcanouil/r-ver:4.2.0"
+        "ghcr.io/mcanouil/r-ver:4.2.0"
       ],
       "cache-to": [
         "type=inline"
@@ -58,11 +58,11 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/umr1283",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R and some (genetics) tools",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/r-ver:4.2.0"
+        "org.opencontainers.image.base.name": "ghcr.io/mcanouil/r-ver:4.2.0"
       },
       "tags": [
-        "docker.io/mcanouil/umr1283:4.2.0",
-        "docker.io/mcanouil/umr1283:latest",
+        "ghcr.io/mcanouil/umr1283:4.2.0",
+        "ghcr.io/mcanouil/umr1283:latest",
         "docker.io/umr1283/umr1283:4.2.0",
         "docker.io/umr1283/umr1283:latest"
       ],
@@ -82,11 +82,11 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/rstudio",
         "org.opencontainers.image.description": "RStudio server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.2.0"
+        "org.opencontainers.image.base.name": "ghcr.io/mcanouil/umr1283:4.2.0"
       },
       "tags": [
-        "docker.io/mcanouil/rstudio:4.2.0",
-        "docker.io/mcanouil/rstudio:latest",
+        "ghcr.io/mcanouil/rstudio:4.2.0",
+        "ghcr.io/mcanouil/rstudio:latest",
         "docker.io/umr1283/rstudio:4.2.0",
         "docker.io/umr1283/rstudio:latest"
       ],
@@ -106,11 +106,11 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/ssh",
         "org.opencontainers.image.description": "SSH server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.2.0"
+        "org.opencontainers.image.base.name": "ghcr.io/mcanouil/umr1283:4.2.0"
       },
       "tags": [
-        "docker.io/mcanouil/ssh:4.2.0",
-        "docker.io/mcanouil/ssh:latest",
+        "ghcr.io/mcanouil/ssh:4.2.0",
+        "ghcr.io/mcanouil/ssh:latest",
         "docker.io/umr1283/ssh:4.2.0",
         "docker.io/umr1283/ssh:latest"
       ],
@@ -130,11 +130,11 @@
       "labels": {
         "org.opencontainers.image.title": "mcanouil/shiny",
         "org.opencontainers.image.description": "Shiny server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/mcanouil/umr1283:4.2.0"
+        "org.opencontainers.image.base.name": "ghcr.io/mcanouil/umr1283:4.2.0"
       },
       "tags": [
-        "docker.io/mcanouil/shiny:4.2.0",
-        "docker.io/mcanouil/shiny:latest",
+        "ghcr.io/mcanouil/shiny:4.2.0",
+        "ghcr.io/mcanouil/shiny:latest",
         "docker.io/umr1283/shiny:4.2.0",
         "docker.io/umr1283/shiny:latest"
       ],

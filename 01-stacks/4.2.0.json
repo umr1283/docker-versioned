@@ -58,8 +58,8 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/mcanouil/r-ver:4.2.0",
-        "docker.io/mcanouil/r-ver:latest",
+        "ghcr.io/mcanouil/r-ver:4.2.0",
+        "ghcr.io/mcanouil/r-ver:latest",
         "docker.io/umr1283/r-ver:4.2.0",
         "docker.io/umr1283/r-ver:latest"
       ],
@@ -68,7 +68,7 @@
         "linux/arm64"
       ],
       "cache-from": [
-        "docker.io/mcanouil/r-ver:4.2.0"
+        "ghcr.io/mcanouil/r-ver:4.2.0"
       ],
       "cache-to": [
         "type=inline"
@@ -84,7 +84,7 @@
       "ENV": {
         "UMR1283_VERSION": "1.8.3",
         "BCFTOOLS_VERSION": "1.15.1",
-        "QUARTO_VERSION": "0.9.405",
+        "QUARTO_VERSION": "0.9.483",
         "ODBC_VERSION": "8.0.27",
         "S6_VERSION": "v2.2.0.3"
       },
@@ -105,8 +105,8 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/mcanouil/umr1283:4.2.0",
-        "docker.io/mcanouil/umr1283:latest",
+        "ghcr.io/mcanouil/umr1283:4.2.0",
+        "ghcr.io/mcanouil/umr1283:latest",
         "docker.io/umr1283/umr1283:4.2.0",
         "docker.io/umr1283/umr1283:latest"
       ]
@@ -126,8 +126,8 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 8787,
       "tags": [
-        "docker.io/mcanouil/rstudio:4.2.0",
-        "docker.io/mcanouil/rstudio:latest",
+        "ghcr.io/mcanouil/rstudio:4.2.0",
+        "ghcr.io/mcanouil/rstudio:latest",
         "docker.io/umr1283/rstudio:4.2.0",
         "docker.io/umr1283/rstudio:latest"
       ]
@@ -143,8 +143,8 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 2222,
       "tags": [
-        "docker.io/mcanouil/ssh:4.2.0",
-        "docker.io/mcanouil/ssh:latest",
+        "ghcr.io/mcanouil/ssh:4.2.0",
+        "ghcr.io/mcanouil/ssh:latest",
         "docker.io/umr1283/ssh:4.2.0",
         "docker.io/umr1283/ssh:latest"
       ]
@@ -163,8 +163,8 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 3838,
       "tags": [
-        "docker.io/mcanouil/shiny:4.2.0",
-        "docker.io/mcanouil/shiny:latest",
+        "ghcr.io/mcanouil/shiny:4.2.0",
+        "ghcr.io/mcanouil/shiny:latest",
         "docker.io/umr1283/shiny:4.2.0",
         "docker.io/umr1283/shiny:latest"
       ]
