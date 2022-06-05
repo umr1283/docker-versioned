@@ -5,7 +5,7 @@ SHINY_SERVER_VERSION=${SHINY_SERVER_VERSION:-latest}
 
 ARCH=$(dpkg --print-architecture)
 
-/docker_scripts/install_s6v2.sh
+/docker_scripts/install_s6v3.sh
 
 if [ "$SHINY_SERVER_VERSION" = "latest" ]; then
   SHINY_SERVER_VERSION=$(wget -qO- https://download3.rstudio.org/ubuntu-14.04/x86_64/VERSION)
