@@ -7,6 +7,7 @@ LANGUAGE=${LANG}
 apt-get update &&
   apt-get install -y --no-install-recommends locales &&
   sed -i "/^#.* en_US.UTF-8 /s/^#//" /etc/locale.gen &&
+  locale-gen en_US.UTF-8 &&
   sed -i "/^#.* ${LANG} /s/^#//" /etc/locale.gen &&
   locale-gen ${LANG} &&
   /usr/sbin/update-locale LANG="${LANG}" &&
