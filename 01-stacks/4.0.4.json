@@ -81,16 +81,16 @@
       "ENV": {
         "UMR1283_VERSION": "1.8.3",
         "BCFTOOLS_VERSION": "1.15.1",
-        "QUARTO_VERSION": "0.9.518",
+        "QUARTO_VERSION": "0.9.522",
         "ODBC_VERSION": "8.0.27",
-        "S6_VERSION": "v2.2.0.3"
+        "S6_VERSION": "v3.1.0.1"
       },
       "COPY": "assets /docker_scripts",
       "RUN": [
         "chmod --recursive +x /docker_scripts",
         "/docker_scripts/install_libs.sh",
         "/docker_scripts/install_odbc.sh",
-        "/docker_scripts/install_s6v2.sh",
+        "/docker_scripts/install_s6v3.sh",
         "/docker_scripts/install_crossmap.sh",
         "/docker_scripts/install_bcftools.sh",
         "/docker_scripts/install_vcftools.sh",
