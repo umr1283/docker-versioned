@@ -4,6 +4,7 @@ set -e
 RSTUDIO_VERSION=${RSTUDIO_VERSION:-"latest"}
 
 ARCH=$(dpkg --print-architecture)
+# ARCH=$(uname -m)
 
 apt-get update && apt-get install -y --no-install-recommends \
   file \
@@ -105,3 +106,5 @@ apt-get autoremove -y
 apt-get autoclean -y
 rm -rf /var/lib/apt/lists/*
 rm -rf /tmp/*
+
+strip /usr/local/lib/R/site-library/*/libs/*.so

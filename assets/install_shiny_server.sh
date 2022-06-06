@@ -70,3 +70,5 @@ done
 # Clean up
 rm -rf /var/lib/apt/lists/*
 rm -rf /tmp/downloaded_packages
+
+strip /usr/local/lib/R/site-library/*/libs/*.so

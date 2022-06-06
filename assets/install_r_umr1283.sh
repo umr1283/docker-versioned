@@ -20,3 +20,5 @@ apt-get autoremove -y
 apt-get autoclean -y
 rm -rf /var/lib/apt/lists/*
 rm -rf /tmp/*
+
+strip /usr/local/lib/R/site-library/*/libs/*.so
