@@ -3,9 +3,6 @@ set -e
 
 RSTUDIO_VERSION=${RSTUDIO_VERSION:-"latest"}
 
-ARCH=$(dpkg --print-architecture)
-# ARCH=$(uname -m)
-
 apt-get update && apt-get install -y --no-install-recommends \
   file \
   git \
@@ -30,6 +27,8 @@ apt-get update && apt-get install -y --no-install-recommends \
 rm -rf /var/lib/apt/lists/*
 
 . /docker_scripts/install_s6v3.sh
+
+ARCH=$(dpkg --print-architecture)
 
 DOWNLOAD_FILE=rstudio-server.deb
 
