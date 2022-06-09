@@ -26,7 +26,7 @@ apt-get update && apt-get install -y --no-install-recommends \
 
 rm -rf /var/lib/apt/lists/*
 
-. /docker_scripts/install_s6v3.sh
+. /docker_scripts/install_s6v2.sh
 
 ARCH=$(dpkg --print-architecture)
 

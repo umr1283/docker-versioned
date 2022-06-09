@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-. /docker_scripts/install_s6v3.sh
+. /docker_scripts/install_s6v2.sh
 
 apt-get update && apt-get install -y openssh-server sudo man
 

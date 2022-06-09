@@ -3,7 +3,7 @@ set -e
 
 SHINY_SERVER_VERSION=${SHINY_SERVER_VERSION:-latest}
 
-. /docker_scripts/install_s6v3.sh
+. /docker_scripts/install_s6v2.sh
 
 ARCH=$(dpkg --print-architecture)
 

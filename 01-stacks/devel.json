@@ -77,7 +77,7 @@
         "chmod --recursive +x /docker_scripts",
         "/docker_scripts/install_libs.sh",
         "/docker_scripts/install_odbc.sh",
-        "/docker_scripts/install_s6v3.sh",
+        "/docker_scripts/install_s6v2.sh",
         "/docker_scripts/install_crossmap.sh",
         "/docker_scripts/install_bcftools.sh",
         "/docker_scripts/install_vcftools.sh",
