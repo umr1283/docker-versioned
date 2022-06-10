@@ -3,6 +3,8 @@ name: Weekly Actions
 on:
   schedule:
     - cron: "0 12 * * SUN"
+  push:
+    branches: main
   workflow_dispatch:
 
 jobs:
