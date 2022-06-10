@@ -3,8 +3,9 @@ name: Create Pre-Release
 on:
   push:
     branches: main
-    paths: "02-dockerfiles/**.Dockerfile"
-    paths-ignore: 02-dockerfiles/**_devel.Dockerfile
+    paths: 
+      - "02-dockerfiles/**.Dockerfile"
+      - "!02-dockerfiles/**_devel.Dockerfile"
   workflow_dispatch:
 
 jobs:
