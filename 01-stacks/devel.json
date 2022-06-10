@@ -70,7 +70,7 @@
         "BCFTOOLS_VERSION": "1.15.1",
         "QUARTO_VERSION": "0.9.535",
         "ODBC_VERSION": "8.0.27",
-        "S6_VERSION": "v3.1.0.1"
+        "S6_VERSION": "v2.2.0.3"
       },
       "COPY": "assets /docker_scripts",
       "RUN": [
