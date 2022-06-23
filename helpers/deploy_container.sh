@@ -69,15 +69,21 @@ function deploy_container() {
       --volume ${DIRMOUNT}/project:/disks/PROJECT \
       --volume ${DIRMOUNT}/datatmp:/disks/DATATMP"
 
+    if [ "${USER_NAME}" = "mcanouil" ]; then
+      SSHPORTPREFIX=27
+    else
+      SSHPORTPREFIX=22
+    fi
+
     if [ "${VERSION}" = "devel" ]; then
       case ${IMG%-*} in
-      "ssh") local PORT="22999:2222" ;;
+      "ssh") local PORT="${SSHPORTPREFIX}999:2222" ;;
       "rstudio") local PORT="8999:8787" ;;
       "shiny") local PORT="38999:3838" ;;
       esac
     else
       case ${IMG%-*} in
-      "ssh") local PORT="22${VERSION//./}:2222" ;;
+      "ssh") local PORT="${SSHPORTPREFIX}${VERSION//./}:2222" ;;
       "rstudio") local PORT="8${VERSION//./}:8787" ;;
       "shiny") if [ "${IMG##*-}" = "stable" ]; then local PORT="3838:3838"; else local PORT="38${VERSION//./}:3838"; fi ;;
       esac
