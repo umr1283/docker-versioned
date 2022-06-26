@@ -22,9 +22,8 @@ jobs:
           if [[ github.event_name == 'workflow_dispatch' ]]; then
             CTAG="${TAG}-${{ github.event.inputs.tag_suffix }}"
           else
-            CTAG="${TAG}"
+            CTAG="${TAG}-0"
           fi
-          ${CTAG}
           echo ::set-output name=ctag::"${CTAG}"
           echo "${CTAG}"
       - name: Bump R version and push R tag
