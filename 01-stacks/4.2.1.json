@@ -1,6 +1,6 @@
 {
   "ordered": true,
-  "TAG": "4.2.0",
+  "TAG": "4.2.1",
   "LABEL": "org.opencontainers.image.licenses=\"GPL-3.0\" \\\n      org.opencontainers.image.source=\"https://github.com/mcanouil/docker-versioned\" \\\n      org.opencontainers.image.authors=\"Mickaël Canouil <https://mickael.canouil.fr/>\"",
   "group": [
     {
@@ -38,7 +38,7 @@
       },
       "FROM": "debian:bullseye",
       "ENV": {
-        "R_VERSION": "4.2.0",
+        "R_VERSION": "4.2.1",
         "R_HOME": "/usr/local/lib/R",
         "CRAN": "https://cran.r-project.org",
         "LANG": "en_GB.UTF-8",
@@ -58,14 +58,15 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/mcanouil/r-ver:4.2.0"
+        "docker.io/mcanouil/r-ver:4.2.1",
+        "docker.io/mcanouil/r-ver:latest"
       ],
       "platforms": [
         "linux/amd64",
         "linux/arm64"
       ],
       "cache-from": [
-        "docker.io/mcanouil/r-ver:4.2.0"
+        "docker.io/mcanouil/r-ver:4.2.1"
       ],
       "cache-to": [
         "type=inline"
@@ -77,7 +78,7 @@
         "org.opencontainers.image.title": "mcanouil/umr1283",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R and some (genetics) tools"
       },
-      "FROM": "mcanouil/r-ver:4.2.0",
+      "FROM": "mcanouil/r-ver:4.2.1",
       "ENV": {
         "UMR1283_VERSION": "1.9.0",
         "BCFTOOLS_VERSION": "1.15.1",
@@ -102,7 +103,8 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/mcanouil/umr1283:4.2.0"
+        "docker.io/mcanouil/umr1283:4.2.1",
+        "docker.io/mcanouil/umr1283:latest"
       ]
     },
     {
@@ -111,7 +113,7 @@
         "org.opencontainers.image.title": "mcanouil/rstudio",
         "org.opencontainers.image.description": "RStudio server for umr1283 image"
       },
-      "FROM": "mcanouil/umr1283:4.2.0",
+      "FROM": "mcanouil/umr1283:4.2.1",
       "ENV": {
         "RSTUDIO_VERSION": "2022.02.3+492",
         "PATH": "/usr/lib/rstudio-server/bin:$PATH"
@@ -120,7 +122,8 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 8787,
       "tags": [
-        "docker.io/mcanouil/rstudio:4.2.0"
+        "docker.io/mcanouil/rstudio:4.2.1",
+        "docker.io/mcanouil/rstudio:latest"
       ]
     },
     {
@@ -129,12 +132,13 @@
         "org.opencontainers.image.title": "mcanouil/ssh",
         "org.opencontainers.image.description": "SSH server for umr1283 image"
       },
-      "FROM": "mcanouil/umr1283:4.2.0",
+      "FROM": "mcanouil/umr1283:4.2.1",
       "RUN": "/docker_scripts/install_ssh.sh",
       "CMD": "[\"/init\"]",
       "EXPOSE": 2222,
       "tags": [
-        "docker.io/mcanouil/ssh:4.2.0"
+        "docker.io/mcanouil/ssh:4.2.1",
+        "docker.io/mcanouil/ssh:latest"
       ]
     },
     {
@@ -143,7 +147,7 @@
         "org.opencontainers.image.title": "mcanouil/shiny",
         "org.opencontainers.image.description": "Shiny server for umr1283 image"
       },
-      "FROM": "mcanouil/umr1283:4.2.0",
+      "FROM": "mcanouil/umr1283:4.2.1",
       "ENV": {
         "SHINY_SERVER_VERSION": "latest"
       },
@@ -151,7 +155,8 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 3838,
       "tags": [
-        "docker.io/mcanouil/shiny:4.2.0"
+        "docker.io/mcanouil/shiny:4.2.1",
+        "docker.io/mcanouil/shiny:latest"
       ]
     }
   ]
