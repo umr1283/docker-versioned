@@ -6,6 +6,7 @@ on:
     paths: 
       - "02-dockerfiles/**.Dockerfile"
       - "!02-dockerfiles/**_devel.Dockerfile"
+      - "!05-matrix/github_action_matrix_all.json"
   workflow_dispatch:
 
 jobs:
