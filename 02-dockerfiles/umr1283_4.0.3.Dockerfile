@@ -5,6 +5,7 @@ LABEL org.opencontainers.image.licenses="GPL-3.0" \
       org.opencontainers.image.authors="Mickaël Canouil <https://mickael.canouil.fr/>"
 
 ENV UMR1283_VERSION=1.9.0
+ENV PANDOC_VERSION=2.18
 ENV BCFTOOLS_VERSION=1.15.1
 ENV QUARTO_VERSION=0.9.624
 ENV ODBC_VERSION=8.0.27
@@ -14,6 +15,7 @@ COPY assets /docker_scripts
 
 RUN chmod --recursive +x /docker_scripts
 RUN /docker_scripts/install_libs.sh
+RUN /docker_scripts/install_pandoc.sh
 RUN /docker_scripts/install_odbc.sh
 RUN /docker_scripts/install_s6v2.sh
 RUN /docker_scripts/install_crossmap.sh

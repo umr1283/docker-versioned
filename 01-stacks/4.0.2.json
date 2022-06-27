@@ -42,15 +42,13 @@
         "R_HOME": "/usr/local/lib/R",
         "CRAN": "https://cran.r-project.org",
         "LANG": "en_GB.UTF-8",
-        "TZ": "Etc/UTC",
-        "PANDOC_VERSION": "2.14.2"
+        "TZ": "Etc/UTC"
       },
       "COPY": "assets /docker_scripts",
       "RUN": [
         "chmod --recursive +x /docker_scripts",
         "/docker_scripts/install_lang.sh",
         "/docker_scripts/install_r.sh",
-        "/docker_scripts/install_pandoc.sh",
         "/docker_scripts/install_git.sh",
         "/docker_scripts/install_gitlfs.sh",
         "/docker_scripts/install_python.sh",
@@ -80,6 +78,7 @@
       "FROM": "mcanouil/r-ver:4.0.2",
       "ENV": {
         "UMR1283_VERSION": "1.9.0",
+        "PANDOC_VERSION": "2.18",
         "BCFTOOLS_VERSION": "1.15.1",
         "QUARTO_VERSION": "0.9.624",
         "ODBC_VERSION": "8.0.27",
@@ -89,6 +88,7 @@
       "RUN": [
         "chmod --recursive +x /docker_scripts",
         "/docker_scripts/install_libs.sh",
+        "/docker_scripts/install_pandoc.sh",
         "/docker_scripts/install_odbc.sh",
         "/docker_scripts/install_s6v2.sh",
         "/docker_scripts/install_crossmap.sh",
