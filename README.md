@@ -10,10 +10,8 @@
 tag](https://img.shields.io/github/tag/mcanouil/docker-versioned.svg?label=latest%20tag)](https://github.com/mcanouil/docker-versioned)
 [![Weekly Build &
 Push](https://github.com/mcanouil/docker-versioned/actions/workflows/weekly.yml/badge.svg)](https://github.com/mcanouil/docker-versioned/actions/workflows/weekly.yml)
-[![Build & Push Core
-images](https://github.com/mcanouil/docker-versioned/actions/workflows/core.yml/badge.svg)](https://github.com/mcanouil/docker-versioned/actions/workflows/core.yml)
-[![Build & Push UMR
-images](https://github.com/mcanouil/docker-versioned/actions/workflows/umr.yml/badge.svg)](https://github.com/mcanouil/docker-versioned/actions/workflows/umr.yml)
+[![Build & Push Core](https://github.com/mcanouil/docker-versioned/actions/workflows/core-build.yml/badge.svg)](https://github.com/mcanouil/docker-versioned/actions/workflows/core-build.yml)
+[![Build & Push UMR](https://github.com/mcanouil/docker-versioned/actions/workflows/umr-build.yml/badge.svg?branch=main)](https://github.com/mcanouil/docker-versioned/actions/workflows/umr-build.yml)
 <!-- badges: end -->
 
 This is a repository for building automatically Docker images for R \>=
