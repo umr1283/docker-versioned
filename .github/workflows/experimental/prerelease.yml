@@ -1,0 +1,22 @@
+name: Create UMR-Release
+
+on:
+  push:
+    branches: main
+    paths:
+      - "02-dockerfiles/**.Dockerfile"
+      - "!02-dockerfiles/**_devel.Dockerfile"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  umr-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/core-release.yml
+        with:
+          tag_prefix: "v"

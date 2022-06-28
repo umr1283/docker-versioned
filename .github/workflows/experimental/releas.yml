@@ -1,0 +1,21 @@
+name: Create CORE-Release
+
+on:
+  push:
+    branches: main
+    paths:
+      - "05-matrix/github_action_matrix_all.json"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  core-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/core-release.yml
+        with:
+          tag_prefix: "R"
