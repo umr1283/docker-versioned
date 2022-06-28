@@ -21,26 +21,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set version from date
+      - name: Set tag
         id: tag_id
         run: |
           if [[ "${{ inputs.tag_prefix }}" == "v" ]]; then
-            DATE_VERSION=$(date '+%Y.%m.%d')
-            echo ::set-output name=newversion::"${DATE_VERSION}"
-            echo ::set-output name=newversionprefix::"v"
-            echo "${DATE_VERSION}"
+            TAG=$(date '+%Y.%m.%d')
           else
             TAG=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
-            if [[ github.event_name == 'workflow_dispatch' ]]; then
-              CTAG="${TAG}-${{ github.event.inputs.tag_suffix }}"
-            else
-              CTAG="${TAG}-0"
-            fi
-            echo ::set-output name=newversion::"${CTAG}"
-            echo ::set-output name=newversionprefix::"R"
-            echo "${CTAG}"
           fi
-      - name: Set prerelease name
+          echo ::set-output name=newversion::"${TAG}"
+          echo "${TAG}"
+      - name: Set release name
         id: release_id
         run: |
           if [[ "${{ inputs.tag_prefix }}" == "v" ]]; then
@@ -48,7 +39,7 @@ jobs:
           else
             RELTYPE="CORE"
           fi
-          echo ::set-output name=releasename::"${{ steps.tag_id.outputs.newversionprefix }}${{ steps.tag_id.outputs.newversion }} (${RELTYPE})"
+          echo ::set-output name=releasename::"${{ inputs.tag_prefix }}${{ steps.tag_id.outputs.newversion }} (${RELTYPE})"
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.0
@@ -56,7 +47,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
           custom_tag: ${{ steps.tag_id.outputs.newversion }}
-          tag_prefix: ${{ steps.tag_id.outputs.newversionprefix }}
+          tag_prefix: ${{ inputs.tag_prefix }}
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
