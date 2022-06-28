@@ -14,10 +14,11 @@ source("build/utils.R")
 options(width = 120)
 
 write_stacks(
-  docker_repository = args[[1]],
+  docker_repository = unlist(strsplit(args[[1]], ",")),
   stack_file = "01-stacks/devel.json",
   min_version = "4.0",
-  debian = args[[2]]
+  debian = args[[2]],
+  registry = "docker.io"
 )
 
 write_dockerfiles(
@@ -34,7 +35,8 @@ write_compose(
 write_bakejsons(
   stack_directory = "01-stacks",
   dockerfiles_directory = "02-dockerfiles",
-  bake_directory = "04-bakefiles"
+  bake_directory = "04-bakefiles",
+  registry = "docker.io"
 )
 
 write_matrix(

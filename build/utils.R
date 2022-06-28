@@ -68,8 +68,13 @@
   )
 }
 
+.update_json_from <- function(text, registry, docker_repository) {
+  sub(".*/", sprintf("%s/%s/", registry, docker_repository), text)
+}
+
 .update_default_stacks <- function(
   docker_repository,
+  registry,
   stack_file,
   r_version,
   rstudio_version,
@@ -90,7 +95,11 @@
     "[^/]*", docker_repository,
     template$stack[[2]]$labels$org.opencontainers.image.title
   )
-  template$stack[[2]]$FROM <- sub("[^/]*", docker_repository, template$stack[[2]]$FROM)
+  template$stack[[2]]$FROM <- .update_json_from(
+    text = template$stack[[2]]$FROM,
+    registry = registry,
+    docker_repository = docker_repository
+  )
   template$stack[[2]]$ENV$UMR1283_VERSION <- umr1283_version
   template$stack[[2]]$ENV$BCFTOOLS_VERSION <- bcftools_version
   template$stack[[2]]$ENV$QUARTO_VERSION <- quarto_version
@@ -100,7 +109,11 @@
     "[^/]*", docker_repository,
     template$stack[[3]]$labels$org.opencontainers.image.title
   )
-  template$stack[[3]]$FROM <- sub("[^/]*", docker_repository, template$stack[[3]]$FROM)
+  template$stack[[3]]$FROM <- .update_json_from(
+    text = template$stack[[3]]$FROM,
+    registry = registry,
+    docker_repository = docker_repository
+  )
   template$stack[[3]]$ENV$RSTUDIO_VERSION <- rstudio_version
 
   # ssh
@@ -108,14 +121,22 @@
     "[^/]*", docker_repository,
     template$stack[[4]]$labels$org.opencontainers.image.title
   )
-  template$stack[[4]]$FROM <- sub("[^/]*", docker_repository, template$stack[[4]]$FROM)
+  template$stack[[4]]$FROM <- .update_json_from(
+    text = template$stack[[4]]$FROM,
+    registry = registry,
+    docker_repository = docker_repository
+  )
 
   # shiny
   template$stack[[5]]$labels$org.opencontainers.image.title <- sub(
     "[^/]*", docker_repository,
     template$stack[[5]]$labels$org.opencontainers.image.title
   )
-  template$stack[[5]]$FROM <- sub("[^/]*", docker_repository, template$stack[[5]]$FROM)
+  template$stack[[5]]$FROM <- .update_json_from(
+    text = template$stack[[5]]$FROM,
+    registry = registry,
+    docker_repository = docker_repository
+  )
 
   jsonlite::write_json(template, stack_file, pretty = TRUE, auto_unbox = TRUE)
   message(sprintf('Updating "%s" with latest versions.', stack_file))
@@ -131,7 +152,8 @@
   quarto_version,
   cran,
   r_latest,
-  default_stacks
+  default_stacks,
+  registry
 ) {
   template <- jsonlite::read_json(default_stacks)
   output_path <- sprintf("%s/%s.json", dirname(default_stacks), r_version)
@@ -147,31 +169,31 @@
   # )))
 
   # r-ver
-  template$stack[[1]]$FROM <- paste0("debian:", debian_version)
+  template$stack[[1]]$FROM <- paste0("docker.io/library/debian:", debian_version)
   template$stack[[1]]$ENV$R_VERSION <- r_version
-  template$stack[[1]]$tags <- .generate_tags(sprintf("docker.io/%s/r-ver", base), r_version, r_latest)
+  template$stack[[1]]$tags <- .generate_tags(sprintf("%s/%s/r-ver", registry, base), r_version, r_latest)
   template$stack[[1]]$platforms <- list("linux/amd64", "linux/arm64")
-  template$stack[[1]]$`cache-from` <- list(sprintf("docker.io/%s/r-ver:%s", base, r_version))
+  template$stack[[1]]$`cache-from` <- list(sprintf("%s/%s/r-ver:%s", registry[1], base[1], r_version))
   template$stack[[1]]$`cache-to` <- list("type=inline")
 
   # umr1283
-  template$stack[[2]]$FROM <- sprintf("%s/r-ver:%s", base, r_version)
+  template$stack[[2]]$FROM <- sprintf("%s/%s/r-ver:%s", registry[1], base[1], r_version)
   template$stack[[2]]$ENV$UMR1283_VERSION <- umr1283_version
   template$stack[[2]]$ENV$QUARTO_VERSION <- quarto_version
-  template$stack[[2]]$tags <- .generate_tags(sprintf("docker.io/%s/umr1283", base), r_version, r_latest)
+  template$stack[[2]]$tags <- .generate_tags(sprintf("%s/%s/umr1283", registry, base), r_version, r_latest)
 
   # rstudio
-  template$stack[[3]]$FROM <- sprintf("%s/umr1283:%s", base, r_version)
+  template$stack[[3]]$FROM <- sprintf("%s/%s/umr1283:%s", registry[1], base[1], r_version)
   template$stack[[3]]$ENV$RSTUDIO_VERSION <- rstudio_version
-  template$stack[[3]]$tags <- .generate_tags(sprintf("docker.io/%s/rstudio", base), r_version, r_latest)
+  template$stack[[3]]$tags <- .generate_tags(sprintf("%s/%s/rstudio", registry, base), r_version, r_latest)
 
   # ssh
-  template$stack[[4]]$FROM <- sprintf("%s/umr1283:%s", base, r_version)
-  template$stack[[4]]$tags <- .generate_tags(sprintf("docker.io/%s/ssh", base), r_version, r_latest)
+  template$stack[[4]]$FROM <- sprintf("%s/%s/umr1283:%s", registry[1], base[1], r_version)
+  template$stack[[4]]$tags <- .generate_tags(sprintf("%s/%s/ssh", registry, base), r_version, r_latest)
 
   # shiny
-  template$stack[[5]]$FROM <- sprintf("%s/umr1283:%s", base, r_version)
-  template$stack[[5]]$tags <- .generate_tags(sprintf("docker.io/%s/shiny", base), r_version, r_latest)
+  template$stack[[5]]$FROM <- sprintf("%s/%s/umr1283:%s", registry[1], base[1], r_version)
+  template$stack[[5]]$tags <- .generate_tags(sprintf("%s/%s/shiny", registry, base), r_version, r_latest)
 
   jsonlite::write_json(template, output_path, pretty = TRUE, auto_unbox = TRUE)
 
@@ -179,7 +201,7 @@
   output_path
 }
 
-write_stacks <- function(docker_repository, stack_file, min_version = "4.1", debian = NULL) {
+write_stacks <- function(docker_repository, stack_file, min_version = "4.1", debian = NULL, registry = "docker.io") {
   r_latest <- r_version <- NULL # only to get rif of "no visible binding for global variable"
   if (!dir.exists(dirname(stack_file))) {
     dir.create(dirname(stack_file), recursive = TRUE)
@@ -197,7 +219,8 @@ write_stacks <- function(docker_repository, stack_file, min_version = "4.1", deb
   quarto_latest_version <- .latest_quarto_version()
 
   .update_default_stacks(
-    docker_repository = docker_repository,
+    docker_repository = docker_repository[1],
+    registry = registry,
     stack_file = stack_file,
     r_version = r_latest_version,
     rstudio_version = rstudio_latest_version,
@@ -218,7 +241,8 @@ write_stacks <- function(docker_repository, stack_file, min_version = "4.1", deb
       quarto_version = quarto_latest_version,
       cran = "https://cran.r-project.org",
       r_latest = r_latest,
-      default_stacks = stack_file
+      default_stacks = stack_file,
+      registry = registry
     ),
     by = "r_version"
   ]
@@ -358,7 +382,7 @@ write_compose <- function(stack_file, compose_file = "docker-compose.yml", docke
   )
 }
 
-.bake_list <- function(stack_file, dockerfiles_directory) {
+.bake_list <- function(stack_file, dockerfiles_directory, registry) {
   stack_content <- jsonlite::read_json(stack_file)
   stack_tag <- stack_content$TAG
 
@@ -373,13 +397,15 @@ write_compose <- function(stack_file, compose_file = "docker-compose.yml", docke
       "labels" = lapply(
         X = stack,
         FUN = function(x) {
-          if (grepl("/",  x[["FROM"]])) {
-            pattern <- "docker.io/%s"
-          } else {
-            pattern <- "docker.io/library/%s"
-          }
-          if (!grepl(":",  x[["FROM"]])) {
-            pattern <- sprintf("%s:latest", pattern)
+          pattern <- switch(
+            EXPR = as.character(length(gregexpr("/", x[["FROM"]])[[1]])),
+            "0" = paste0(registry, "/library/%s"),
+            "1" = paste0(registry, "/%s"),
+            "2" = "%s"
+          )
+
+          if (!grepl(":", x[["FROM"]])) {
+            pattern <- paste0(pattern, ":latest")
           }
 
           c(
@@ -395,7 +421,7 @@ write_compose <- function(stack_file, compose_file = "docker-compose.yml", docke
         FUN = function(x, tag) {
           x_field <- x[["tags"]]
           if (is.null(x_field)) {
-            list(sprintf("docker.io/%s:%s", x[["labels"]][["org.opencontainers.image.title"]], tag))
+            list(sprintf("%s/%s:%s", registry, x[["labels"]][["org.opencontainers.image.title"]], tag))
           } else {
             x_field
           }
@@ -449,7 +475,7 @@ write_compose <- function(stack_file, compose_file = "docker-compose.yml", docke
   })(dt, stack_content$group)
 }
 
-write_bakejsons <- function(stack_directory, dockerfiles_directory, bake_directory) {
+write_bakejsons <- function(stack_directory, dockerfiles_directory, bake_directory, registry = "docker.io") {
   stopifnot(dir.exists(stack_directory))
 
   if (!dir.exists(bake_directory)) {
@@ -461,14 +487,15 @@ write_bakejsons <- function(stack_directory, dockerfiles_directory, bake_directo
     X = list.files(path = stack_directory, pattern = "\\.json$", full.names = TRUE),
     dd = dockerfiles_directory,
     bd = bake_directory,
-    FUN = function(stack_file, dd, bd) {
+    reg = registry,
+    FUN = function(stack_file, dd, bd, reg) {
       bake_file <- sub(
         pattern = ".json$",
         replacement = ".docker-bake.json",
         x = sub(dirname(stack_file), bd, stack_file)
       )
       jsonlite::write_json(
-        x = .bake_list(stack_file, dd),
+        x = .bake_list(stack_file, dd, reg),
         path = bake_file,
         pretty = TRUE,
         auto_unbox = TRUE
