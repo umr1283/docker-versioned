@@ -36,14 +36,10 @@
         "org.opencontainers.image.base.name": "docker.io/library/debian:bullseye"
       },
       "tags": [
-        [
-          "docker.io/umr1283/r-ver:4.2.1",
-          "docker.io/mcanouil/r-ver:4.2.1"
-        ],
-        [
-          "docker.io/umr1283/r-ver:latest",
-          "docker.io/mcanouil/r-ver:latest"
-        ]
+        "docker.io/umr1283/r-ver:4.2.1",
+        "docker.io/mcanouil/r-ver:4.2.1",
+        "docker.io/umr1283/r-ver:latest",
+        "docker.io/mcanouil/r-ver:latest"
       ],
       "platforms": [
         "linux/amd64",
@@ -65,14 +61,10 @@
         "org.opencontainers.image.base.name": "docker.io/umr1283/r-ver:4.2.1"
       },
       "tags": [
-        [
-          "docker.io/umr1283/umr1283:4.2.1",
-          "docker.io/mcanouil/umr1283:4.2.1"
-        ],
-        [
-          "docker.io/umr1283/umr1283:latest",
-          "docker.io/mcanouil/umr1283:latest"
-        ]
+        "docker.io/umr1283/umr1283:4.2.1",
+        "docker.io/mcanouil/umr1283:4.2.1",
+        "docker.io/umr1283/umr1283:latest",
+        "docker.io/mcanouil/umr1283:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -93,14 +85,10 @@
         "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:4.2.1"
       },
       "tags": [
-        [
-          "docker.io/umr1283/rstudio:4.2.1",
-          "docker.io/mcanouil/rstudio:4.2.1"
-        ],
-        [
-          "docker.io/umr1283/rstudio:latest",
-          "docker.io/mcanouil/rstudio:latest"
-        ]
+        "docker.io/umr1283/rstudio:4.2.1",
+        "docker.io/mcanouil/rstudio:4.2.1",
+        "docker.io/umr1283/rstudio:latest",
+        "docker.io/mcanouil/rstudio:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -121,14 +109,10 @@
         "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:4.2.1"
       },
       "tags": [
-        [
-          "docker.io/umr1283/ssh:4.2.1",
-          "docker.io/mcanouil/ssh:4.2.1"
-        ],
-        [
-          "docker.io/umr1283/ssh:latest",
-          "docker.io/mcanouil/ssh:latest"
-        ]
+        "docker.io/umr1283/ssh:4.2.1",
+        "docker.io/mcanouil/ssh:4.2.1",
+        "docker.io/umr1283/ssh:latest",
+        "docker.io/mcanouil/ssh:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -149,14 +133,10 @@
         "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:4.2.1"
       },
       "tags": [
-        [
-          "docker.io/umr1283/shiny:4.2.1",
-          "docker.io/mcanouil/shiny:4.2.1"
-        ],
-        [
-          "docker.io/umr1283/shiny:latest",
-          "docker.io/mcanouil/shiny:latest"
-        ]
+        "docker.io/umr1283/shiny:4.2.1",
+        "docker.io/mcanouil/shiny:4.2.1",
+        "docker.io/umr1283/shiny:latest",
+        "docker.io/mcanouil/shiny:latest"
       ],
       "platforms": [
         "linux/amd64"
