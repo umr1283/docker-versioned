@@ -1,4 +1,4 @@
-name: Create Release
+name: Create CORE-Release
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
     inputs: 
       tag_suffix:
         description: 'Tag suffix'
+        default: 0
         required: true 
         type: string
 
@@ -16,29 +17,33 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  create_r_tag:
+  create_release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - id: set_tag
+      - id: tag_id
         run: |
           TAG=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
-          if [[ github.event_name == 'workflow_dispatch' ]]; then
-            CTAG="${TAG}-${{ github.event.inputs.tag_suffix }}"
+          if [[ "${{ github.event.inputs.tag_suffix }}" == "0" ]]; then
+            CTAG="${TAG}"
           else
-            CTAG="${TAG}-0"
+            CTAG="${TAG}-${{ github.event.inputs.tag_suffix }}"
           fi
           echo ::set-output name=ctag::"${CTAG}"
           echo "${CTAG}"
-      - name: Bump R version and push R tag
-        id: tag_r_version
+      - name: Set prerelease name
+        id: release_id
+        run: |
+          echo ::set-output name=releasename::"R${{ steps.tag_id.outputs.ctag }} (CORE)"
+      - name: Bump version and push tag
+        id: tag_version
         uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
-          custom_tag: ${{ steps.set_tag.outputs.ctag }}
+          custom_tag: ${{ steps.tag_id.outputs.ctag }}
           tag_prefix: "R"
-      - name: Create R Release
+      - name: Create Release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_r_version.outputs.new_tag }}
