@@ -9,8 +9,6 @@ on:
         required: false
         type: string
     secrets:
-      GITHUB_TOKEN:
-        required: true
       DOCKERHUB_USERNAME:
         required: true
       DOCKERHUB_TOKEN:
