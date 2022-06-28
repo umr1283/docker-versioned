@@ -6,6 +6,7 @@ on:
     paths:
       - "02-dockerfiles/**.Dockerfile"
       - "!02-dockerfiles/**_devel.Dockerfile"
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}
