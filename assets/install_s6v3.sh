@@ -8,7 +8,7 @@ S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ARCH=$(uname -m)
 
 if [ ! -x "$(command -v wget)" ]; then
-  apt-get update && apt-get -y install wget
+  apt-get update && apt-get -y install wget ca-certificates
 fi
 
 ## Set up S6 init system
