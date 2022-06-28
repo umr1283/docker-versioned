@@ -33,7 +33,7 @@
     {
       "IMAGE": "r-ver",
       "labels": {
-        "org.opencontainers.image.title": "mcanouil/r-ver",
+        "org.opencontainers.image.title": "umr1283/r-ver",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R"
       },
       "FROM": "docker.io/library/debian:bullseye",
@@ -59,10 +59,10 @@
     {
       "IMAGE": "umr1283",
       "labels": {
-        "org.opencontainers.image.title": "mcanouil/umr1283",
+        "org.opencontainers.image.title": "umr1283/umr1283",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R and some (genetics) tools"
       },
-      "FROM": "docker.io/mcanouil/r-ver:devel",
+      "FROM": "docker.io/umr1283/r-ver:devel",
       "ENV": {
         "UMR1283_VERSION": "1.9.0",
         "PANDOC_VERSION": "2.18",
@@ -92,10 +92,10 @@
     {
       "IMAGE": "rstudio",
       "labels": {
-        "org.opencontainers.image.title": "mcanouil/rstudio",
+        "org.opencontainers.image.title": "umr1283/rstudio",
         "org.opencontainers.image.description": "RStudio server for umr1283 image"
       },
-      "FROM": "docker.io/mcanouil/umr1283:devel",
+      "FROM": "docker.io/umr1283/umr1283:devel",
       "ENV": {
         "RSTUDIO_VERSION": "2022.02.3+492",
         "PATH": "/usr/lib/rstudio-server/bin:$PATH"
@@ -107,10 +107,10 @@
     {
       "IMAGE": "ssh",
       "labels": {
-        "org.opencontainers.image.title": "mcanouil/ssh",
+        "org.opencontainers.image.title": "umr1283/ssh",
         "org.opencontainers.image.description": "SSH server for umr1283 image"
       },
-      "FROM": "docker.io/mcanouil/umr1283:devel",
+      "FROM": "docker.io/umr1283/umr1283:devel",
       "RUN": "/docker_scripts/install_ssh.sh",
       "CMD": "[\"/init\"]",
       "EXPOSE": 2222
@@ -118,10 +118,10 @@
     {
       "IMAGE": "shiny",
       "labels": {
-        "org.opencontainers.image.title": "mcanouil/shiny",
+        "org.opencontainers.image.title": "umr1283/shiny",
         "org.opencontainers.image.description": "Shiny server for umr1283 image"
       },
-      "FROM": "docker.io/mcanouil/umr1283:devel",
+      "FROM": "docker.io/umr1283/umr1283:devel",
       "ENV": {
         "SHINY_SERVER_VERSION": "latest"
       },
