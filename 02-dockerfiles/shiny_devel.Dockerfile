@@ -1,4 +1,4 @@
-FROM mcanouil/umr1283:devel
+FROM docker.io/umr1283/umr1283:devel
 
 LABEL org.opencontainers.image.licenses="GPL-3.0" \
       org.opencontainers.image.source="https://github.com/mcanouil/docker-versioned" \
