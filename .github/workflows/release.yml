@@ -16,6 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: ./.github/workflows/core-release.yml
-        secrets: inherit
         with:
           tag_prefix: "R"
