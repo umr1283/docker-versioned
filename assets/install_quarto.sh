@@ -8,7 +8,7 @@ ARCH=$(dpkg --print-architecture)
 
 if [ "$ARCH" = "amd64" ]; then
   if [ ! -x "$(command -v wget)" ]; then
-    apt-get update && apt-get -y install wget
+    apt-get update && apt-get -y install wget ca-certificates
   fi
 
   if [ "$QUARTO_VERSION" = "latest" ]; then
@@ -21,8 +21,6 @@ if [ "$ARCH" = "amd64" ]; then
   rm quarto.deb
 
   quarto check install
-
-  Rscript -e 'utils::install.packages(c("knitr", "quarto"))'
 fi
 
 # Clean up

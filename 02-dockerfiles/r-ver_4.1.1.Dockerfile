@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM docker.io/library/debian:bullseye
 
 LABEL org.opencontainers.image.licenses="GPL-3.0" \
       org.opencontainers.image.source="https://github.com/mcanouil/docker-versioned" \

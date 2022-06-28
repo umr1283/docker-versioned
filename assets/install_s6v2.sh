@@ -15,7 +15,7 @@ fi
 DOWNLOAD_FILE=s6-overlay-${ARCH}.tar.gz
 
 if [ ! -x "$(command -v wget)" ]; then
-  apt-get update && apt-get -y install wget
+  apt-get update && apt-get -y install wget ca-certificates
 fi
 
 ## Set up S6 init system

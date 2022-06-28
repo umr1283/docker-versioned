@@ -36,7 +36,7 @@
         "org.opencontainers.image.title": "mcanouil/r-ver",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R"
       },
-      "FROM": "debian:bullseye",
+      "FROM": "docker.io/library/debian:bullseye",
       "ENV": {
         "R_VERSION": "devel",
         "R_HOME": "/usr/local/lib/R",
@@ -62,12 +62,12 @@
         "org.opencontainers.image.title": "mcanouil/umr1283",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R and some (genetics) tools"
       },
-      "FROM": "mcanouil/r-ver:devel",
+      "FROM": "docker.io/mcanouil/r-ver:devel",
       "ENV": {
         "UMR1283_VERSION": "1.9.0",
         "PANDOC_VERSION": "2.18",
         "BCFTOOLS_VERSION": "1.15.1",
-        "QUARTO_VERSION": "0.9.624",
+        "QUARTO_VERSION": "0.9.626",
         "ODBC_VERSION": "8.0.27",
         "S6_VERSION": "v2.2.0.3"
       },
@@ -95,7 +95,7 @@
         "org.opencontainers.image.title": "mcanouil/rstudio",
         "org.opencontainers.image.description": "RStudio server for umr1283 image"
       },
-      "FROM": "mcanouil/umr1283:devel",
+      "FROM": "docker.io/mcanouil/umr1283:devel",
       "ENV": {
         "RSTUDIO_VERSION": "2022.02.3+492",
         "PATH": "/usr/lib/rstudio-server/bin:$PATH"
@@ -110,7 +110,7 @@
         "org.opencontainers.image.title": "mcanouil/ssh",
         "org.opencontainers.image.description": "SSH server for umr1283 image"
       },
-      "FROM": "mcanouil/umr1283:devel",
+      "FROM": "docker.io/mcanouil/umr1283:devel",
       "RUN": "/docker_scripts/install_ssh.sh",
       "CMD": "[\"/init\"]",
       "EXPOSE": 2222
@@ -121,7 +121,7 @@
         "org.opencontainers.image.title": "mcanouil/shiny",
         "org.opencontainers.image.description": "Shiny server for umr1283 image"
       },
-      "FROM": "mcanouil/umr1283:devel",
+      "FROM": "docker.io/mcanouil/umr1283:devel",
       "ENV": {
         "SHINY_SERVER_VERSION": "latest"
       },

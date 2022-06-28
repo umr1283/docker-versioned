@@ -1,42 +1,22 @@
-name: Create Pre-Release
+name: Create UMR-Release
 
 on:
   push:
     branches: main
-    paths: 
+    paths:
       - "02-dockerfiles/**.Dockerfile"
       - "!02-dockerfiles/**_devel.Dockerfile"
-      - "!05-matrix/github_action_matrix_all.json"
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
-  create_prerelease:
+  umr-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set version from date
-        id: tag_id
-        run: |
-          DATE_VERSION=$(date '+%Y.%m.%d')
-          echo ::set-output name=newversion::"${DATE_VERSION}"
-          echo "${DATE_VERSION}"
-      - name: Set prerelease name
-        id: release_id
-        run: |
-          echo ::set-output name=releasename::"v${{ steps.tag_id.outputs.newversion }} (UMR/RSTUDIO/SSH/SHINY)"
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.0
+      - uses: ./.github/workflows/core-release.yml
+        secrets: inherit
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: false
-          custom_tag: ${{ steps.tag_id.outputs.newversion }}
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: ${{ steps.release_id.outputs.releasename }}
-          generateReleaseNotes: true
-          allowUpdates: false
-          prerelease: false
-          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_prefix: "v"
