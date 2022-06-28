@@ -9,6 +9,10 @@ on:
       - "!05-matrix/github_action_matrix_all.json"
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   create_prerelease:
     runs-on: ubuntu-latest
