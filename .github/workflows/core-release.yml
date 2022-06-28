@@ -1,0 +1,110 @@
+name: Create Release & Build Core
+
+on:
+  workflow_call:
+    inputs:
+      tag_prefix:
+        description: 'Tag prefix to be used'
+        default: 'v'
+        required: false
+        type: string
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_TOKEN:
+        required: true
+
+jobs:
+  create_tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set version from date
+        id: tag_id
+        run: |
+          if [[ "${{ inputs.tag_prefix }}" == "v" ]]; then
+            DATE_VERSION=$(date '+%Y.%m.%d')
+            echo ::set-output name=newversion::"${DATE_VERSION}"
+            echo ::set-output name=newversionprefix::"v"
+            echo "${DATE_VERSION}"
+          else
+            TAG=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
+            if [[ github.event_name == 'workflow_dispatch' ]]; then
+              CTAG="${TAG}-${{ github.event.inputs.tag_suffix }}"
+            else
+              CTAG="${TAG}-0"
+            fi
+            echo ::set-output name=newversion::"${CTAG}"
+            echo ::set-output name=newversionprefix::"R"
+            echo "${CTAG}"
+          fi
+      - name: Set prerelease name
+        id: release_id
+        run: |
+          if [[ "${{ inputs.tag_prefix }}" == "v" ]]; then
+            RELTYPE="UMR/RSTUDIO/SSH/SHINY"
+          else
+            RELTYPE="CORE"
+          fi
+          echo ::set-output name=releasename::"${{ steps.tag_id.outputs.newversionprefix }}${{ steps.tag_id.outputs.newversion }} (${RELTYPE})"
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: false
+          custom_tag: ${{ steps.tag_id.outputs.newversion }}
+          tag_prefix: ${{ steps.tag_id.outputs.newversionprefix }}
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: ${{ steps.release_id.outputs.releasename }}
+          generateReleaseNotes: true
+          allowUpdates: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+  generate_matrix_core:
+    runs-on: ubuntu-latest
+    needs: create_tag
+    outputs:
+      matrix: ${{ steps.set-matrix-core.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v3
+      - id: set-matrix-core
+        run: |
+          CONTENT=$(jq -r 'tostring' 05-matrix/github_action_matrix_all.json)
+          echo ::set-output name=matrix::"${CONTENT}"
+          echo "${CONTENT}"
+  build-core:
+    runs-on: ubuntu-latest
+    needs: generate_matrix_core
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJson(needs.generate_matrix_core.outputs.matrix)}}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Build and push Docker images
+        run: |
+          BAKE_JSON=04-bakefiles/${{ matrix.r_version }}.docker-bake.json
+          for itarget in $(jq '.group[].${{ matrix.group }}[].targets[]' -r ${BAKE_JSON}); do
+            docker buildx bake \
+              --file ${BAKE_JSON} \
+              --set=*.labels.org.opencontainers.image.revision=${GITHUB_SHA} \
+              --push ${itarget};
+          done
