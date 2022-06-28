@@ -63,8 +63,8 @@
   latest_tag = "latest"
 ) {
   c(
-    list(paste0(base_name, ":", r_version, tag_suffix)),
-    if (r_latest & use_latest_tag) list(paste0(base_name, ":", latest_tag))
+    as.list(paste0(base_name, ":", r_version, tag_suffix)),
+    if (r_latest & use_latest_tag) as.list(paste0(base_name, ":", latest_tag))
   )
 }
 
