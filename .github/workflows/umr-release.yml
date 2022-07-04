@@ -26,7 +26,7 @@ jobs:
       - name: Set version from date
         id: tag_id
         run: |
-          if [[ "${{ github.event.inputs.tag_suffix }}" == "0" ]]; then
+          if [[ "${{ github.event.inputs.tag_suffix }}" == "" || "${{ github.event.inputs.tag_suffix }}" == "0" ]]; then
             CTAG="$(date '+%Y.%m.%d')
           else
             CTAG="$(date '+%Y.%m.%d')-${{ github.event.inputs.tag_suffix }}"

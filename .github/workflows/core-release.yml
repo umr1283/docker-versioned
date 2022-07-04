@@ -24,7 +24,7 @@ jobs:
       - id: tag_id
         run: |
           TAG=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
-          if [[ "${{ github.event.inputs.tag_suffix }}" == "0" ]]; then
+          if [[ "${{ github.event.inputs.tag_suffix }}" == "" || "${{ github.event.inputs.tag_suffix }}" == "0" ]]; then
             CTAG="${TAG}"
           else
             CTAG="${TAG}-${{ github.event.inputs.tag_suffix }}"
