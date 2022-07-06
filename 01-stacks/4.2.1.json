@@ -83,7 +83,7 @@
         "UMR1283_VERSION": "1.9.0",
         "PANDOC_VERSION": "2.18",
         "BCFTOOLS_VERSION": "1.15.1",
-        "QUARTO_VERSION": "0.9.646",
+        "QUARTO_VERSION": "0.9.647",
         "ODBC_VERSION": "8.0.27",
         "S6_VERSION": "v2.2.0.3"
       },
