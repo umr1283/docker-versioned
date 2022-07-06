@@ -26,10 +26,11 @@ jobs:
       - name: Set version from date
         id: tag_id
         run: |
-          if [[ "${{ github.event.inputs.tag_suffix }}" == "" || "${{ github.event.inputs.tag_suffix }}" == "0" ]]; then
-            CTAG="$(date '+%Y.%m.%d')
+          VAR="${{ github.event.inputs.tag_suffix }}"
+          if [[ ${VAR} == "" || ${VAR} == "0" ]]; then
+            CTAG="$(date '+%Y.%m.%d')"
           else
-            CTAG="$(date '+%Y.%m.%d')-${{ github.event.inputs.tag_suffix }}"
+            CTAG="$(date '+%Y.%m.%d')-${VAR}"
           fi
           echo ::set-output name=ctag::"${CTAG}"
           echo "${CTAG}"
