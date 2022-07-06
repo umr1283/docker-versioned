@@ -24,7 +24,7 @@ jobs:
           CONTENT=$(jq -r 'tostring' 05-matrix/github_action_matrix_all.json)
           echo ::set-output name=matrix::"${CONTENT}"
           echo "${CONTENT}"
-  build:
+  build-core:
     runs-on: ubuntu-latest
     needs: generate_matrix
     strategy:
@@ -49,3 +49,42 @@ jobs:
               --set=*.labels.org.opencontainers.image.revision=${GITHUB_SHA} \
               --push ${itarget};
           done
+  check-core:
+    runs-on: ubuntu-latest
+    needs: build-core
+    strategy:
+      fail-fast: false
+      matrix:
+        image-ref: [r-ver]
+        tags: ${{fromJson(needs.generate_matrix_core.outputs.matrix)}}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker.io/umr1283/${{ matrix.image-ref }}:${{ matrix.tags.r_version }}'
+          output: '06-trivy/trivy-${{ matrix.image-ref }}-${{ matrix.tags.r_version }}.txt'
+          format: 'table'
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+  pr-core:
+    runs-on: ubuntu-latest
+    needs: check-core
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: Automatic Trivy checks
+          signoff: false
+          branch: auto-detected-updates
+          delete-branch: true
+          title: "Automatic Trivy checks"
+          committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
