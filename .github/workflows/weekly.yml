@@ -53,7 +53,7 @@ jobs:
         run: docker-compose -f 03-compose/${{ matrix.composefile }} push
   check-devel:
     runs-on: ubuntu-latest
-    depends_on: build-devel
+    needs: build-devel
     strategy:
       fail-fast: false
       matrix:
@@ -70,7 +70,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
   pr-devel:
     runs-on: ubuntu-latest
-    depends_on: check-devel
+    needs: check-devel
     strategy:
       fail-fast: false
     steps:
