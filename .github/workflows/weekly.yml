@@ -53,11 +53,11 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: Automatic update of container definition files
+          commit-message: "ci: automatic weekly update"
           signoff: false
           branch: auto-detected-updates
           delete-branch: true
-          title: "Automatic update of container definition files"
+          title: "Automatic weekly update"
           committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
       - name: Check outputs
         run: |
@@ -84,11 +84,11 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: Automatic update of container definition files
+          commit-message: "ci: automatic weekly update"
           signoff: false
           branch: auto-detected-updates
           delete-branch: true
-          title: "Automatic update of container definition files"
+          title: "Automatic weekly update"
           committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
       - name: Check outputs
         run: |
