@@ -65,6 +65,7 @@ jobs:
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
   check-devel:
     runs-on: ubuntu-latest
+    if: ${{ false }}
     needs: build-devel
     strategy:
       fail-fast: false

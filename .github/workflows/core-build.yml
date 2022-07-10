@@ -51,6 +51,7 @@ jobs:
           done
   check-core:
     runs-on: ubuntu-latest
+    if: ${{ false }}
     needs:
       - generate_matrix_core
       - build-core
