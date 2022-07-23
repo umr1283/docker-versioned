@@ -58,12 +58,6 @@ jobs:
           branch: weekly-build-updates
           delete-branch: true
           title: "Automatic weekly build update"
-      - name: Auto approve
-        if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: juliangruber/approve-pull-request-action@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.cpr.outputs.pull-request-number }}
   check-devel:
     runs-on: ubuntu-latest
     if: ${{ true }}
@@ -91,9 +85,3 @@ jobs:
           branch: weekly-build-security
           delete-branch: true
           title: "Automatic weekly devel security check"
-      - name: Auto approve
-        if: steps.cpr-trivy.outputs.pull-request-operation == 'created'
-        uses: juliangruber/approve-pull-request-action@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.cpr-trivy.outputs.pull-request-number }}
