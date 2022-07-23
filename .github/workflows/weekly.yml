@@ -83,7 +83,7 @@ jobs:
           vuln-type: "os,library"
           severity: "CRITICAL"
       - name: Create Pull Request
-        id: cpr
+        id: cpr-trivy
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: "ci: automatic weekly devel security check"
@@ -92,8 +92,8 @@ jobs:
           delete-branch: true
           title: "Automatic weekly devel security check"
       - name: Auto approve
-        if: steps.cpr.outputs.pull-request-operation == 'created'
+        if: steps.cpr-trivy.outputs.pull-request-operation == 'created'
         uses: juliangruber/approve-pull-request-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.cpr.outputs.pull-request-number }}
+          number: ${{ steps.cpr-trivy.outputs.pull-request-number }}
