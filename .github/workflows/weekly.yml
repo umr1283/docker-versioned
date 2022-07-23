@@ -61,10 +61,12 @@ jobs:
           branch: auto-detected-updates
           delete-branch: true
           title: "Automatic weekly update"
-      - name: Check outputs
-        run: |
-          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+      - name: Auto approve
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: juliangruber/approve-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.cpr.outputs.pull-request-number }}
   check-devel:
     runs-on: ubuntu-latest
     if: ${{ false }}
