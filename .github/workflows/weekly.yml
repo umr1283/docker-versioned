@@ -66,7 +66,7 @@ jobs:
           number: ${{ steps.cpr.outputs.pull-request-number }}
   check-devel:
     runs-on: ubuntu-latest
-    if: ${{ false }}
+    if: ${{ true }}
     needs: build-devel
     strategy:
       fail-fast: false
@@ -77,11 +77,11 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'docker.io/umr1283/${{ matrix.image-ref }}:devel'
-          output: '06-trivy/trivy-${{ matrix.image-ref }}-devel.txt'
-          format: 'table'
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          image-ref: "docker.io/umr1283/${{ matrix.image-ref }}:devel"
+          output: "06-trivy/trivy-${{ matrix.image-ref }}-devel.txt"
+          format: "table"
+          vuln-type: "os,library"
+          severity: "CRITICAL"
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v4
