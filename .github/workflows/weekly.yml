@@ -53,10 +53,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: "ci: automatic weekly update
-          
-          
-          Co-authored-by: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
+          commit-message: "ci: automatic weekly update"
           signoff: false
           branch: auto-detected-updates
           delete-branch: true
@@ -89,10 +86,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: "ci: automatic weekly update
-          
-          
-          Co-authored-by: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
+          commit-message: "ci: automatic weekly update"
           signoff: false
           branch: auto-detected-updates
           delete-branch: true
