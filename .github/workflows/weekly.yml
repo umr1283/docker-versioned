@@ -53,11 +53,11 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: "ci: automatic weekly update"
+          commit-message: "ci: automatic weekly build update"
           signoff: false
-          branch: auto-detected-updates
+          branch: weekly-build-updates
           delete-branch: true
-          title: "Automatic weekly update"
+          title: "Automatic weekly build update"
       - name: Auto approve
         if: steps.cpr.outputs.pull-request-operation == 'created'
         uses: juliangruber/approve-pull-request-action@v1
@@ -86,11 +86,11 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: "ci: automatic weekly update"
+          commit-message: "ci: automatic weekly devel security check"
           signoff: false
-          branch: auto-detected-updates
+          branch: weekly-build-security
           delete-branch: true
-          title: "Automatic weekly update"
+          title: "Automatic weekly devel security check"
       - name: Auto approve
         if: steps.cpr.outputs.pull-request-operation == 'created'
         uses: juliangruber/approve-pull-request-action@v1
