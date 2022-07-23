@@ -56,12 +56,11 @@ jobs:
           commit-message: "ci: automatic weekly update
           
           
-          Co-authored-by: Mickaël Canouil <8896044+mcanouil@users.noreply.github.com>"
+          Co-authored-by: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           signoff: false
           branch: auto-detected-updates
           delete-branch: true
           title: "Automatic weekly update"
-          committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
       - name: Check outputs
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
@@ -91,12 +90,11 @@ jobs:
           commit-message: "ci: automatic weekly update
           
 
-          Co-authored-by: Mickaël Canouil <8896044+mcanouil@users.noreply.github.com>"
+          Co-authored-by: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           signoff: false
           branch: auto-detected-updates
           delete-branch: true
           title: "Automatic weekly update"
-          committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
       - name: Check outputs
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
