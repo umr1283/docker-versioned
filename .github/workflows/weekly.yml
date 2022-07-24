@@ -65,7 +65,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image-ref: [r-ver, umr1283, rstudio, ssh, shiny]
+        image-ref: [umr1283]
     steps:
       - uses: actions/checkout@v3
       - name: Run Trivy vulnerability scanner
