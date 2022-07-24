@@ -72,16 +72,11 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: "docker.io/umr1283/${{ matrix.image-ref }}:devel"
-          output: "06-trivy/trivy-${{ matrix.image-ref }}-devel.txt"
-          format: "table"
+          output: "trivy-${{ matrix.image-ref }}-devel.sarif"
+          format: "sarif"
           vuln-type: "os,library"
           severity: "CRITICAL"
-      - name: Create Pull Request
-        id: cpr-trivy
-        uses: peter-evans/create-pull-request@v4
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
         with:
-          commit-message: "ci: automatic weekly devel security check"
-          signoff: false
-          branch: weekly-build-security
-          delete-branch: true
-          title: "Automatic weekly devel security check"
+          sarif_file: 'trivy-results.sarif'
