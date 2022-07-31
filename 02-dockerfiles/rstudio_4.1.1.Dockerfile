@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.licenses="GPL-3.0" \
       org.opencontainers.image.source="https://github.com/mcanouil/docker-versioned" \
       org.opencontainers.image.authors="Mickaël Canouil <https://mickael.canouil.fr/>"
 
-ENV RSTUDIO_VERSION=2022.07.0+548
+ENV RSTUDIO_VERSION=2022.07.1+554
 ENV PATH=/usr/lib/rstudio-server/bin:$PATH
 
 RUN /docker_scripts/install_rstudio.sh
