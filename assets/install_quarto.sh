@@ -11,8 +11,10 @@ if [ "$ARCH" = "amd64" ]; then
     apt-get update && apt-get -y install wget ca-certificates
   fi
 
-  if [ "$QUARTO_VERSION" = "latest" ]; then
-    QUARTO_DL_URL=$(wget -qO- https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*${ARCH}\.deb")
+  if [ "$QUARTO_VERSION" = "latest" ] || [ "$RSTUDIO_VERSION" = "release" ]; then
+    QUARTO_DL_URL=$(wget -qO- https://quarto.org/docs/download/_download.json | grep -oP "(?<=\"download_url\":\s\")https.*${ARCH}\.deb")
+  elif [ "$QUARTO_VERSION" = "prerelease" ]; then
+    QUARTO_DL_URL=$(wget -qO- https://quarto.org/docs/download/_prerelease.json | grep -oP "(?<=\"download_url\":\s\")https.*${ARCH}\.deb")
   else
     QUARTO_DL_URL="https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${ARCH}.deb"
   fi
