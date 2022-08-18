@@ -37,7 +37,7 @@
       },
       "tags": [
         "docker.io/umr1283/r-ver:4.1.3",
-        "docker.io/mcanouil/r-ver:4.1.3"
+        "docker.io/umr1283/r-ver:4.1.3"
       ],
       "platforms": [
         "linux/amd64",
@@ -60,7 +60,7 @@
       },
       "tags": [
         "docker.io/umr1283/umr1283:4.1.3",
-        "docker.io/mcanouil/umr1283:4.1.3"
+        "docker.io/umr1283/umr1283:4.1.3"
       ],
       "platforms": [
         "linux/amd64"
@@ -82,7 +82,7 @@
       },
       "tags": [
         "docker.io/umr1283/rstudio:4.1.3",
-        "docker.io/mcanouil/rstudio:4.1.3"
+        "docker.io/umr1283/rstudio:4.1.3"
       ],
       "platforms": [
         "linux/amd64"
@@ -104,7 +104,7 @@
       },
       "tags": [
         "docker.io/umr1283/ssh:4.1.3",
-        "docker.io/mcanouil/ssh:4.1.3"
+        "docker.io/umr1283/ssh:4.1.3"
       ],
       "platforms": [
         "linux/amd64"
@@ -126,7 +126,7 @@
       },
       "tags": [
         "docker.io/umr1283/shiny:4.1.3",
-        "docker.io/mcanouil/shiny:4.1.3"
+        "docker.io/umr1283/shiny:4.1.3"
       ],
       "platforms": [
         "linux/amd64"
