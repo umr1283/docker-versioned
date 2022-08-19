@@ -40,7 +40,7 @@ jobs:
       - name: Make changes to pull request
         run: |
           rm -rf 02-dockerfiles 03-compose 04-bakefiles
-          Rscript ./build/build.R umr1283,${GITHUB_REPOSITORY_OWNER} bullseye
+          Rscript ./build/build.R ${GITHUB_REPOSITORY_OWNER} bullseye
       - uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
