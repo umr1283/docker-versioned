@@ -18,7 +18,11 @@ write_stacks(
   stack_file = "01-stacks/devel.json",
   min_version = "4.0",
   debian = args[[2]],
-  registry = "docker.io"
+  registry = "docker.io",
+  rstudio = "latest",
+  um1283 = "latest",
+  quarto = "latest",
+  bcftools = "1.15.1"
 )
 
 write_dockerfiles(
