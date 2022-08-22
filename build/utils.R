@@ -201,7 +201,17 @@
   output_path
 }
 
-write_stacks <- function(docker_repository, stack_file, min_version = "4.1", debian = NULL, registry = "docker.io") {
+write_stacks <- function(
+  docker_repository,
+  stack_file,
+  min_version = "4.1",
+  debian = NULL,
+  registry = "docker.io",
+  rstudio = "latest",
+  um1283 = "latest",
+  quarto = "latest",
+  bcftools = "1.15.1"
+) {
   r_latest <- r_version <- NULL # only to get rif of "no visible binding for global variable"
   if (!dir.exists(dirname(stack_file))) {
     dir.create(dirname(stack_file), recursive = TRUE)
@@ -213,10 +223,26 @@ write_stacks <- function(docker_repository, stack_file, min_version = "4.1", deb
   ]
 
   r_latest_version <- r_versions_dt[(r_latest), r_version]
-  rstudio_latest_version <- .latest_rstudio_version()
-  umr1283_latest_version <- .latest_umr1283_version()
-  bcftools_latest_version <- .latest_bcftools_version()
-  quarto_latest_version <- .latest_quarto_version()
+  if (rstudio == "latest") {
+    rstudio_latest_version <- .latest_rstudio_version()
+  } else {
+    rstudio_latest_version <- rstudio
+  }
+  if (um1283 == "latest") {
+    umr1283_latest_version <- .latest_umr1283_version()
+  } else {
+    umr1283_latest_version <- umr1283
+  }
+  if (bcftools == "latest") {
+    bcftools_latest_version <- .latest_bcftools_version()
+  } else {
+    bcftools_latest_version <- bcftools
+  }
+  if (quarto == "latest") {
+    quarto_latest_version <- .latest_quarto_version()
+  } else {
+    quarto_latest_version <- quarto
+  }
 
   .update_default_stacks(
     docker_repository = docker_repository[1],

@@ -65,7 +65,7 @@
       "FROM": "docker.io/umr1283/r-ver:devel",
       "ENV": {
         "UMR1283_VERSION": "1.10.1",
-        "PANDOC_VERSION": "2.18",
+        "PANDOC_VERSION": "2.19.1",
         "BCFTOOLS_VERSION": "1.15.1",
         "QUARTO_VERSION": "1.1.67",
         "ODBC_VERSION": "8.0.27",
