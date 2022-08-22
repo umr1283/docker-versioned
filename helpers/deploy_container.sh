@@ -17,13 +17,8 @@ function deploy_container() {
     local VERSION=$2
   fi
 
-  if [ "${VERSION}" = "devel" ]; then
-    local NAME="${IMG}-${VERSION}"
-    local BASEDOCKERHUB="mcanouil"
-  else
-    local NAME="${IMG}-v${VERSION}"
-    local BASEDOCKERHUB="umr1283"
-  fi
+  local NAME="${IMG}-v${VERSION}"
+  local BASEDOCKERHUB="umr1283"
 
   local TMP=${DIRMOUNT}/datatmp/dockertmp
 
