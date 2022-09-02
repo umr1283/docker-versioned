@@ -11,3 +11,4 @@ RUN /docker_scripts/install_shiny_server.sh
 EXPOSE 3838
 
 CMD ["/init"]
+
