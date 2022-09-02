@@ -18,7 +18,6 @@
       "server": [
         {
           "targets": [
-            "ssh",
             "rstudio",
             "shiny"
           ]
@@ -36,7 +35,6 @@
         "org.opencontainers.image.base.name": "docker.io/library/debian:bullseye"
       },
       "tags": [
-        "docker.io/umr1283/r-ver:4.0.0",
         "docker.io/umr1283/r-ver:4.0.0"
       ],
       "platforms": [
@@ -59,7 +57,6 @@
         "org.opencontainers.image.base.name": "docker.io/umr1283/r-ver:4.0.0"
       },
       "tags": [
-        "docker.io/umr1283/umr1283:4.0.0",
         "docker.io/umr1283/umr1283:4.0.0"
       ],
       "platforms": [
@@ -81,30 +78,7 @@
         "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:4.0.0"
       },
       "tags": [
-        "docker.io/umr1283/rstudio:4.0.0",
         "docker.io/umr1283/rstudio:4.0.0"
-      ],
-      "platforms": [
-        "linux/amd64"
-      ],
-      "cache-from": [
-        ""
-      ],
-      "cache-to": [
-        ""
-      ]
-    },
-    "ssh": {
-      "context": "./",
-      "dockerfile": "02-dockerfiles/ssh_4.0.0.Dockerfile",
-      "labels": {
-        "org.opencontainers.image.title": "umr1283/ssh",
-        "org.opencontainers.image.description": "SSH server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:4.0.0"
-      },
-      "tags": [
-        "docker.io/umr1283/ssh:4.0.0",
-        "docker.io/umr1283/ssh:4.0.0"
       ],
       "platforms": [
         "linux/amd64"
@@ -125,7 +99,6 @@
         "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:4.0.0"
       },
       "tags": [
-        "docker.io/umr1283/shiny:4.0.0",
         "docker.io/umr1283/shiny:4.0.0"
       ],
       "platforms": [

@@ -18,7 +18,6 @@
       "server": [
         {
           "targets": [
-            "ssh",
             "rstudio",
             "shiny"
           ]
@@ -79,27 +78,6 @@
       },
       "tags": [
         "docker.io/umr1283/rstudio:devel"
-      ],
-      "platforms": [
-        "linux/amd64"
-      ],
-      "cache-from": [
-        ""
-      ],
-      "cache-to": [
-        ""
-      ]
-    },
-    "ssh": {
-      "context": "./",
-      "dockerfile": "02-dockerfiles/ssh_devel.Dockerfile",
-      "labels": {
-        "org.opencontainers.image.title": "umr1283/ssh",
-        "org.opencontainers.image.description": "SSH server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:devel"
-      },
-      "tags": [
-        "docker.io/umr1283/ssh:devel"
       ],
       "platforms": [
         "linux/amd64"

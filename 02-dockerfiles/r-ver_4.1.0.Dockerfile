@@ -21,3 +21,4 @@ RUN /docker_scripts/install_python.sh
 RUN /docker_scripts/install_msfonts.sh
 
 CMD ["R"]
+

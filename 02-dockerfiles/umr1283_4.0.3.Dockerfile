@@ -5,9 +5,9 @@ LABEL org.opencontainers.image.licenses="GPL-3.0" \
       org.opencontainers.image.authors="Mickaël Canouil <https://mickael.canouil.fr/>"
 
 ENV UMR1283_VERSION=1.10.1
-ENV PANDOC_VERSION=2.18
+ENV PANDOC_VERSION=2.19.1
 ENV BCFTOOLS_VERSION=1.15.1
-ENV QUARTO_VERSION=1.1.67
+ENV QUARTO_VERSION=1.2.47
 ENV ODBC_VERSION=8.0.27
 ENV S6_VERSION=v2.2.0.3
 
@@ -28,3 +28,4 @@ RUN /docker_scripts/install_quarto.sh
 RUN /docker_scripts/set_bash_default.sh
 
 CMD ["R"]
+

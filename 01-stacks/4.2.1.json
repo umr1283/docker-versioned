@@ -21,7 +21,6 @@
       "server": [
         {
           "targets": [
-            "ssh",
             "rstudio",
             "shiny"
           ]
@@ -57,8 +56,6 @@
       "CMD": "[\"R\"]",
       "tags": [
         "docker.io/umr1283/r-ver:4.2.1",
-        "docker.io/umr1283/r-ver:4.2.1",
-        "docker.io/umr1283/r-ver:latest",
         "docker.io/umr1283/r-ver:latest"
       ],
       "platforms": [
@@ -81,9 +78,9 @@
       "FROM": "docker.io/umr1283/r-ver:4.2.1",
       "ENV": {
         "UMR1283_VERSION": "1.10.1",
-        "PANDOC_VERSION": "2.18",
+        "PANDOC_VERSION": "2.19.1",
         "BCFTOOLS_VERSION": "1.15.1",
-        "QUARTO_VERSION": "1.1.67",
+        "QUARTO_VERSION": "1.2.47",
         "ODBC_VERSION": "8.0.27",
         "S6_VERSION": "v2.2.0.3"
       },
@@ -106,8 +103,6 @@
       "CMD": "[\"R\"]",
       "tags": [
         "docker.io/umr1283/umr1283:4.2.1",
-        "docker.io/umr1283/umr1283:4.2.1",
-        "docker.io/umr1283/umr1283:latest",
         "docker.io/umr1283/umr1283:latest"
       ]
     },
@@ -127,26 +122,7 @@
       "EXPOSE": 8787,
       "tags": [
         "docker.io/umr1283/rstudio:4.2.1",
-        "docker.io/umr1283/rstudio:4.2.1",
-        "docker.io/umr1283/rstudio:latest",
         "docker.io/umr1283/rstudio:latest"
-      ]
-    },
-    {
-      "IMAGE": "ssh",
-      "labels": {
-        "org.opencontainers.image.title": "umr1283/ssh",
-        "org.opencontainers.image.description": "SSH server for umr1283 image"
-      },
-      "FROM": "docker.io/umr1283/umr1283:4.2.1",
-      "RUN": "/docker_scripts/install_ssh.sh",
-      "CMD": "[\"/init\"]",
-      "EXPOSE": 2222,
-      "tags": [
-        "docker.io/umr1283/ssh:4.2.1",
-        "docker.io/umr1283/ssh:4.2.1",
-        "docker.io/umr1283/ssh:latest",
-        "docker.io/umr1283/ssh:latest"
       ]
     },
     {
@@ -164,8 +140,6 @@
       "EXPOSE": 3838,
       "tags": [
         "docker.io/umr1283/shiny:4.2.1",
-        "docker.io/umr1283/shiny:4.2.1",
-        "docker.io/umr1283/shiny:latest",
         "docker.io/umr1283/shiny:latest"
       ]
     }

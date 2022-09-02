@@ -12,3 +12,4 @@ RUN /docker_scripts/install_rstudio.sh
 EXPOSE 8787
 
 CMD ["/init"]
+
