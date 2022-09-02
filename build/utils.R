@@ -208,7 +208,7 @@ write_stacks <- function(
   debian = NULL,
   registry = "docker.io",
   rstudio = "latest",
-  um1283 = "latest",
+  umr1283 = "latest",
   quarto = "latest",
   bcftools = "1.15.1"
 ) {
@@ -228,7 +228,7 @@ write_stacks <- function(
   } else {
     rstudio_latest_version <- rstudio
   }
-  if (um1283 == "latest") {
+  if (umr1283 == "latest") {
     umr1283_latest_version <- .latest_umr1283_version()
   } else {
     umr1283_latest_version <- umr1283
