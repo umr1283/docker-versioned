@@ -1,4 +1,4 @@
-name: Weekly Actions
+name: Auto Build/Update Actions
 
 on:
   schedule:

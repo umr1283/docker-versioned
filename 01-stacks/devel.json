@@ -1,7 +1,7 @@
 {
   "ordered": true,
   "TAG": "devel",
-  "LABEL": "org.opencontainers.image.licenses=\"GPL-3.0\" \\\n      org.opencontainers.image.source=\"https://github.com/mcanouil/docker-versioned\" \\\n      org.opencontainers.image.authors=\"Mickaël Canouil <https://mickael.canouil.fr/>\"",
+  "LABEL": "org.opencontainers.image.licenses=\"GPL-3.0\" \\\n      org.opencontainers.image.source=\"https://github.com/umr1283/docker-versioned\" \\\n      org.opencontainers.image.authors=\"Mickaël Canouil <https://mickael.canouil.fr/>\"",
   "group": [
     {
       "default": [
@@ -21,7 +21,6 @@
       "server": [
         {
           "targets": [
-            "ssh",
             "rstudio",
             "shiny"
           ]
@@ -103,17 +102,6 @@
       "RUN": "/docker_scripts/install_rstudio.sh",
       "CMD": "[\"/init\"]",
       "EXPOSE": 8787
-    },
-    {
-      "IMAGE": "ssh",
-      "labels": {
-        "org.opencontainers.image.title": "umr1283/ssh",
-        "org.opencontainers.image.description": "SSH server for umr1283 image"
-      },
-      "FROM": "docker.io/umr1283/umr1283:devel",
-      "RUN": "/docker_scripts/install_ssh.sh",
-      "CMD": "[\"/init\"]",
-      "EXPOSE": 2222
     },
     {
       "IMAGE": "shiny",

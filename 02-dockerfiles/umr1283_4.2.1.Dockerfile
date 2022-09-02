@@ -1,7 +1,7 @@
 FROM docker.io/umr1283/r-ver:4.2.1
 
 LABEL org.opencontainers.image.licenses="GPL-3.0" \
-      org.opencontainers.image.source="https://github.com/mcanouil/docker-versioned" \
+      org.opencontainers.image.source="https://github.com/umr1283/docker-versioned" \
       org.opencontainers.image.authors="Mickaël Canouil <https://mickael.canouil.fr/>"
 
 ENV UMR1283_VERSION=1.10.1
@@ -28,4 +28,3 @@ RUN /docker_scripts/install_quarto.sh
 RUN /docker_scripts/set_bash_default.sh
 
 CMD ["R"]
-

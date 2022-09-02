@@ -19,7 +19,7 @@ function deploy_container() {
 
   if [ "${VERSION}" = "devel" ]; then
     local NAME="${IMG}-${VERSION}"
-    local BASEDOCKERHUB="mcanouil"
+    local BASEDOCKERHUB="umr1283"
   else
     local NAME="${IMG}-v${VERSION}"
     local BASEDOCKERHUB="umr1283"
@@ -69,7 +69,7 @@ function deploy_container() {
       --volume ${DIRMOUNT}/project:/disks/PROJECT \
       --volume ${DIRMOUNT}/datatmp:/disks/DATATMP"
 
-    if [ "${USER_NAME}" = "mcanouil" ]; then
+    if [ "${USER_NAME}" = "umr1283" ]; then
       SSHPORTPREFIX=27
     else
       SSHPORTPREFIX=22

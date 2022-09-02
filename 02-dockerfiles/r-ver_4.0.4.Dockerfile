@@ -1,7 +1,7 @@
 FROM docker.io/library/debian:bullseye
 
 LABEL org.opencontainers.image.licenses="GPL-3.0" \
-      org.opencontainers.image.source="https://github.com/mcanouil/docker-versioned" \
+      org.opencontainers.image.source="https://github.com/umr1283/docker-versioned" \
       org.opencontainers.image.authors="Mickaël Canouil <https://mickael.canouil.fr/>"
 
 ENV R_VERSION=4.0.4
@@ -21,4 +21,3 @@ RUN /docker_scripts/install_python.sh
 RUN /docker_scripts/install_msfonts.sh
 
 CMD ["R"]
-
