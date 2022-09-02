@@ -116,24 +116,13 @@
   )
   template$stack[[3]]$ENV$RSTUDIO_VERSION <- rstudio_version
 
-  # ssh
+  # shiny
   template$stack[[4]]$labels$org.opencontainers.image.title <- sub(
     "[^/]*", docker_repository,
     template$stack[[4]]$labels$org.opencontainers.image.title
   )
   template$stack[[4]]$FROM <- .update_json_from(
     text = template$stack[[4]]$FROM,
-    registry = registry,
-    docker_repository = docker_repository
-  )
-
-  # shiny
-  template$stack[[5]]$labels$org.opencontainers.image.title <- sub(
-    "[^/]*", docker_repository,
-    template$stack[[5]]$labels$org.opencontainers.image.title
-  )
-  template$stack[[5]]$FROM <- .update_json_from(
-    text = template$stack[[5]]$FROM,
     registry = registry,
     docker_repository = docker_repository
   )
@@ -163,7 +152,6 @@
   # template$group <- list(c(list(
   #   default = list(c(list(targets = c(
   #     "r-ver",
-  #     "ssh",
   #     "rstudio"
   #   ))))
   # )))
@@ -187,13 +175,9 @@
   template$stack[[3]]$ENV$RSTUDIO_VERSION <- rstudio_version
   template$stack[[3]]$tags <- .generate_tags(sprintf("%s/%s/rstudio", registry, base), r_version, r_latest)
 
-  # ssh
-  template$stack[[4]]$FROM <- sprintf("%s/%s/umr1283:%s", registry[1], base[1], r_version)
-  template$stack[[4]]$tags <- .generate_tags(sprintf("%s/%s/ssh", registry, base), r_version, r_latest)
-
   # shiny
-  template$stack[[5]]$FROM <- sprintf("%s/%s/umr1283:%s", registry[1], base[1], r_version)
-  template$stack[[5]]$tags <- .generate_tags(sprintf("%s/%s/shiny", registry, base), r_version, r_latest)
+  template$stack[[4]]$FROM <- sprintf("%s/%s/umr1283:%s", registry[1], base[1], r_version)
+  template$stack[[4]]$tags <- .generate_tags(sprintf("%s/%s/shiny", registry, base), r_version, r_latest)
 
   jsonlite::write_json(template, output_path, pretty = TRUE, auto_unbox = TRUE)
 
