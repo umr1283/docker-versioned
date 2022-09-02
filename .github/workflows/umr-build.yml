@@ -102,7 +102,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image-ref: [umr1283, rstudio, ssh, shiny]
+        image-ref: [umr1283, rstudio, shiny]
         tags: ${{fromJson(needs.generate_matrix_server.outputs.matrix)}}
     steps:
       - uses: actions/checkout@v3

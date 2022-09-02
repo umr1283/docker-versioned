@@ -1,7 +1,7 @@
 {
   "ordered": true,
   "TAG": "4.0.2",
-  "LABEL": "org.opencontainers.image.licenses=\"GPL-3.0\" \\\n      org.opencontainers.image.source=\"https://github.com/mcanouil/docker-versioned\" \\\n      org.opencontainers.image.authors=\"Mickaël Canouil <https://mickael.canouil.fr/>\"",
+  "LABEL": "org.opencontainers.image.licenses=\"GPL-3.0\" \\\n      org.opencontainers.image.source=\"https://github.com/umr1283/docker-versioned\" \\\n      org.opencontainers.image.authors=\"Mickaël Canouil <https://mickael.canouil.fr/>\"",
   "group": [
     {
       "default": [
@@ -57,7 +57,7 @@
       "CMD": "[\"R\"]",
       "tags": [
         "docker.io/umr1283/r-ver:4.0.2",
-        "docker.io/mcanouil/r-ver:4.0.2"
+        "docker.io/umr1283/r-ver:4.0.2"
       ],
       "platforms": [
         "linux/amd64",
@@ -104,7 +104,7 @@
       "CMD": "[\"R\"]",
       "tags": [
         "docker.io/umr1283/umr1283:4.0.2",
-        "docker.io/mcanouil/umr1283:4.0.2"
+        "docker.io/umr1283/umr1283:4.0.2"
       ]
     },
     {
@@ -123,7 +123,7 @@
       "EXPOSE": 8787,
       "tags": [
         "docker.io/umr1283/rstudio:4.0.2",
-        "docker.io/mcanouil/rstudio:4.0.2"
+        "docker.io/umr1283/rstudio:4.0.2"
       ]
     },
     {
@@ -138,7 +138,7 @@
       "EXPOSE": 2222,
       "tags": [
         "docker.io/umr1283/ssh:4.0.2",
-        "docker.io/mcanouil/ssh:4.0.2"
+        "docker.io/umr1283/ssh:4.0.2"
       ]
     },
     {
@@ -156,7 +156,7 @@
       "EXPOSE": 3838,
       "tags": [
         "docker.io/umr1283/shiny:4.0.2",
-        "docker.io/mcanouil/shiny:4.0.2"
+        "docker.io/umr1283/shiny:4.0.2"
       ]
     }
   ]
