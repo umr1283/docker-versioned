@@ -8,8 +8,8 @@
 [![License](https://img.shields.io/github/license/umr1283/docker-versioned)](LICENSE)
 [![GitHub
 tag](https://img.shields.io/github/tag/umr1283/docker-versioned.svg?label=latest%20tag)](https://github.com/umr1283/docker-versioned)
-[![Weekly Build &
-Push](https://github.com/umr1283/docker-versioned/actions/workflows/weekly.yml/badge.svg)](https://github.com/umr1283/docker-versioned/actions/workflows/weekly.yml)
+[![Auto Build &
+Push](https://github.com/umr1283/docker-versioned/actions/workflows/auto-build-update.yml/badge.svg)](https://github.com/umr1283/docker-versioned/actions/workflows/auto-build-update.yml)
 [![Build & Push Core](https://github.com/umr1283/docker-versioned/actions/workflows/core-build.yml/badge.svg)](https://github.com/umr1283/docker-versioned/actions/workflows/core-build.yml)
 [![Build & Push UMR](https://github.com/umr1283/docker-versioned/actions/workflows/umr-build.yml/badge.svg?branch=main)](https://github.com/umr1283/docker-versioned/actions/workflows/umr-build.yml)
 <!-- badges: end -->
