@@ -19,7 +19,8 @@ apt-get update && apt-get install -y --no-install-recommends \
   libxt6 \
   libgdal-dev \
   libgmp-dev \
-  librsvg2-dev
+  librsvg2-dev \
+  libfftw3-dev
 
 Rscript \
   -e 'if (!require(pak, quietly = TRUE)) utils::install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))' \
