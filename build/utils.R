@@ -43,6 +43,10 @@
   .get_latest_tag("quarto-dev/quarto-cli")
 }
 
+.latest_pandoc_version <- function() {
+  .get_latest_tag("jgm/pandoc")
+}
+
 .r_versions_data <- function(min_version) {
   data.table::as.data.table(rversions::r_versions())[
     i = package_version(version) >= package_version(min_version),
@@ -80,7 +84,8 @@
   rstudio_version,
   umr1283_version,
   bcftools_version,
-  quarto_version
+  quarto_version,
+  pandoc_version
 ) {
   template <- jsonlite::read_json(stack_file)
 
@@ -103,6 +108,7 @@
   template$stack[[2]]$ENV$UMR1283_VERSION <- umr1283_version
   template$stack[[2]]$ENV$BCFTOOLS_VERSION <- bcftools_version
   template$stack[[2]]$ENV$QUARTO_VERSION <- quarto_version
+  template$stack[[2]]$ENV$PANDOC_VERSION <- pandoc_version
 
   # RStudio
   template$stack[[3]]$labels$org.opencontainers.image.title <- sub(
@@ -139,6 +145,7 @@
   rstudio_version,
   umr1283_version,
   quarto_version,
+  pandoc_version,
   cran,
   r_latest,
   default_stacks,
@@ -168,6 +175,7 @@
   template$stack[[2]]$FROM <- sprintf("%s/%s/r-ver:%s", registry[1], base[1], r_version)
   template$stack[[2]]$ENV$UMR1283_VERSION <- umr1283_version
   template$stack[[2]]$ENV$QUARTO_VERSION <- quarto_version
+  template$stack[[2]]$ENV$PANDOC_VERSION <- pandoc_version
   template$stack[[2]]$tags <- .generate_tags(sprintf("%s/%s/umr1283", registry, base), r_version, r_latest)
 
   # rstudio
@@ -194,7 +202,8 @@ write_stacks <- function(
   rstudio = "latest",
   umr1283 = "latest",
   quarto = "latest",
-  bcftools = "1.15.1"
+  bcftools = "1.15.1",
+  pandoc = "latest"
 ) {
   r_latest <- r_version <- NULL # only to get rif of "no visible binding for global variable"
   if (!dir.exists(dirname(stack_file))) {
@@ -227,6 +236,11 @@ write_stacks <- function(
   } else {
     quarto_latest_version <- quarto
   }
+  if (pandoc == "latest") {
+    pandoc_latest_version <- .latest_pandoc_version()
+  } else {
+    pandoc_latest_version <- pandoc
+  }
 
   .update_default_stacks(
     docker_repository = docker_repository[1],
@@ -236,7 +250,8 @@ write_stacks <- function(
     rstudio_version = rstudio_latest_version,
     umr1283_version = umr1283_latest_version,
     bcftools_version = bcftools_latest_version,
-    quarto_version = quarto_latest_version
+    quarto_version = quarto_latest_version,
+    pandoc_version = pandoc_latest_version
   )
 
   message("Writing stack JSON files:")
