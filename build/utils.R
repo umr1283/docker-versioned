@@ -264,6 +264,7 @@ write_stacks <- function(
       rstudio_version = rstudio_latest_version,
       umr1283_version = umr1283_latest_version,
       quarto_version = quarto_latest_version,
+      pandoc_version = pandoc_latest_version,
       cran = "https://cran.r-project.org",
       r_latest = r_latest,
       default_stacks = stack_file,
