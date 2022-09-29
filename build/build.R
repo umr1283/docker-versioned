@@ -22,7 +22,8 @@ write_stacks(
   rstudio = "latest",
   umr1283 = "latest",
   quarto = "latest",
-  bcftools = "1.15.1"
+  bcftools = "1.15.1",
+  pandoc = "latest"
 )
 
 write_dockerfiles(
