@@ -1,4 +1,4 @@
-FROM docker.io/umr1283/r-ver:4.1.0
+FROM docker.io/umr1283/r-ver:4.2.2
 
 LABEL org.opencontainers.image.licenses="GPL-3.0" \
       org.opencontainers.image.source="https://github.com/umr1283/docker-versioned" \
