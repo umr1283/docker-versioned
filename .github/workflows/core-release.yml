@@ -21,13 +21,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - id: tag_id
+      - name: Set version from date
+        id: tag_id
         run: |
           TAG=$(jq '.r_version[-1]' -r 05-matrix/github_action_matrix_all.json)
-          if [[ "${{ github.event.inputs.tag_suffix }}" == "" || "${{ github.event.inputs.tag_suffix }}" == "0" ]]; then
+          VAR="${{ github.event.inputs.tag_suffix }}"
+          if [[ ${VAR} == "" || ${VAR} == "0" ]]; then
             CTAG="${TAG}"
           else
-            CTAG="${TAG}-${{ github.event.inputs.tag_suffix }}"
+            CTAG="${TAG}-${VAR}"
           fi
           echo "ctag=${CTAG}" >>$GITHUB_OUTPUT
       - name: Set prerelease name
@@ -46,8 +48,8 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.tag_r_version.outputs.new_tag }}
-          name: ${{ steps.tag_r_version.outputs.new_tag }}
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: ${{ steps.release_id.outputs.releasename }}
           generateReleaseNotes: true
           allowUpdates: false
           token: ${{ secrets.GITHUB_TOKEN }}
