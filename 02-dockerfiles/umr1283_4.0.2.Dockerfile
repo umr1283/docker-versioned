@@ -5,9 +5,9 @@ LABEL org.opencontainers.image.licenses="GPL-3.0" \
       org.opencontainers.image.authors="Mickaël Canouil <https://mickael.canouil.fr/>"
 
 ENV UMR1283_VERSION=1.10.4
-ENV PANDOC_VERSION=2.19.2
+ENV PANDOC_VERSION=3.0.1
 ENV BCFTOOLS_VERSION=1.15.1
-ENV QUARTO_VERSION=1.3.78
+ENV QUARTO_VERSION=1.3.146
 ENV ODBC_VERSION=8.0.27
 ENV S6_VERSION=v2.2.0.3
 
