@@ -1,6 +1,6 @@
 {
   "ordered": true,
-  "TAG": "4.0.0",
+  "TAG": "4.3.1",
   "LABEL": "org.opencontainers.image.licenses=\"GPL-3.0\" \\\n      org.opencontainers.image.source=\"https://github.com/umr1283/docker-versioned\" \\\n      org.opencontainers.image.authors=\"Mickaël Canouil <https://mickael.canouil.fr/>\"",
   "group": [
     {
@@ -37,7 +37,7 @@
       },
       "FROM": "docker.io/library/debian:bullseye",
       "ENV": {
-        "R_VERSION": "4.0.0",
+        "R_VERSION": "4.3.1",
         "R_HOME": "/usr/local/lib/R",
         "CRAN": "https://cran.r-project.org",
         "LANG": "en_GB.UTF-8",
@@ -55,14 +55,15 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/umr1283/r-ver:4.0.0"
+        "docker.io/umr1283/r-ver:4.3.1",
+        "docker.io/umr1283/r-ver:latest"
       ],
       "platforms": [
         "linux/amd64",
         "linux/arm64"
       ],
       "cache-from": [
-        "docker.io/umr1283/r-ver:4.0.0"
+        "docker.io/umr1283/r-ver:4.3.1"
       ],
       "cache-to": [
         "type=inline"
@@ -74,7 +75,7 @@
         "org.opencontainers.image.title": "umr1283/umr1283",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R and some (genetics) tools"
       },
-      "FROM": "docker.io/umr1283/r-ver:4.0.0",
+      "FROM": "docker.io/umr1283/r-ver:4.3.1",
       "ENV": {
         "UMR1283_VERSION": "1.10.4",
         "PANDOC_VERSION": "3.1.8",
@@ -101,7 +102,8 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/umr1283/umr1283:4.0.0"
+        "docker.io/umr1283/umr1283:4.3.1",
+        "docker.io/umr1283/umr1283:latest"
       ]
     },
     {
@@ -110,7 +112,7 @@
         "org.opencontainers.image.title": "umr1283/rstudio",
         "org.opencontainers.image.description": "RStudio server for umr1283 image"
       },
-      "FROM": "docker.io/umr1283/umr1283:4.0.0",
+      "FROM": "docker.io/umr1283/umr1283:4.3.1",
       "ENV": {
         "RSTUDIO_VERSION": "2023.06.2+561",
         "PATH": "/usr/lib/rstudio-server/bin:$PATH"
@@ -119,7 +121,8 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 8787,
       "tags": [
-        "docker.io/umr1283/rstudio:4.0.0"
+        "docker.io/umr1283/rstudio:4.3.1",
+        "docker.io/umr1283/rstudio:latest"
       ]
     },
     {
@@ -128,7 +131,7 @@
         "org.opencontainers.image.title": "umr1283/shiny",
         "org.opencontainers.image.description": "Shiny server for umr1283 image"
       },
-      "FROM": "docker.io/umr1283/umr1283:4.0.0",
+      "FROM": "docker.io/umr1283/umr1283:4.3.1",
       "ENV": {
         "SHINY_SERVER_VERSION": "latest"
       },
@@ -136,7 +139,8 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 3838,
       "tags": [
-        "docker.io/umr1283/shiny:4.0.0"
+        "docker.io/umr1283/shiny:4.3.1",
+        "docker.io/umr1283/shiny:latest"
       ]
     }
   ]
