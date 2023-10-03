@@ -79,7 +79,7 @@
         "UMR1283_VERSION": "1.10.4",
         "PANDOC_VERSION": "3.1.8",
         "BCFTOOLS_VERSION": "1.15.1",
-        "QUARTO_VERSION": "1.4.371",
+        "QUARTO_VERSION": "1.4.395",
         "ODBC_VERSION": "8.0.27",
         "S6_VERSION": "v2.2.0.3"
       },
@@ -112,7 +112,7 @@
       },
       "FROM": "docker.io/umr1283/umr1283:4.1.0",
       "ENV": {
-        "RSTUDIO_VERSION": "2023.06.2+561",
+        "RSTUDIO_VERSION": "2023.09.0+463",
         "PATH": "/usr/lib/rstudio-server/bin:$PATH"
       },
       "RUN": "/docker_scripts/install_rstudio.sh",
