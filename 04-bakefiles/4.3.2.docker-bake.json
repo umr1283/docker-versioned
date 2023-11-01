@@ -28,21 +28,22 @@
   "target": {
     "r-ver": {
       "context": "./",
-      "dockerfile": "02-dockerfiles/r-ver_4.3.1.Dockerfile",
+      "dockerfile": "02-dockerfiles/r-ver_4.3.2.Dockerfile",
       "labels": {
         "org.opencontainers.image.title": "umr1283/r-ver",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R",
         "org.opencontainers.image.base.name": "docker.io/library/debian:bullseye"
       },
       "tags": [
-        "docker.io/umr1283/r-ver:4.3.1"
+        "docker.io/umr1283/r-ver:4.3.2",
+        "docker.io/umr1283/r-ver:latest"
       ],
       "platforms": [
         "linux/amd64",
         "linux/arm64"
       ],
       "cache-from": [
-        "docker.io/umr1283/r-ver:4.3.1"
+        "docker.io/umr1283/r-ver:4.3.2"
       ],
       "cache-to": [
         "type=inline"
@@ -50,14 +51,15 @@
     },
     "umr1283": {
       "context": "./",
-      "dockerfile": "02-dockerfiles/umr1283_4.3.1.Dockerfile",
+      "dockerfile": "02-dockerfiles/umr1283_4.3.2.Dockerfile",
       "labels": {
         "org.opencontainers.image.title": "umr1283/umr1283",
         "org.opencontainers.image.description": "Reproducible builds with predefined version of R and some (genetics) tools",
-        "org.opencontainers.image.base.name": "docker.io/umr1283/r-ver:4.3.1"
+        "org.opencontainers.image.base.name": "docker.io/umr1283/r-ver:4.3.2"
       },
       "tags": [
-        "docker.io/umr1283/umr1283:4.3.1"
+        "docker.io/umr1283/umr1283:4.3.2",
+        "docker.io/umr1283/umr1283:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -71,14 +73,15 @@
     },
     "rstudio": {
       "context": "./",
-      "dockerfile": "02-dockerfiles/rstudio_4.3.1.Dockerfile",
+      "dockerfile": "02-dockerfiles/rstudio_4.3.2.Dockerfile",
       "labels": {
         "org.opencontainers.image.title": "umr1283/rstudio",
         "org.opencontainers.image.description": "RStudio server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:4.3.1"
+        "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:4.3.2"
       },
       "tags": [
-        "docker.io/umr1283/rstudio:4.3.1"
+        "docker.io/umr1283/rstudio:4.3.2",
+        "docker.io/umr1283/rstudio:latest"
       ],
       "platforms": [
         "linux/amd64"
@@ -92,14 +95,15 @@
     },
     "shiny": {
       "context": "./",
-      "dockerfile": "02-dockerfiles/shiny_4.3.1.Dockerfile",
+      "dockerfile": "02-dockerfiles/shiny_4.3.2.Dockerfile",
       "labels": {
         "org.opencontainers.image.title": "umr1283/shiny",
         "org.opencontainers.image.description": "Shiny server for umr1283 image",
-        "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:4.3.1"
+        "org.opencontainers.image.base.name": "docker.io/umr1283/umr1283:4.3.2"
       },
       "tags": [
-        "docker.io/umr1283/shiny:4.3.1"
+        "docker.io/umr1283/shiny:4.3.2",
+        "docker.io/umr1283/shiny:latest"
       ],
       "platforms": [
         "linux/amd64"
