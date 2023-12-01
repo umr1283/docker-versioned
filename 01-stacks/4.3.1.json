@@ -55,8 +55,7 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/umr1283/r-ver:4.3.1",
-        "docker.io/umr1283/r-ver:latest"
+        "docker.io/umr1283/r-ver:4.3.1"
       ],
       "platforms": [
         "linux/amd64",
@@ -78,9 +77,9 @@
       "FROM": "docker.io/umr1283/r-ver:4.3.1",
       "ENV": {
         "UMR1283_VERSION": "1.10.4",
-        "PANDOC_VERSION": "3.1.8",
+        "PANDOC_VERSION": "3.1.9",
         "BCFTOOLS_VERSION": "1.15.1",
-        "QUARTO_VERSION": "1.4.395",
+        "QUARTO_VERSION": "1.4.464",
         "ODBC_VERSION": "8.0.27",
         "S6_VERSION": "v2.2.0.3"
       },
@@ -102,8 +101,7 @@
       ],
       "CMD": "[\"R\"]",
       "tags": [
-        "docker.io/umr1283/umr1283:4.3.1",
-        "docker.io/umr1283/umr1283:latest"
+        "docker.io/umr1283/umr1283:4.3.1"
       ]
     },
     {
@@ -114,15 +112,14 @@
       },
       "FROM": "docker.io/umr1283/umr1283:4.3.1",
       "ENV": {
-        "RSTUDIO_VERSION": "2023.09.0+463",
+        "RSTUDIO_VERSION": "2023.09.1+494",
         "PATH": "/usr/lib/rstudio-server/bin:$PATH"
       },
       "RUN": "/docker_scripts/install_rstudio.sh",
       "CMD": "[\"/init\"]",
       "EXPOSE": 8787,
       "tags": [
-        "docker.io/umr1283/rstudio:4.3.1",
-        "docker.io/umr1283/rstudio:latest"
+        "docker.io/umr1283/rstudio:4.3.1"
       ]
     },
     {
@@ -139,8 +136,7 @@
       "CMD": "[\"/init\"]",
       "EXPOSE": 3838,
       "tags": [
-        "docker.io/umr1283/shiny:4.3.1",
-        "docker.io/umr1283/shiny:latest"
+        "docker.io/umr1283/shiny:4.3.1"
       ]
     }
   ]
