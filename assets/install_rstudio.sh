@@ -40,6 +40,7 @@ if [ "$RSTUDIO_VERSION" = "latest" ]; then
 fi
 
 if [ "$RSTUDIO_VERSION" = "stable" ] || [ "$RSTUDIO_VERSION" = "preview" ] || [ "$RSTUDIO_VERSION" = "daily" ]; then
+  echo "wget "https://rstudio.org/download/latest/${RSTUDIO_VERSION}/server/focal/rstudio-server-latest-${ARCH}.deb" -O "$DOWNLOAD_FILE""
   wget "https://rstudio.org/download/latest/${RSTUDIO_VERSION}/server/focal/rstudio-server-latest-${ARCH}.deb" -O "$DOWNLOAD_FILE"
 else
   wget "https://download2.rstudio.org/server/focal/${ARCH}/rstudio-server-${RSTUDIO_VERSION/"+"/"-"}-${ARCH}.deb" -O "$DOWNLOAD_FILE" ||
