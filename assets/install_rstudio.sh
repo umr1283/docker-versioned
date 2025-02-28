@@ -3,6 +3,9 @@ set -e
 
 RSTUDIO_VERSION=${RSTUDIO_VERSION:-"latest"}
 
+# Maj @ehenriques to Fix repository issue
+apt-get update --allow-releaseinfo-change
+
 apt-get update && apt-get install -y --no-install-recommends \
   file \
   git \
