@@ -21,6 +21,7 @@ RUN /docker_scripts/install_odbc.sh
 RUN /docker_scripts/install_s6v2.sh
 RUN /docker_scripts/install_crossmap.sh
 RUN /docker_scripts/install_bcftools.sh
+RUN apt-get update
 RUN apt-get install bedtools
 RUN /docker_scripts/install_vcftools.sh
 RUN /docker_scripts/install_qtltools.sh
